@@ -1,6 +1,6 @@
 package com.example.projetomjavafx.model.dao.impl;
 
-import db.DB;
+import com.example.projetomjavafx.db.DB;
 import com.example.projetomjavafx.model.dao.AvaliaAlbDao;
 import com.example.projetomjavafx.model.entities.AvaliaAlb;
 

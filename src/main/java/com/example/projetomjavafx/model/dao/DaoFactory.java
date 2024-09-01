@@ -1,7 +1,7 @@
 package com.example.projetomjavafx.model.dao;
 
-import db.DB;
-import model.dao.impl.*;
+import com.example.projetomjavafx.db.DB;
+import com.example.projetomjavafx.model.dao.impl.*;
 import com.example.projetomjavafx.model.entities.AvaliaMsc;
 
 public class DaoFactory {
