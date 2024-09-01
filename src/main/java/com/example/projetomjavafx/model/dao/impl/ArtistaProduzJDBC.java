@@ -1,6 +1,6 @@
 package com.example.projetomjavafx.model.dao.impl;
 
-import db.DB;
+import com.example.projetomjavafx.db.DB;
 import com.example.projetomjavafx.model.dao.ArtistaProduzDao;
 import com.example.projetomjavafx.model.entities.Artista;
 import com.example.projetomjavafx.model.entities.ArtistaProduz;
