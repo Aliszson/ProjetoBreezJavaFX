@@ -1,14 +1,19 @@
 package com.example.projetomjavafx;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
+
+import java.io.IOException;
 
 public class ApplicationController {
     @FXML
-    private Label welcomeText;
-
+    private Button botaoRegistrar;
     @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
+    void onBotaoRegistrarClick(){
+        try {
+            Application.newStage("registrar_usuario-view.fxml");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
