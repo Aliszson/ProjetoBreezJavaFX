@@ -8,6 +8,8 @@ public class Usuario {
     private String senha;
     private String bio;
     private String genero1;
+    private String genero2;
+    private String genero3;
 
     public int getId() {
         return id;
@@ -47,6 +49,22 @@ public class Usuario {
 
     public void setGenero1(String genero1) {
         this.genero1 = genero1;
+    }
+
+    public String getGenero2() {
+        return genero2;
+    }
+
+    public void setGenero2(String genero2) {
+        this.genero2 = genero2;
+    }
+
+    public String getGenero3() {
+        return genero3;
+    }
+
+    public void setGenero3(String genero3) {
+        this.genero3 = genero3;
     }
 
     @Override

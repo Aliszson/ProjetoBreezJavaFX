@@ -17,17 +17,30 @@ public class UsuarioDaoJDBC implements UsuarioDao  {
         this.conn = conn;
     }
 
-
     @Override
     public void inserirUsuario(Usuario u) {
         PreparedStatement st = null;
 
         try {
-            st = conn.prepareStatement("insert into Usuario(nome,senha,bio, genero1) values(?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+            st = conn.prepareStatement("insert into Usuario(nome,senha,bio, genero1, genero2, genero3) values(?,?,?,?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             st.setString(1, u.getNome());
             st.setString(2, u.getSenha());
             st.setString(3, u.getBio());
             st.setString(4, u.getGenero1());
+
+            // Gêneros preferidos  2 e 3 são opcionais
+            if(u.getGenero2() != null){
+                st.setString(5, u.getGenero2());
+            }else{
+                st.setNull(5, java.sql.Types.VARCHAR);
+            }
+
+            if(u.getGenero3() != null){
+                st.setString(6, u.getGenero3());
+            }else{
+                st.setNull(6, java.sql.Types.VARCHAR);
+            }
+
             int linha = st.executeUpdate();
             if (linha>0){
                 ResultSet rs = st.getGeneratedKeys();
@@ -42,6 +55,7 @@ public class UsuarioDaoJDBC implements UsuarioDao  {
             DB.closeStatement(st);
         }
     }
+
 
     @Override
     public void atualizarNomeUsuario(Usuario u) {
