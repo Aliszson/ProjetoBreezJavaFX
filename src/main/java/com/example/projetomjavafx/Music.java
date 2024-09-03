@@ -35,4 +35,3 @@ public class Music extends javafx.application.Application {
         launch();
     }
 }
-
