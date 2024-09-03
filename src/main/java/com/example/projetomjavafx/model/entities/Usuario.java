@@ -10,6 +10,7 @@ public class Usuario {
     private String genero1;
     private String genero2;
     private String genero3;
+    private byte[] foto;
 
     public int getId() {
         return id;
@@ -66,6 +67,16 @@ public class Usuario {
     public void setGenero3(String genero3) {
         this.genero3 = genero3;
     }
+
+    public byte[] getFoto() {
+        return this.foto;
+    }
+
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
+    }
+
+
 
     @Override
     public boolean equals(Object o) {
