@@ -22,7 +22,7 @@ public class UsuarioDaoJDBC implements UsuarioDao  {
         PreparedStatement st = null;
 
         try {
-            st = conn.prepareStatement("insert into Usuario(nome,senha,bio, genero1, genero2, genero3) values(?,?,?,?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+            st = conn.prepareStatement("insert into Usuario(nome,senha,bio, genero1, genero2, genero3, foto) values(?,?,?,?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             st.setString(1, u.getNome());
             st.setString(2, u.getSenha());
             st.setString(3, u.getBio());
@@ -40,7 +40,7 @@ public class UsuarioDaoJDBC implements UsuarioDao  {
             }else{
                 st.setNull(6, java.sql.Types.VARCHAR);
             }
-
+            st.setBytes(7, u.getFoto());
             int linha = st.executeUpdate();
             if (linha>0){
                 ResultSet rs = st.getGeneratedKeys();
