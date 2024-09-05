@@ -14,6 +14,7 @@ public class ApplicationController {
     void onBotaoRegistrarClick(){
         try {
             stage = Application.newStage("registrar_usuario-view.fxml");
+            stage.setTitle("Registrar");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
