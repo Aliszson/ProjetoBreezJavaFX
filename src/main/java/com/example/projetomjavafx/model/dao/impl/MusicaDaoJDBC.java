@@ -6,12 +6,14 @@ import com.example.projetomjavafx.model.entities.Musica;
 import com.example.projetomjavafx.model.entities.Usuario;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MusicaDaoJDBC implements MusicaDao {
 
     private Connection conn;
 
-    public MusicaDaoJDBC(Connection conn){
+    public MusicaDaoJDBC(Connection conn) {
         this.conn = conn;
     }
 
@@ -26,16 +28,16 @@ public class MusicaDaoJDBC implements MusicaDao {
             st.setFloat(3, m.getDuracao());
             st.setInt(4, m.getFk_id_album());
             int linha = st.executeUpdate();
-            if (linha>0){
+            if (linha > 0) {
                 ResultSet rs = st.getGeneratedKeys();
-                if (rs.next()){
+                if (rs.next()) {
                     m.setId(rs.getInt(1));
                 }
                 DB.closeResultSet(rs);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }finally {
+        } finally {
             DB.closeStatement(st);
         }
     }
@@ -46,12 +48,12 @@ public class MusicaDaoJDBC implements MusicaDao {
         try {
             st = conn.prepareStatement("update musica set titulo=? where id_musica=?");
             st.setString(1, m.getTitulo());
-            st.setInt(2,m.getId());
+            st.setInt(2, m.getId());
             st.executeUpdate();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }finally {
+        } finally {
             DB.closeStatement(st);
         }
     }
@@ -62,12 +64,12 @@ public class MusicaDaoJDBC implements MusicaDao {
         try {
             st = conn.prepareStatement("update musica set letra=? where id_musica=?");
             st.setString(1, m.getLetra());
-            st.setInt(2,m.getId());
+            st.setInt(2, m.getId());
             st.executeUpdate();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }finally {
+        } finally {
             DB.closeStatement(st);
         }
     }
@@ -77,17 +79,17 @@ public class MusicaDaoJDBC implements MusicaDao {
         PreparedStatement st = null;
         try {
             st = conn.prepareStatement("delete from musica where id_musica=?");
-            st.setInt(1,id);
+            st.setInt(1, id);
             int c = st.executeUpdate();
 
-            if (c > 0){
+            if (c > 0) {
                 System.out.println("Música deletada!");
-            }else {
+            } else {
                 System.out.println("Música inexistente.");
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }finally {
+        } finally {
             DB.closeStatement(st);
         }
     }
@@ -99,9 +101,9 @@ public class MusicaDaoJDBC implements MusicaDao {
 
         try {
             st = conn.prepareStatement("select id_musica,titulo,letra,duracao,fk_id_album from musica where id_musica=?");
-            st.setInt(1,id);
+            st.setInt(1, id);
             rs = st.executeQuery();
-            if (rs.next()){
+            if (rs.next()) {
                 Musica m = new Musica();
                 m.setId(rs.getInt("id_musica"));
                 m.setTitulo(rs.getString("titulo"));
@@ -112,10 +114,35 @@ public class MusicaDaoJDBC implements MusicaDao {
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }finally {
+        } finally {
             DB.closeResultSet(rs);
             DB.closeStatement(st);
         }
         return null;
     }
+
+    @Override
+    public List<Musica> procurarTodasMusica() {
+        PreparedStatement st = null;
+        ResultSet rs = null;
+
+        try {
+            st = conn.prepareStatement("select id_musica,titulo from musica");
+            rs = st.executeQuery();
+            List<Musica> lista = new ArrayList<>();
+            while (rs.next()) {
+                Musica m = new Musica();
+                m.setTitulo(rs.getString("nome"));
+                m.setId(rs.getInt("id_musica"));
+                lista.add(m);
+            }
+            return lista;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            DB.closeResultSet(rs);
+            DB.closeStatement(st);
+        }
+    }
 }
+

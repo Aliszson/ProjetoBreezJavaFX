@@ -70,7 +70,7 @@ public class MusicController {
     public int getFkAlbum(){
         List<Album> lista = DaoFactory.createAlbumDao().procurarTodosAlbuns();
         for (Album album : lista){
-            //comparando texto selecionado no listView com alguma string na lista de musicas
+            // comparando texto selecionado no listView com algum string selecionado na lista de albuns
             if (Objects.equals(album.getNome(), albumList.getSelectionModel().getSelectedItem())){
                 return album.getId();
             }
