@@ -3,21 +3,23 @@ package com.example.projetomjavafx;
 import com.example.projetomjavafx.model.dao.DaoFactory;
 import com.example.projetomjavafx.model.entities.Album;
 import com.example.projetomjavafx.model.entities.Musica;
+import com.example.projetomjavafx.util.Restricoes;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.ResourceBundle;
+import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
-public class MusicController {
+public class MusicController implements Initializable {
 
     @FXML
     private TextField titulo;
@@ -35,10 +37,18 @@ public class MusicController {
     private int fk_album;
 
     @FXML
-    protected void onAdicionarClick(){
+    protected void onAdicionarClick() throws ParseException {
+
+        if (duracao.getText() == ""){
+
+        }
+
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+        Date drcDate = sdf.parse(duracao.getText()); // cria objeto tipo Date
+
         Musica m = new Musica();
         m.setTitulo(titulo.getText());
-        m.setDuracao(Float.parseFloat(duracao.getText()));
+        m.setDuracao(new Time(drcDate.getTime())); // converte esse objeto para Time, o que o banco precisa
         m.setLetra(letra.getText());
         m.setFk_id_album(getFkAlbum());
 
@@ -78,5 +88,9 @@ public class MusicController {
         return 0;
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        Restricoes.DURACAO(duracao);
 
+    }
 }

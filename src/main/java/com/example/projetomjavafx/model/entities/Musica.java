@@ -1,12 +1,13 @@
 package com.example.projetomjavafx.model.entities;
 
+import java.sql.Time;
 import java.util.Objects;
 
 public class Musica {
     private int id;
     private String titulo;
     private String letra;
-    private float duracao;
+    private Time duracao;
     private int fk_id_album;
 
     public int getId() {
@@ -33,11 +34,11 @@ public class Musica {
         this.letra = letra;
     }
 
-    public float getDuracao() {
+    public Time getDuracao() {
         return duracao;
     }
 
-    public void setDuracao(float duracao) {
+    public void setDuracao(Time duracao) {
         this.duracao = duracao;
     }
 
@@ -54,7 +55,7 @@ public class Musica {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Musica musica = (Musica) o;
-        return id == musica.id && Float.compare(duracao, musica.duracao) == 0 && fk_id_album == musica.fk_id_album && Objects.equals(titulo, musica.titulo) && Objects.equals(letra, musica.letra);
+        return id == musica.id && fk_id_album == musica.fk_id_album && Objects.equals(titulo, musica.titulo) && Objects.equals(letra, musica.letra) && Objects.equals(duracao, musica.duracao);
     }
 
     @Override

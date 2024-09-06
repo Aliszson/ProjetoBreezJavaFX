@@ -25,7 +25,7 @@ public class MusicaDaoJDBC implements MusicaDao {
             st = conn.prepareStatement("insert into musica(titulo,letra,duracao,fk_id_album) values(?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
             st.setString(1, m.getTitulo());
             st.setString(2, m.getLetra());
-            st.setFloat(3, m.getDuracao());
+            st.setTime(3, m.getDuracao());
             st.setInt(4, m.getFk_id_album());
             int linha = st.executeUpdate();
             if (linha > 0) {
@@ -108,7 +108,7 @@ public class MusicaDaoJDBC implements MusicaDao {
                 m.setId(rs.getInt("id_musica"));
                 m.setTitulo(rs.getString("titulo"));
                 m.setLetra(rs.getString("letra"));
-                m.setDuracao(rs.getFloat("duracao"));
+                m.setDuracao(rs.getTime("duracao"));
                 m.setFk_id_album(rs.getInt("fk_id_album"));
                 return m;
             }
