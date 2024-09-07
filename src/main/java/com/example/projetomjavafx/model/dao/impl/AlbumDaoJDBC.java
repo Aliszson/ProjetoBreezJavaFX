@@ -20,10 +20,11 @@ public class AlbumDaoJDBC implements AlbumDao {
     public void inserirAlbum(Album a) {
         PreparedStatement st = null;
         try {
-            st = c.prepareStatement("insert into Album(nome, genero1, genero2) values (?,?, ?)", Statement.RETURN_GENERATED_KEYS);
+            st = c.prepareStatement("insert into Album(nome, genero1, genero2, capa) values (?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             st.setString(1, a.getNome());
             st.setString(2, a.getGenero1());
-            st.setString(2, a.getGenero2());
+            st.setString(3, a.getGenero2());
+            st.setBytes(4, a.getCapa());
             int l = st.executeUpdate();
 
             if(l > 0){
