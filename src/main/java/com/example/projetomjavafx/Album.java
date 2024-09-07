@@ -6,11 +6,11 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class Music extends javafx.application.Application {
+public class Album extends javafx.application.Application {
     private static Scene scene;
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(com.example.projetomjavafx.Application.class.getResource("add-music.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(com.example.projetomjavafx.Application.class.getResource("add-album.fxml"));
         scene = new Scene(fxmlLoader.load());
         stage.setTitle("Hello!");
         stage.setScene(scene);
@@ -30,6 +30,8 @@ public class Music extends javafx.application.Application {
         stage.show();
         return stage;
     }
+
+
 
     public static void main(String[] args) {
         launch();
