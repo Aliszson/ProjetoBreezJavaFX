@@ -3,6 +3,8 @@ package com.example.projetomjavafx.model.dao.impl;
 import com.example.projetomjavafx.db.DB;
 import com.example.projetomjavafx.model.dao.ArtistaDao;
 import com.example.projetomjavafx.model.entities.Artista;
+import com.example.projetomjavafx.model.entities.Usuario;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,9 +23,11 @@ public class ArtistaDaoJDBC implements ArtistaDao
     {
         PreparedStatement st = null;
         try {
-            st = c.prepareStatement("insert into Artista(nome, genero) values (?,?)", Statement.RETURN_GENERATED_KEYS);
+            st = c.prepareStatement("insert into Artista(nome, senha, genero, foto) values (?,?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             st.setString(1, a.getNome());
-            st.setString(2, a.getGenero());
+            st.setString(2, a.getSenha());
+            st.setString(3, a.getGenero());
+            st.setBytes(4, a.getFoto());
             int l = st.executeUpdate();
 
             if(l > 0){
@@ -42,7 +46,7 @@ public class ArtistaDaoJDBC implements ArtistaDao
 
 
     }
-    public void atualizarArtista(Artista a){
+    public void atualizarNomeArtista(Artista a){
         PreparedStatement st = null;
         try {
             st = c.prepareStatement("update Artista set nome = ? where id_artista = ?");
@@ -55,6 +59,21 @@ public class ArtistaDaoJDBC implements ArtistaDao
             DB.closeStatement(st);
         }
 
+    }
+
+    public void atualizarSenhaArtista(Artista a) {
+        PreparedStatement st = null;
+
+        try {
+            st = c.prepareStatement("update Artista set senha=? where id_artista=?");
+            st.setString(1, a.getSenha());
+            st.setInt(2,a.getId());
+            st.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }finally {
+            DB.closeStatement(st);
+        }
     }
 
     public void atualizarGeneroArtista(Artista a){

@@ -1,5 +1,7 @@
 package com.example.projetomjavafx.util;
 
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 
@@ -33,5 +35,61 @@ public class Restricoes {
         TextFormatter<String> textFormatter =new TextFormatter<>(mascaraDuracao);
         textField.setTextFormatter(textFormatter);
     }
+
+
+    public static void verificaNome(TextField campTexto) {
+        UnaryOperator<TextFormatter.Change> mascaraNome = change -> {
+            String Texto = change.getControlNewText();
+
+            if (Texto.matches("[a-zA-Z0-9]*")) {
+                if (Texto.length() > 20) {
+                    return null;
+                }
+                return change;
+            } else {
+                return null;
+            }
+        };
+
+        TextFormatter<String> textFormatter = new TextFormatter<>(mascaraNome);
+        campTexto.setTextFormatter(textFormatter);
+    }
+
+    public static void verificaSenha(PasswordField campoSenha) {
+        UnaryOperator<TextFormatter.Change> mascaraSenha = change -> {
+            String Texto = change.getControlNewText();
+
+            if (Texto.matches("[^\\s]*")) {
+                if (Texto.length() > 20) {
+                    return null;
+                }
+                return change;
+            } else {
+                return null;
+            }
+        };
+
+        TextFormatter<String> textFormatter = new TextFormatter<>(mascaraSenha);
+        campoSenha.setTextFormatter(textFormatter);
+    }
+
+
+    public static void verificaBio(TextArea areaTexto) {
+        UnaryOperator<TextFormatter.Change> mascaraBio = change -> {
+            String Texto = change.getControlNewText();
+
+            if (Texto.length() > 280) {
+                    return null;
+                }
+                return change;
+
+        };
+
+        TextFormatter<String> textFormatter = new TextFormatter<>(mascaraBio);
+        areaTexto.setTextFormatter(textFormatter);
+    }
+
+
+
 }
 

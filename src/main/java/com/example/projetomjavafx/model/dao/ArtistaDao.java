@@ -5,7 +5,8 @@ import java.util.List;
 public interface ArtistaDao {
 
     void inserirArtista(Artista a);
-    void atualizarArtista(Artista a);
+    void atualizarNomeArtista(Artista a);
+    void atualizarSenhaArtista(Artista a);
     void atualizarGeneroArtista(Artista a);
     void deletarPorIdArtista(int id);
     Artista procurarPorIdArtista(int id);
