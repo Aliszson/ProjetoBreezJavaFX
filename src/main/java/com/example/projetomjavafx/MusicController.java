@@ -18,6 +18,8 @@ import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
+import java.util.regex.Pattern;
 
 public class MusicController implements Initializable {
 
@@ -36,13 +38,20 @@ public class MusicController implements Initializable {
 
     private int fk_album;
 
+    // Avisos
+
+    @FXML
+    Label avisoTitulo;
+    @FXML
+    Label avisoDuracao;
+    @FXML
+    Label avisoAlbum;
+
+
     @FXML
     protected void onAdicionarClick() throws ParseException {
-
-        if (duracao.getText() == ""){
-
-        }
-
+        avisoLabel();
+        tratarDuracao();
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
         Date drcDate = sdf.parse(duracao.getText()); // cria objeto tipo Date
 
@@ -92,5 +101,59 @@ public class MusicController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Restricoes.DURACAO(duracao);
 
+        avisoTitulo.setVisible(false);
+        avisoDuracao.setVisible(false);
+        avisoAlbum.setVisible(false);
+    }
+
+    public void avisoLabel(){
+
+        if (titulo.getText().isEmpty()) { // caso texto seja vazio
+            avisoTitulo.setVisible(true);
+        }else {
+            avisoTitulo.setVisible(false);
+        }
+
+        if (duracao.getText().isEmpty()){ // caso album seja vazio
+            avisoDuracao.setVisible(true);
+        }else {
+            avisoDuracao.setVisible(false);
+        }
+
+        if (albumPesquisa.getText().isEmpty() || albumList.getSelectionModel().isEmpty()){ // caso seleção de album seja vazia
+            avisoAlbum.setVisible(true);
+        }else {
+            avisoAlbum.setVisible(false);
+        }
+    }
+
+    public void tratarDuracao() throws ParseException {
+
+        String texto = duracao.getText();
+        String duracaoFormatada = "";
+
+        if (texto.length() == 1){
+            duracaoFormatada = "00:00:0"+texto;
+
+        }else if (texto.length() == 2){
+            duracaoFormatada = "00:00:"+texto;
+        }
+        else if (texto.length() == 4){
+            duracaoFormatada = "00:0"+texto;
+        }
+        else if (texto.length() == 5){
+            duracaoFormatada = "00:"+texto;
+        }
+        else if (texto.length() == 7){
+            duracaoFormatada = "0"+texto;
+        }
+
+        System.out.println(duracaoFormatada);
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+        Date drcDate = sdf.parse(duracaoFormatada);
+
+        duracaoFormatada = sdf.format(drcDate);
+        System.out.println(duracaoFormatada);
+        duracao.setText(duracaoFormatada);
     }
 }

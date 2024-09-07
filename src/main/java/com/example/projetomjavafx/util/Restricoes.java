@@ -7,15 +7,14 @@ import java.util.function.UnaryOperator;
 
 public class Restricoes {
     public static void DURACAO(TextField textField) {
-        textField.setPromptText("00:00:00");
         UnaryOperator<TextFormatter.Change> mascaraDuracao = change -> {
             String texto = change.getControlNewText().replaceAll("[^\\d]", "");
+
+            StringBuilder duracaoFormatada = new StringBuilder(texto);
 
             if (texto.length() > 6){
                 return null;
             }
-
-            StringBuilder duracaoFormatada = new StringBuilder(texto);
 
             if(texto.length() > 2){
                 duracaoFormatada.insert(2,':');

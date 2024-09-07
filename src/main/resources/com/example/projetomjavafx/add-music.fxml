@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetomjavafx.MusicController">
    <children>
       <TextField fx:id="titulo" layoutX="27.0" layoutY="50.0" prefHeight="26.0" prefWidth="200.0" promptText="Titulo">
@@ -21,12 +20,12 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </TextField>
-      <TextField fx:id="duracao" layoutX="27.0" layoutY="103.0" prefHeight="26.0" prefWidth="200.0" promptText="Duração">
+      <TextField fx:id="duracao" layoutX="27.0" layoutY="125.0" prefHeight="26.0" prefWidth="200.0" promptText="Duração">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </TextField>
-      <TextArea fx:id="letra" layoutX="27.0" layoutY="164.0" prefHeight="75.0" prefWidth="200.0" promptText="Letra">
+      <TextArea fx:id="letra" layoutX="27.0" layoutY="192.0" prefHeight="75.0" prefWidth="200.0" promptText="Letra">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -42,12 +41,12 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="27.0" layoutY="80.0" prefHeight="22.0" prefWidth="62.0" text="Duração">
+      <Label layoutX="27.0" layoutY="103.0" prefHeight="22.0" prefWidth="62.0" text="Duração">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="27.0" layoutY="141.0" prefHeight="22.0" prefWidth="43.0" text="Letra">
+      <Label layoutX="27.0" layoutY="169.0" prefHeight="22.0" prefWidth="43.0" text="Letra">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -55,6 +54,21 @@
       <Label layoutX="264.0" layoutY="28.0" prefHeight="22.0" prefWidth="50.0" text="Álbum">
          <font>
             <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="avisoDuracao" layoutX="27.0" layoutY="152.0" prefHeight="18.0" prefWidth="200.0" text="Duração não pode ser vazio" textFill="RED">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label fx:id="avisoTitulo" layoutX="27.0" layoutY="76.0" prefHeight="18.0" prefWidth="200.0" text="Título não pode ser vazio" textFill="RED">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label fx:id="avisoAlbum" layoutX="363.0" layoutY="30.0" prefHeight="18.0" prefWidth="94.0" text="Selecione um álbum" textFill="RED">
+         <font>
+            <Font size="10.0" />
          </font>
       </Label>
    </children>
