@@ -22,7 +22,7 @@ public class RegistroController implements Initializable {
     @FXML
     private PasswordField senha;
     @FXML
-    private TextField bio;
+    private TextArea bio;
     @FXML
     private ComboBox<String> genero1;
     @FXML
@@ -34,23 +34,20 @@ public class RegistroController implements Initializable {
     @FXML
     private Button registrar;
 
+    List<String> generos = new ArrayList<>(Arrays.asList ("Rock", "Jazz", "Clássico", "Rap"));
     @FXML
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        preencheComboBox();
-    }
-    public void preencheComboBox(){
-        List<String> generos = new ArrayList<>(Arrays.asList ("Rock", "Jazz", "Clássico", "Rap"));
+
         genero1.getItems().addAll(generos);
         genero2.getItems().addAll(generos);
         genero3.getItems().addAll(generos);
 
-        }
+    }
 
+    File padrao = new File("src/main/resources/img/fotoPerfilPadrao.png");
+    File arquivo;
 
-
-
-    File arquivo = new File("src/main/resources/img/fotoPerfilPadrao.png");
     @FXML
     void onFotoClick(){
         FileChooser fc = new FileChooser();
@@ -67,12 +64,19 @@ public class RegistroController implements Initializable {
         if(Objects.equals(nome.getText(), "") || Objects.equals(senha.getText(), "")){
             listaErros.add("- Os campos de nome e senha não podem ser vazios.");
 
+        }else if(DaoFactory.createUsuarioDao().procurarTodosUsuario().toString().toLowerCase().contains(nome.getText().toLowerCase())) {
+          listaErros.add("- Nome de usuário já esta sendo utilizado");
         }else{
             u.setNome(nome.getText());
             u.setSenha(senha.getText());
         }
 
-        u.setBio(bio.getText());
+        if(bio.getText().length() > 280){
+            listaErros.add("- Limite de caracteres do campo bio excedido");
+        }
+        else{
+            u.setBio(bio.getText());
+        }
 
         if(genero1.getValue() == null){
             listaErros.add("- Você deve escolher um gênero musical no campo gênero favorito.");
@@ -87,16 +91,36 @@ public class RegistroController implements Initializable {
         if(arquivo!=null){
             byte[] bytesImagem = Files.readAllBytes(arquivo.toPath());
             u.setFoto(bytesImagem);
+        }else{
+            byte[] bytesImagem = Files.readAllBytes(padrao.toPath());
+            u.setFoto(bytesImagem);
         }
 
         if(!listaErros.isEmpty()){
             String erro = String.join("\n", listaErros);
-            Alerta.exibirAlerta("Erro", "Campos inválidos", erro , Alert.AlertType.ERROR);
+            Alerta.exibirAlerta("Erro", "Campo inválido", erro , Alert.AlertType.ERROR);
             return;
         }
 
         DaoFactory.createUsuarioDao().inserirUsuario(u);
+        Alerta.exibirAlerta(null, null, "Registro realizado com sucesso!", Alert.AlertType.INFORMATION);
+        nome.clear();
+        senha.clear();
+        bio.clear();
+        genero1.setValue(null);
+        genero2.setValue("Nenhum");
+        genero3.setValue("Nenhum");
+        File perfilVazio = new File("src/main/resources/img/perfilvazio.png");
+        foto.setImage(new Image(perfilVazio.toURI().toString()));
+        arquivo = null;
+
 
     }
+
+    public void procuraNome(){
+    }
+
+
+
 
 }
