@@ -4,6 +4,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -48,8 +49,8 @@
                     </font>
                 </Label>
                 <TextField fx:id="nome" prefHeight="25.0" prefWidth="125.0" promptText="insira seu nome" GridPane.columnIndex="1" />
-                <TextField fx:id="bio" promptText="insira uma descrição" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                 <PasswordField fx:id="senha" promptText="insira sua senha" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextArea fx:id="bio" prefHeight="200.0" prefWidth="200.0" promptText="insira uma descrição" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             </children>
         </GridPane>
         <Button fx:id="registrar" layoutX="266.0" layoutY="313.0" mnemonicParsing="false" onMouseClicked="#onRegistrarClick" text="Registrar">

@@ -22,7 +22,7 @@ public class RegistroController implements Initializable {
     @FXML
     private PasswordField senha;
     @FXML
-    private TextField bio;
+    private TextArea bio;
     @FXML
     private ComboBox<String> genero1;
     @FXML
@@ -64,12 +64,19 @@ public class RegistroController implements Initializable {
         if(Objects.equals(nome.getText(), "") || Objects.equals(senha.getText(), "")){
             listaErros.add("- Os campos de nome e senha não podem ser vazios.");
 
+        }else if(DaoFactory.createUsuarioDao().procurarTodosUsuario().toString().toLowerCase().contains(nome.getText().toLowerCase())) {
+          listaErros.add("- Nome de usuário já esta sendo utilizado");
         }else{
             u.setNome(nome.getText());
             u.setSenha(senha.getText());
         }
 
-        u.setBio(bio.getText());
+        if(bio.getText().length() > 280){
+            listaErros.add("- Limite de caracteres do campo bio excedido");
+        }
+        else{
+            u.setBio(bio.getText());
+        }
 
         if(genero1.getValue() == null){
             listaErros.add("- Você deve escolher um gênero musical no campo gênero favorito.");
@@ -108,6 +115,9 @@ public class RegistroController implements Initializable {
         arquivo = null;
 
 
+    }
+
+    public void procuraNome(){
     }
 
 
