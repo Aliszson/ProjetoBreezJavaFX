@@ -15,6 +15,7 @@ public class ApplicationController {
         try {
             stage = Application.newStage("registrar_usuario-view.fxml");
             stage.setTitle("Registrar");
+            stage.setResizable(false);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

@@ -15,6 +15,7 @@ public class Application extends javafx.application.Application {
         scene = new Scene(fxmlLoader.load());
         stage.setTitle("Projeto M");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 

@@ -54,6 +54,7 @@ public class RegistroArtistaController implements Initializable
         try{
             stage = Application.newStage("registro_usuario-view.fxml");
             stage.setTitle("Registro Usuario");
+            stage.setResizable(false);
         }catch(IOException e){
             throw new RuntimeException();
         }

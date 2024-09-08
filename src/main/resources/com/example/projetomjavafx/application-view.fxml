@@ -7,12 +7,12 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetomjavafx.ApplicationController">
    <children>
-      <Text layoutX="203.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PROJETO M ">
+      <Text layoutX="203.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PROJETO M ">
          <font>
             <Font name="System Bold" size="33.0" />
          </font>
       </Text>
-      <Button fx:id="botaoRegistrar" layoutX="266.0" layoutY="188.0" mnemonicParsing="false" onMouseClicked="#onBotaoRegistrarClick" text="Registrar">
+      <Button fx:id="botaoRegistrar" layoutX="266.0" layoutY="200.0" mnemonicParsing="false" onMouseClicked="#onBotaoRegistrarClick" text="Registrar">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
