@@ -21,10 +21,10 @@ import java.util.*;
 
 public class RegistroController implements Initializable {
 
-    private static Stage stage;
+
 
     @FXML
-    private Button botaoUsuario;
+    private ImageView iconeVoltar;
     @FXML
     private Button botaoArtista;
     @FXML
@@ -44,16 +44,23 @@ public class RegistroController implements Initializable {
     @FXML
     private Button registrar;
 
+
     @FXML
-    void onUsuarioClick(){
+    void onIconeVoltarClick(){
+        try{
+            Application.updateStageScene(ApplicationController.getStage(), "application-view.fxml");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
     }
+
+
     @FXML
     void onArtistaClick(){
         try{
-            stage = Application.newStage("registrar_artista-view.fxml");
-            stage.setTitle("Registro artista");
-            stage.setResizable(false);
+            Stage stageAtual = (Stage) botaoArtista.getScene().getWindow();
+            Application.updateStageScene(stageAtual, "registrar_artista-view.fxml");
         }catch (IOException e){
             throw new RuntimeException();
         }

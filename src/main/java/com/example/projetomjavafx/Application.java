@@ -1,6 +1,7 @@
 package com.example.projetomjavafx;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -31,6 +32,15 @@ public class Application extends javafx.application.Application {
         stage.show();
         return stage;
     }
+
+    public static void updateStageScene(Stage stage, String url) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource(url));
+        Parent componentePai = fxmlLoader.load(); // pega o elemento pai da tela
+        stage.getScene().setRoot(componentePai); // troca o pai da cena atual pelo do fxml carregado
+    }
+
+
+
 
     public static void main(String[] args) {
         launch();

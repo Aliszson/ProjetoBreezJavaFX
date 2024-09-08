@@ -21,12 +21,10 @@ import java.util.*;
 public class RegistroArtistaController implements Initializable
 {
 
-    public static Stage stage;
-
+    @FXML
+    private ImageView iconeVoltar;
     @FXML
     private Button botaoUsuario;
-    @FXML
-    private Button botaoArtista;
     @FXML
     private TextField nome;
     @FXML
@@ -46,24 +44,31 @@ public class RegistroArtistaController implements Initializable
         Restricoes.verificaSenha(senha);
         genero.getItems().addAll(generos);
 
-
     }
 
     @FXML
+    void onIconeVoltarClick() {
+        try {
+            Application.updateStageScene(ApplicationController.getStage(), "application-view.fxml");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
+        @FXML
     void onUsuarioClick(){
         try{
-            stage = Application.newStage("registro_usuario-view.fxml");
-            stage.setTitle("Registro Usuario");
-            stage.setResizable(false);
+            Stage stageAtual = (Stage) botaoUsuario.getScene().getWindow();
+            Application.updateStageScene(stageAtual, "registrar_usuario-view.fxml");
         }catch(IOException e){
             throw new RuntimeException();
         }
     }
 
-    @FXML
-    void onArtistaClick(){
 
-    }
+
 
     File padraoArtista = new File("src/main/resources/img/perfilPadraoArtista.png");
     File arquivo;
