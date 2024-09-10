@@ -1,8 +1,7 @@
 module com.example.projetomjavafx {
-    requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
-    requires java.desktop;
+    requires transitive org.controlsfx.controls;
 
 
     opens com.example.projetomjavafx to javafx.fxml;

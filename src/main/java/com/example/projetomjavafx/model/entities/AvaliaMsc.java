@@ -54,18 +54,19 @@ public class AvaliaMsc {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AvaliaMsc avaliaMsc = (AvaliaMsc) o;
-        return id == avaliaMsc.id && fk_id_usuario == avaliaMsc.fk_id_usuario && fk_id_musica == avaliaMsc.fk_id_musica && Objects.equals(comentario, avaliaMsc.comentario);
+        return id == avaliaMsc.id && Float.compare(nota, avaliaMsc.nota) == 0 && fk_id_usuario == avaliaMsc.fk_id_usuario && fk_id_musica == avaliaMsc.fk_id_musica && Objects.equals(comentario, avaliaMsc.comentario);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, comentario, fk_id_usuario, fk_id_musica);
+        return Objects.hash(id, nota, comentario, fk_id_usuario, fk_id_musica);
     }
 
     @Override
     public String toString() {
         return "AvaliaMsc{" +
                 "id=" + id +
+                ", nota=" + nota +
                 ", comentario='" + comentario + '\'' +
                 ", fk_id_usuario=" + fk_id_usuario +
                 ", fk_id_musica=" + fk_id_musica +

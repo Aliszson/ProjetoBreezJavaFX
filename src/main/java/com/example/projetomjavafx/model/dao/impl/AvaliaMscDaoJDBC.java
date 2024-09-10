@@ -18,10 +18,11 @@ public class AvaliaMscDaoJDBC implements AvaliaMscDao {
         PreparedStatement st = null;
 
         try {
-            st = conn.prepareStatement("insert into avaliaMsc(nota, fk_id_usuario, fk_id_musica) values(?,?,?)", Statement.RETURN_GENERATED_KEYS);
+            st = conn.prepareStatement("insert into avaliaMsc(nota, comentario, fk_id_usuario, fk_id_musica) values(?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
             st.setFloat(1, am.getNota());
-            st.setInt(2, am.getFk_id_usuario());
-            st.setInt(3, am.getFk_id_musica());
+            st.setString(2,am.getComentario());
+            st.setInt(3, am.getFk_id_usuario());
+            st.setInt(4, am.getFk_id_musica());
             int linha = st.executeUpdate();
             if (linha>0){
                 ResultSet rs = st.getGeneratedKeys();
