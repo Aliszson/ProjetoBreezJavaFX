@@ -12,4 +12,5 @@ public interface UsuarioDao {
     void deletarPorIdUsuario(int id);
     Usuario procurarPorIdUsuario(int id);
     List<Usuario> procurarTodosUsuario();
+    Usuario login(String nomeLogin, String senhaLogin);
 }
