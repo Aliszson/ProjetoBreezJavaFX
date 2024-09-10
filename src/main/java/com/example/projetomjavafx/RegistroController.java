@@ -81,7 +81,7 @@ public class RegistroController implements Initializable {
 
     }
 
-    File padrao = new File("src/main/resources/img/fotoPerfilPadrao.png");
+    File padrao = new File("src/main/resources/img/usuarioImg/fotoPerfilPadrao.png");
     File arquivo;
 
     @FXML
@@ -148,7 +148,7 @@ public class RegistroController implements Initializable {
         genero1.setValue(null);
         genero2.setValue("Nenhum");
         genero3.setValue("Nenhum");
-        File perfilVazio = new File("src/main/resources/img/perfilvazio.png");
+        File perfilVazio = new File("src/main/resources/img/usuarioImg/perfilvazio.png");
         foto.setImage(new Image(perfilVazio.toURI().toString()));
         arquivo = null;
     }

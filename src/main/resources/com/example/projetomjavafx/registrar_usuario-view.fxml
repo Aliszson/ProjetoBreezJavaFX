@@ -96,13 +96,13 @@
         </GridPane>
         <ImageView fx:id="foto" fitHeight="128.0" fitWidth="128.0" layoutX="43.0" layoutY="120.0" onMouseClicked="#onFotoClick" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../../../img/perfilvazio.png" />
+                <Image url="@../../../img/usuarioImg/perfilvazio.png" />
             </image>
         </ImageView>
       <Button fx:id="botaoArtista" layoutX="274.0" layoutY="58.0" mnemonicParsing="false" onMouseClicked="#onArtistaClick" text="Artista" />
       <ImageView fx:id="iconeVoltar" fitHeight="25.0" fitWidth="35.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#onIconeVoltarClick" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../img/setaVoltar.png" />
+            <Image url="@../../../img/icone/setaVoltar.png" />
          </image>
       </ImageView>
     </children>
