@@ -115,7 +115,7 @@ public class ArtistaDaoJDBC implements ArtistaDao
         ResultSet rs = null;
 
         try {
-            st = c.prepareStatement("select id_artista, nome from Artista where id_artista = ?");
+            st = c.prepareStatement("select id_artista, nome. genero, foto from Artista where id_artista = ?");
             st.setInt(1, id);
             rs = st.executeQuery();
 
@@ -123,6 +123,8 @@ public class ArtistaDaoJDBC implements ArtistaDao
                 Artista a = new Artista();
                 a.setId(rs.getInt("id_artista"));
                 a.setNome(rs.getString("nome"));
+                a.setGenero(rs.getString("genero"));
+                a.setFoto(rs.getBytes("foto"));
                 return a;
             }
         } catch (SQLException e) {
