@@ -62,7 +62,6 @@
             <Image url="@../../../img/artistaImg/perfilvazioArtista.png" />
          </image>
       </ImageView>
-      <Button fx:id="botaoUsuario" layoutX="272.0" layoutY="68.0" mnemonicParsing="false" onMouseClicked="#onUsuarioClick" text="Usuário" />
       <ImageView fx:id="iconeVoltar" fitHeight="25.0" fitWidth="35.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#onIconeVoltarClick" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../img/icone/setaVoltar.png" />

@@ -8,34 +8,72 @@ import java.io.IOException;
 
 public class ApplicationController {
     private static Stage stage;
+    @FXML
+    private MenuButton menuLogin;
+    @FXML
+    private MenuButton menuRegistro;
 
     @FXML
-    private Button botaoRegistrar;
+    private MenuItem registrarUsuario;
     @FXML
-    private Button botaoLogar;
+    private MenuItem registrarArtista;
+
     @FXML
-    void onBotaoRegistrarClick(){
+    private MenuItem loginUsuario;
+    @FXML
+    private MenuItem loginArtista;
+
+
+    @FXML
+    void onRegistrarUsuario() {
         try {
-            ApplicationController.setStage((Stage) botaoRegistrar.getScene().getWindow());
+            ApplicationController.setStage((Stage) menuRegistro.getScene().getWindow());
             Application.updateStageScene(getStage(), "registrar_usuario-view.fxml");
             stage.setTitle("Registrar");
             stage.setResizable(false);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
 
+    }
     @FXML
-    void onBotaoLogarClick (){
+    void onRegistrarArtista() {
         try {
-            ApplicationController.setStage((Stage) botaoLogar.getScene().getWindow());
-            Application.updateStageScene(getStage(), "login_usuario-view.fxml");
-            stage.setTitle("Logar");
+            ApplicationController.setStage((Stage) menuRegistro.getScene().getWindow());
+            Application.updateStageScene(getStage(), "registrar_artista-view.fxml");
+            stage.setTitle("Registrar");
             stage.setResizable(false);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
     }
+
+    @FXML
+    void onLoginUsuario() {
+        try {
+            ApplicationController.setStage((Stage) menuLogin.getScene().getWindow());
+            Application.updateStageScene(getStage(), "login_usuario-view.fxml");
+            stage.setTitle("Registrar");
+            stage.setResizable(false);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+    @FXML
+    void onLoginArtista() {
+        try {
+            ApplicationController.setStage((Stage) menuLogin.getScene().getWindow());
+            Application.updateStageScene(getStage(), "login_artista-view.fxml");
+            stage.setTitle("Registrar");
+            stage.setResizable(false);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
 
     public static Stage getStage(){
         return stage;

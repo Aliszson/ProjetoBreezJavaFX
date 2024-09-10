@@ -23,8 +23,6 @@ public class RegistroArtistaController implements Initializable
     @FXML
     private ImageView iconeVoltar;
     @FXML
-    private Button botaoUsuario;
-    @FXML
     private TextField nome;
     @FXML
     private PasswordField senha;
@@ -53,15 +51,6 @@ public class RegistroArtistaController implements Initializable
         }
     }
 
-        @FXML
-    void onUsuarioClick(){
-        try{
-            Stage stageAtual = (Stage) botaoUsuario.getScene().getWindow();
-            Application.updateStageScene(stageAtual, "registrar_usuario-view.fxml");
-        }catch(IOException e){
-            throw new RuntimeException();
-        }
-    }
 
     File padraoArtista = new File("src/main/resources/img/artistaImg/perfilPadraoArtista.png");
     File arquivo;
@@ -91,6 +80,8 @@ public class RegistroArtistaController implements Initializable
 
         if(genero.getValue() == null){
             listaErros.add("- O gênero musical não pode ser vazio");
+        }else{
+            a.setGenero(genero.getValue());
         }
 
         if(arquivo != null){
