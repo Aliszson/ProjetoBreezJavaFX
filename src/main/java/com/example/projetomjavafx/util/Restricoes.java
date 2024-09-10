@@ -82,14 +82,33 @@ public class Restricoes {
                     return null;
                 }
                 return change;
-
         };
 
         TextFormatter<String> textFormatter = new TextFormatter<>(mascaraBio);
         areaTexto.setTextFormatter(textFormatter);
     }
 
+    public static void COMENTARIO(TextArea areaTexto) {
 
+        int maxCharLinha = 40;
 
+        UnaryOperator<TextFormatter.Change> mascaraComent = change -> {
+            String texto = change.getControlNewText();
+            int posicaoOriginalCursor = change.getCaretPosition();
+
+            // calculando posicao da linha atual
+            int inicioLinhaAtual = texto.lastIndexOf("\n", posicaoOriginalCursor - 1) + 1;
+            int tamanhoLinhaAtual = posicaoOriginalCursor - inicioLinhaAtual;
+
+            // verificar se a linha excede o limite de caracteres
+            if (tamanhoLinhaAtual >= maxCharLinha){
+                // inserir quebra de linha antes do novo caractere
+                change.setText("\n");
+            }
+            return change;
+        };
+
+        TextFormatter<String> textFormatter = new TextFormatter<>(mascaraComent);
+        areaTexto.setTextFormatter(textFormatter);
+    }
 }
-
