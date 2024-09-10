@@ -63,7 +63,7 @@ public class RegistroArtistaController implements Initializable
         }
     }
 
-    File padraoArtista = new File("src/main/resources/img/perfilPadraoArtista.png");
+    File padraoArtista = new File("src/main/resources/img/artistaImg/perfilPadraoArtista.png");
     File arquivo;
     @FXML
     void onFotoClick(){
@@ -116,7 +116,7 @@ public class RegistroArtistaController implements Initializable
         nome.clear();
         senha.clear();
         genero.setValue("Nenhum");
-        File perfilVazio = new File("src/main/resources/img/perfilvazioArtista.png");
+        File perfilVazio = new File("src/main/resources/img/artistaImg/perfilvazioArtista.png");
         foto.setImage(new Image(perfilVazio.toURI().toString()));
         arquivo = null;
     }
