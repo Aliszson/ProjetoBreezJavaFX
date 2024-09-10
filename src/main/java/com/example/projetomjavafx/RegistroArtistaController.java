@@ -20,7 +20,6 @@ import java.util.*;
 
 public class RegistroArtistaController implements Initializable
 {
-
     @FXML
     private ImageView iconeVoltar;
     @FXML
@@ -35,7 +34,6 @@ public class RegistroArtistaController implements Initializable
     private ImageView foto;
     @FXML
     private Button registrar;
-
 
     List<String> generos = new ArrayList<>(Arrays.asList ("Rock", "Jazz", "Clássico", "Rap"));
     @FXML
@@ -55,8 +53,6 @@ public class RegistroArtistaController implements Initializable
         }
     }
 
-
-
         @FXML
     void onUsuarioClick(){
         try{
@@ -66,9 +62,6 @@ public class RegistroArtistaController implements Initializable
             throw new RuntimeException();
         }
     }
-
-
-
 
     File padraoArtista = new File("src/main/resources/img/perfilPadraoArtista.png");
     File arquivo;
@@ -81,6 +74,7 @@ public class RegistroArtistaController implements Initializable
         }
 
     }
+
     @FXML
     void onRegistrarClick() throws  IOException{
         Artista a = new Artista();
@@ -118,7 +112,6 @@ public class RegistroArtistaController implements Initializable
         limparCampos();
     }
 
-
     public void limparCampos(){
         nome.clear();
         senha.clear();
@@ -127,8 +120,4 @@ public class RegistroArtistaController implements Initializable
         foto.setImage(new Image(perfilVazio.toURI().toString()));
         arquivo = null;
     }
-
-
-
-
 }

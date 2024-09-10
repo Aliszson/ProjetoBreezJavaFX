@@ -138,7 +138,7 @@ public class AlbumDaoJDBC implements AlbumDao {
         ResultSet rs = null;
 
         try {
-            st = c.prepareStatement("select id_album, nome from Album");
+            st = c.prepareStatement("select id_album, nome, genero1, capa from Album");
             rs = st.executeQuery();
             List<Album> lista = new ArrayList<>();
 

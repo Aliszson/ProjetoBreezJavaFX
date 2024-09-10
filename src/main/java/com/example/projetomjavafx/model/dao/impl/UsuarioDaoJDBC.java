@@ -131,14 +131,20 @@ public class UsuarioDaoJDBC implements UsuarioDao  {
         ResultSet rs = null;
 
         try {
-            st = conn.prepareStatement("select id_usuario,nome,bio from Usuario where id_usuario=?");
+            st = conn.prepareStatement("select id_usuario,nome,senha,bio,genero1,genero2,genero3,foto from Usuario where id_usuario=?");
             st.setInt(1,id);
             rs = st.executeQuery();
             if (rs.next()){
                 Usuario u = new Usuario();
                 u.setId(rs.getInt("id_usuario"));
                 u.setNome(rs.getString("nome"));
+                u.setSenha(rs.getString("senha"));
                 u.setBio(rs.getString("bio"));
+                u.setGenero1(rs.getString("genero1"));
+                u.setGenero2(rs.getString("genero2"));
+                u.setGenero3(rs.getString("genero3"));
+                u.setFoto(rs.getBytes("foto"));
+
                 return u;
             }
 
