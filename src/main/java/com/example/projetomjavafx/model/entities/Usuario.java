@@ -1,5 +1,6 @@
 package com.example.projetomjavafx.model.entities;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 public class Usuario {
@@ -91,6 +92,7 @@ public class Usuario {
         return Objects.hash(id, nome, senha, bio);
     }
 
+
     @Override
     public String toString() {
         return "Usuario{" +
@@ -98,6 +100,11 @@ public class Usuario {
                 ", nome='" + nome + '\'' +
                 ", senha='" + senha + '\'' +
                 ", bio='" + bio + '\'' +
+                ", genero1='" + genero1 + '\'' +
+                ", genero2='" + genero2 + '\'' +
+                ", genero3='" + genero3 + '\'' +
+                ", foto=" + Arrays.toString(foto) +
                 '}';
     }
+
 }

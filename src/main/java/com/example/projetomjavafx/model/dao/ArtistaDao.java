@@ -11,4 +11,5 @@ public interface ArtistaDao {
     void deletarPorIdArtista(int id);
     Artista procurarPorIdArtista(int id);
     List<Artista> procurarTodosArtista();
+    Artista login(String nomeLogin, String senhaLogin);
 }

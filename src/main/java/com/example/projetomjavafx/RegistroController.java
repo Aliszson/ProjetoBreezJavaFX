@@ -21,12 +21,8 @@ import java.util.*;
 
 public class RegistroController implements Initializable {
 
-
-
     @FXML
     private ImageView iconeVoltar;
-    @FXML
-    private Button botaoArtista;
     @FXML
     private TextField nome;
     @FXML
@@ -55,17 +51,6 @@ public class RegistroController implements Initializable {
 
     }
 
-
-    @FXML
-    void onArtistaClick(){
-        try{
-            Stage stageAtual = (Stage) botaoArtista.getScene().getWindow();
-            Application.updateStageScene(stageAtual, "registrar_artista-view.fxml");
-        }catch (IOException e){
-            throw new RuntimeException();
-        }
-
-    }
 
     List<String> generos = new ArrayList<>(Arrays.asList ("Rock", "Jazz", "Clássico", "Rap"));
     @FXML
