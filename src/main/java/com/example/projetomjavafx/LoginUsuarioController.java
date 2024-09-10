@@ -66,7 +66,7 @@ public class LoginUsuarioController implements Initializable {
         sessao.setUsuario(DaoFactory.createUsuarioDao().login(nome.getText(), senha.getText()));
         
         try{
-            Application.updateStageScene(ApplicationController.getStage(), "telaprincipal-view.fxml");
+            Application.updateStageScene(ApplicationController.getStage(), "tela-principal-view.fxml");
         }catch (IOException e) {
             throw new RuntimeException(e);
         }

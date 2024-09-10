@@ -10,7 +10,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,7 +18,7 @@ import java.nio.file.Files;
 import java.util.*;
 
 
-public class RegistroController implements Initializable {
+public class RegistroUsuarioController implements Initializable {
 
     @FXML
     private ImageView iconeVoltar;

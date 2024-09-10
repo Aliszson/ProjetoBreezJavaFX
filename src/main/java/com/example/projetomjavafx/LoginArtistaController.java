@@ -74,7 +74,7 @@ public class LoginArtistaController implements Initializable
 
 
         try{
-            Application.updateStageScene(ApplicationController.getStage(), "telaprincipal-view.fxml");
+            Application.updateStageScene(ApplicationController.getStage(), "tela-principal-view.fxml");
         }catch (IOException e) {
             throw new RuntimeException(e);
         }
