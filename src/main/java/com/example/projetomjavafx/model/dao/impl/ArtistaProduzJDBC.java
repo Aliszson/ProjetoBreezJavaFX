@@ -23,7 +23,7 @@ public class ArtistaProduzJDBC implements ArtistaProduzDao {
 
         PreparedStatement st = null;
         try {
-            st = c.prepareStatement("insert into ArtistaProduz(fk_id_artista, fk_id_album, fk_id_musica) values (?,?,?)");
+            st = c.prepareStatement("insert into artistaProduz(fk_id_artista, fk_id_album, fk_id_musica) values (?,?,?)");
             st.setInt(1, a.getFk_id_artista());
             st.setInt(2, a.getFk_id_album());
             st.setInt(3, a.getFk_id_musica());
@@ -42,7 +42,7 @@ public class ArtistaProduzJDBC implements ArtistaProduzDao {
         ResultSet rs = null;
 
         try {
-            st = c.prepareStatement("select fk_id_artista, fk_id_album, fk_id_musica from ArtistaProduz");
+            st = c.prepareStatement("select fk_id_artista, fk_id_album, fk_id_musica from artistaProduz");
             rs = st.executeQuery();
             List<ArtistaProduz> lista = new ArrayList<>();
 

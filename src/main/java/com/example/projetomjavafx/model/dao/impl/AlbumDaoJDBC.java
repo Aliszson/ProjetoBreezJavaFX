@@ -20,7 +20,7 @@ public class AlbumDaoJDBC implements AlbumDao {
     public void inserirAlbum(Album a) {
         PreparedStatement st = null;
         try {
-            st = c.prepareStatement("insert into Album(nome, genero1, genero2, capa, fk_id_artista) values (?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+            st = c.prepareStatement("insert into album(nome, genero1, genero2, capa, fk_id_artista) values (?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             st.setString(1, a.getNome());
             st.setString(2, a.getGenero1());
             st.setString(3, a.getGenero2());
@@ -62,7 +62,7 @@ public class AlbumDaoJDBC implements AlbumDao {
     public void atualizarGeneroUmAlbum(Album a) {
         PreparedStatement st = null;
         try {
-            st = c.prepareStatement("update Album set genero1 = ? where id_album = ?");
+            st = c.prepareStatement("update album set genero1 = ? where id_album = ?");
             st.setString(1, a.getGenero1());
             st.setInt(2, a.getId());
             int c = st.executeUpdate();
@@ -77,7 +77,7 @@ public class AlbumDaoJDBC implements AlbumDao {
     public void atualizarGeneroDoisAlbum(Album a) {
         PreparedStatement st = null;
         try {
-            st = c.prepareStatement("update Album set genero2 = ? where id_album = ?");
+            st = c.prepareStatement("update album set genero2 = ? where id_album = ?");
             st.setString(1, a.getGenero2());
             st.setInt(2, a.getId());
             int c = st.executeUpdate();
@@ -92,7 +92,7 @@ public class AlbumDaoJDBC implements AlbumDao {
     public void deletarPorIdAlbum(int id) {
         PreparedStatement st = null;
         try {
-            st = c.prepareStatement("delete from Album where id_album = ?");
+            st = c.prepareStatement("delete from album where id_album = ?");
             st.setInt(1, id);
             int c = st.executeUpdate();
 
@@ -114,7 +114,7 @@ public class AlbumDaoJDBC implements AlbumDao {
         ResultSet rs = null;
 
         try {
-            st = c.prepareStatement("select id_album, nome from Album where id_album = ?");
+            st = c.prepareStatement("select id_album, nome from album where id_album = ?");
             st.setInt(1, id);
             rs = st.executeQuery();
 
@@ -139,7 +139,7 @@ public class AlbumDaoJDBC implements AlbumDao {
         ResultSet rs = null;
 
         try {
-            st = c.prepareStatement("select id_album, nome, genero1, genero2, capa, fk_id_artista from Album");
+            st = c.prepareStatement("select id_album, nome, genero1, genero2, capa, fk_id_artista from album");
             rs = st.executeQuery();
             List<Album> lista = new ArrayList<>();
 

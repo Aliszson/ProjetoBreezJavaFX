@@ -21,7 +21,7 @@ public class ArtistaDaoJDBC implements ArtistaDao {
     public void inserirArtista(Artista a) {
         PreparedStatement st = null;
         try {
-            st = c.prepareStatement("insert into Artista(nome, senha, genero, foto) values (?,?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+            st = c.prepareStatement("insert into artista(nome, senha, genero, foto) values (?,?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             st.setString(1, a.getNome());
             st.setString(2, a.getSenha());
             st.setString(3, a.getGenero());
@@ -48,7 +48,7 @@ public class ArtistaDaoJDBC implements ArtistaDao {
     public void atualizarNomeArtista(Artista a) {
         PreparedStatement st = null;
         try {
-            st = c.prepareStatement("update Artista set nome = ? where id_artista = ?");
+            st = c.prepareStatement("update artista set nome = ? where id_artista = ?");
             st.setString(1, a.getNome());
             st.setInt(2, a.getId());
             int c = st.executeUpdate();
@@ -64,7 +64,7 @@ public class ArtistaDaoJDBC implements ArtistaDao {
         PreparedStatement st = null;
 
         try {
-            st = c.prepareStatement("update Artista set senha=? where id_artista=?");
+            st = c.prepareStatement("update artista set senha=? where id_artista=?");
             st.setString(1, a.getSenha());
             st.setInt(2, a.getId());
             st.executeUpdate();
@@ -78,7 +78,7 @@ public class ArtistaDaoJDBC implements ArtistaDao {
     public void atualizarGeneroArtista(Artista a) {
         PreparedStatement st = null;
         try {
-            st = c.prepareStatement("update Artista set genero = ? where id_artista = ?");
+            st = c.prepareStatement("update artista set genero = ? where id_artista = ?");
             st.setString(1, a.getGenero());
             st.setInt(2, a.getId());
             int c = st.executeUpdate();
@@ -93,7 +93,7 @@ public class ArtistaDaoJDBC implements ArtistaDao {
     public void deletarPorIdArtista(int id) {
         PreparedStatement st = null;
         try {
-            st = c.prepareStatement("delete from Artista where id_artista = ?");
+            st = c.prepareStatement("delete from artista where id_artista = ?");
             st.setInt(1, id);
             int c = st.executeUpdate();
 
@@ -115,7 +115,7 @@ public class ArtistaDaoJDBC implements ArtistaDao {
         ResultSet rs = null;
 
         try {
-            st = c.prepareStatement("select id_artista, nome, genero, foto from Artista where id_artista = ?");
+            st = c.prepareStatement("select id_artista, nome, genero, foto from artista where id_artista = ?");
             st.setInt(1, id);
             rs = st.executeQuery();
 
@@ -142,7 +142,7 @@ public class ArtistaDaoJDBC implements ArtistaDao {
         ResultSet rs = null;
 
         try {
-            st = c.prepareStatement("select id_artista, nome from Artista");
+            st = c.prepareStatement("select id_artista, nome from artista");
             rs = st.executeQuery();
             List<Artista> lista = new ArrayList<>();
 
@@ -167,7 +167,7 @@ public class ArtistaDaoJDBC implements ArtistaDao {
         ResultSet rs = null;
 
         try {
-            st = c.prepareStatement("select id_artista, nome, senha, genero, foto from Artista where nome = ? and senha = ?");
+            st = c.prepareStatement("select id_artista, nome, senha, genero, foto from artista where nome = ? and senha = ?");
             st.setString(1, nomeLogin);
             st.setString(2, senhaLogin);
             rs = st.executeQuery();

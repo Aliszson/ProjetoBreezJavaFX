@@ -22,7 +22,7 @@ public class UsuarioDaoJDBC implements UsuarioDao {
         PreparedStatement st = null;
 
         try {
-            st = conn.prepareStatement("insert into Usuario(nome,senha,bio, genero1, genero2, genero3, foto) values(?,?,?,?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+            st = conn.prepareStatement("insert into usuario(nome,senha,bio, genero1, genero2, genero3, foto) values(?,?,?,?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             st.setString(1, u.getNome());
             st.setString(2, u.getSenha());
             st.setString(3, u.getBio());
@@ -61,7 +61,7 @@ public class UsuarioDaoJDBC implements UsuarioDao {
     public void atualizarNomeUsuario(Usuario u) {
         PreparedStatement st = null;
         try {
-            st = conn.prepareStatement("update Usuario set nome=? where id_usuario=?");
+            st = conn.prepareStatement("update usuario set nome=? where id_usuario=?");
             st.setString(1, u.getNome());
             st.setInt(2, u.getId());
             st.executeUpdate();
@@ -78,7 +78,7 @@ public class UsuarioDaoJDBC implements UsuarioDao {
         PreparedStatement st = null;
 
         try {
-            st = conn.prepareStatement("update Usuario set senha=? where id_usuario=?");
+            st = conn.prepareStatement("update usuario set senha=? where id_usuario=?");
             st.setString(1, u.getSenha());
             st.setInt(2, u.getId());
             st.executeUpdate();
@@ -94,7 +94,7 @@ public class UsuarioDaoJDBC implements UsuarioDao {
         PreparedStatement st = null;
 
         try {
-            st = conn.prepareStatement("update Usuario set bio=? where id_usuario=?");
+            st = conn.prepareStatement("update usuario set bio=? where id_usuario=?");
             st.setString(1, u.getBio());
             st.setInt(2, u.getId());
             st.executeUpdate();
@@ -109,7 +109,7 @@ public class UsuarioDaoJDBC implements UsuarioDao {
     public void deletarPorIdUsuario(int id) {
         PreparedStatement st = null;
         try {
-            st = conn.prepareStatement("delete from Usuario where id_usuario=?");
+            st = conn.prepareStatement("delete from usuario where id_usuario=?");
             st.setInt(1, id);
             int c = st.executeUpdate();
 
@@ -131,7 +131,7 @@ public class UsuarioDaoJDBC implements UsuarioDao {
         ResultSet rs = null;
 
         try {
-            st = conn.prepareStatement("select id_usuario,nome,senha,bio,genero1,genero2,genero3,foto from Usuario where id_usuario=?");
+            st = conn.prepareStatement("select id_usuario,nome,senha,bio,genero1,genero2,genero3,foto from usuario where id_usuario=?");
             st.setInt(1, id);
             rs = st.executeQuery();
             if (rs.next()) {
@@ -163,7 +163,7 @@ public class UsuarioDaoJDBC implements UsuarioDao {
         ResultSet rs = null;
 
         try {
-            st = conn.prepareStatement("select id_usuario,nome from Usuario");
+            st = conn.prepareStatement("select id_usuario,nome from usuario");
             rs = st.executeQuery();
             List<Usuario> lista = new ArrayList<>();
             while (rs.next()) {
@@ -187,7 +187,7 @@ public class UsuarioDaoJDBC implements UsuarioDao {
         ResultSet rs = null;
 
         try {
-            st = conn.prepareStatement("select id_usuario,nome,senha,bio,genero1,genero2,genero3,foto from Usuario where nome=? and senha=?");
+            st = conn.prepareStatement("select id_usuario,nome,senha,bio,genero1,genero2,genero3,foto from usuario where nome=? and senha=?");
             st.setString(1, nomeLogin);
             st.setString(2, senhaLogin);
             rs = st.executeQuery();
@@ -204,7 +204,6 @@ public class UsuarioDaoJDBC implements UsuarioDao {
 
                 return u;
             }
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
@@ -214,6 +213,3 @@ public class UsuarioDaoJDBC implements UsuarioDao {
         return null;
     }
 }
-
-
-
