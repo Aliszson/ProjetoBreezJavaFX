@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetomjavafx.PerfilUsuarioController">
+   <children>
+      <Text layoutX="52.0" layoutY="368.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gêneros musicais favoritos:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="184.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Circle fx:id="circuloFoto" fill="TRANSPARENT" layoutX="289.0" layoutY="141.0" radius="58.0" stroke="BLACK" strokeType="INSIDE" />
+      <Label fx:id="nome" layoutX="251.0" layoutY="37.0" text="NOME" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="26.0" fitWidth="53.0" layoutX="21.0" layoutY="348.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../img/icone/iconeGenerosFavoritos.png" />
+         </image>
+      </ImageView>
+      <TextArea fx:id="bio" layoutX="20.0" layoutY="252.0" prefHeight="87.0" prefWidth="339.0" />
+      <Text layoutX="52.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sobre mim">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="24.0" fitWidth="23.0" layoutX="22.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../img/icone/bio.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="246.0" layoutY="354.0" />
+      <Label layoutX="259.0" layoutY="354.0" />
+      <Label fx:id="generos" layoutX="241.0" layoutY="354.0" text="generos" />
+   </children>
+</AnchorPane>

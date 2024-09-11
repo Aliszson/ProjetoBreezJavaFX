@@ -5,23 +5,20 @@ import com.example.projetomjavafx.util.SessaoUsuario;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import javafx.stage.Stage;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class TelaPrincipalController implements Initializable {
+
+public class TelaPrincipalController  implements Initializable {
+
     @FXML
-    private Circle circulo;
+    private Circle circuloFoto;
     @FXML
     private Button inicio;
 
@@ -31,15 +28,30 @@ public class TelaPrincipalController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        if(sessaoU.getUsuario() == null){
-            Image imagem = new Image(new ByteArrayInputStream(sessaoA.getArtista().getFoto()));
-            circulo.setFill(new ImagePattern(imagem));
+        identificar();
+        setarFoto();
+
+    }
+
+    @FXML
+    public void onCirculoClicked() {
+        if(identificar() == 1){
+            try {
+                Application.updateStageScene(ApplicationController.getStage(), "perfil_usuario-view.fxml");
+            } catch (IOException e) {
+                throw new RuntimeException();
+            }
         }else{
-            Image imagem = new Image(new ByteArrayInputStream(sessaoU.getUsuario().getFoto()));
-            circulo.setFill(new ImagePattern(imagem));
+            try {
+                Application.updateStageScene(ApplicationController.getStage(), "perfil_artista-view.fxml");
+            } catch (IOException e) {
+                throw new RuntimeException();
+            }
+
         }
 
     }
+
     @FXML
     public void onInicioClick(){
         try{
@@ -49,5 +61,45 @@ public class TelaPrincipalController implements Initializable {
         }
     }
 
+    public int identificar(){
+
+        if(sessaoA.getArtista() == null){
+            return 1;
+        }else{
+            return 2;
+        }
+    }
+
+    public void setarFoto(){
+        if(identificar() == 1){
+            Image imagem = new Image(new ByteArrayInputStream(sessaoU.getUsuario().getFoto()));
+            circuloFoto.setFill(new ImagePattern(imagem));
+        }else{
+            Image imagem = new Image(new ByteArrayInputStream(sessaoA.getArtista().getFoto()));
+            circuloFoto.setFill(new ImagePattern(imagem));
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
+
+
+
+
+
+
+
+
