@@ -14,6 +14,8 @@ public class Application extends javafx.application.Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("application-view.fxml"));
         scene = new Scene(fxmlLoader.load());
+        String css = Application.class.getResource("/temas/primer-light.css").toExternalForm();
+        scene.getStylesheets().add(css);
         stage.setTitle("Projeto M");
         stage.setScene(scene);
         stage.setResizable(false);
