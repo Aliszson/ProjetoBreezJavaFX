@@ -3,22 +3,27 @@ package com.example.projetomjavafx;
 
 import com.example.projetomjavafx.model.dao.DaoFactory;
 import com.example.projetomjavafx.model.entities.Album;
+import com.example.projetomjavafx.util.Alerta;
+import com.example.projetomjavafx.util.SessaoArtista;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.sql.SQLException;
 import java.util.*;
 
-public class AlbumController {
+public class AddAlbumController {
 
     @FXML
     private TextField nomeAlbum;
@@ -38,6 +43,7 @@ public class AlbumController {
     @FXML
     protected void onAddAlbumClick() throws IOException {
         Album a = new Album();
+        SessaoArtista sessaoArtista = new SessaoArtista();
 
         a.setNome(nomeAlbum.getText());
         a.setGenero1(getNomeGenero1());
@@ -50,8 +56,10 @@ public class AlbumController {
             byte[] bytesImagem = Files.readAllBytes(padrao.toPath());
             a.setCapa(bytesImagem);
         }
+        a.setFk_id_artista(sessaoArtista.getArtista().getId()); // prfv funcione
         DaoFactory.createAlbumDao().inserirAlbum(a);
         limparCampos();
+        Alerta.exibirAlerta("Álbum inserido!", "Álbum inserido com sucesso.","Álbum adicionado.", Alert.AlertType.INFORMATION);
     }
 
     Random random = new Random();
@@ -62,7 +70,8 @@ public class AlbumController {
     @FXML
     void onCapaClick(){
         FileChooser fc = new FileChooser();
-        arquivo = fc.showOpenDialog(com.example.projetomjavafx.Album.getScene().getWindow()); // abre pra selecionar a imagem
+        Stage stageAtual = (Stage) buttonAddAlbum.getScene().getWindow();
+        arquivo = fc.showOpenDialog(stageAtual.getScene().getWindow()); // abre pra selecionar a imagem
         if(arquivo!=null){
             capaAlbum.setImage(new Image(arquivo.toURI().toString()));
         }
@@ -89,6 +98,7 @@ public class AlbumController {
             generoList1.getItems().clear();
         }
     }
+
     @FXML
     protected void pesquisarGenero2(){
         String textoSecundario = generoPesquisa2.getText().trim();

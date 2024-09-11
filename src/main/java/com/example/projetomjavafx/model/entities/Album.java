@@ -10,6 +10,7 @@ public class Album {
     private String genero1;
     private String genero2;
     private byte[] capa;
+    private int fk_id_artista;
 
     public int getId() {
         return id;
@@ -51,17 +52,25 @@ public class Album {
         this.capa = capa;
     }
 
+    public int getFk_id_artista() {
+        return fk_id_artista;
+    }
+
+    public void setFk_id_artista(int fk_id_artista) {
+        this.fk_id_artista = fk_id_artista;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Album album = (Album) o;
-        return id == album.id && Objects.equals(nome, album.nome) && Objects.equals(genero1, album.genero1) && Objects.equals(genero2, album.genero2) && Objects.deepEquals(capa, album.capa);
+        return id == album.id && fk_id_artista == album.fk_id_artista && Objects.equals(nome, album.nome) && Objects.equals(genero1, album.genero1) && Objects.equals(genero2, album.genero2) && Objects.deepEquals(capa, album.capa);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nome, genero1, genero2, Arrays.hashCode(capa));
+        return Objects.hash(id, nome, genero1, genero2, Arrays.hashCode(capa), fk_id_artista);
     }
 
     @Override
@@ -72,6 +81,7 @@ public class Album {
                 ", genero1='" + genero1 + '\'' +
                 ", genero2='" + genero2 + '\'' +
                 ", capa=" + Arrays.toString(capa) +
+                ", fk_id_artista=" + fk_id_artista +
                 '}';
     }
 }
