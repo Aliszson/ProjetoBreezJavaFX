@@ -21,7 +21,7 @@
                   </ButtonBar>
                   <Region prefHeight="54.0" prefWidth="6.0" />
                   <Region prefHeight="52.0" prefWidth="493.0" />
-                  <Circle fx:id="circulo" fill="TRANSPARENT" radius="29.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="circuloFoto" fill="TRANSPARENT" onMouseClicked="#onCirculoClicked" radius="29.0" stroke="BLACK" strokeType="INSIDE" />
                   <Region prefHeight="58.0" prefWidth="40.0" />
                   <Region prefHeight="54.0" prefWidth="6.0" />
                   <ButtonBar buttonOrder="" prefHeight="52.0" prefWidth="0.0" />
