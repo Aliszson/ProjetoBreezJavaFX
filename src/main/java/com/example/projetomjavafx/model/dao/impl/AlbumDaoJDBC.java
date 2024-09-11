@@ -20,11 +20,12 @@ public class AlbumDaoJDBC implements AlbumDao {
     public void inserirAlbum(Album a) {
         PreparedStatement st = null;
         try {
-            st = c.prepareStatement("insert into Album(nome, genero1, genero2, capa) values (?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+            st = c.prepareStatement("insert into Album(nome, genero1, genero2, capa, fk_id_artista) values (?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             st.setString(1, a.getNome());
             st.setString(2, a.getGenero1());
             st.setString(3, a.getGenero2());
             st.setBytes(4, a.getCapa());
+            st.setInt(5, a.getFk_id_artista());
             int l = st.executeUpdate();
 
             if(l > 0){
@@ -138,7 +139,7 @@ public class AlbumDaoJDBC implements AlbumDao {
         ResultSet rs = null;
 
         try {
-            st = c.prepareStatement("select id_album, nome, genero1, capa from Album");
+            st = c.prepareStatement("select id_album, nome, genero1, genero2, capa, fk_id_artista from Album");
             rs = st.executeQuery();
             List<Album> lista = new ArrayList<>();
 
@@ -146,6 +147,10 @@ public class AlbumDaoJDBC implements AlbumDao {
                 Album a = new Album();
                 a.setNome(rs.getString("nome"));
                 a.setId(rs.getInt("id_album"));
+                a.setGenero1(rs.getString("genero1"));
+                a.setGenero1(rs.getString("genero2"));
+                a.setCapa(rs.getBytes("capa"));
+                a.setFk_id_artista(rs.getInt("fk_id_artista"));
                 lista.add(a);
             }
             return lista;

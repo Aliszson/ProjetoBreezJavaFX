@@ -2,26 +2,24 @@ package com.example.projetomjavafx;
 
 import com.example.projetomjavafx.model.dao.DaoFactory;
 import com.example.projetomjavafx.model.entities.Album;
+import com.example.projetomjavafx.model.entities.Artista;
+import com.example.projetomjavafx.model.entities.ArtistaProduz;
 import com.example.projetomjavafx.model.entities.Musica;
 import com.example.projetomjavafx.util.Restricoes;
+import com.example.projetomjavafx.util.SessaoArtista;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
-import java.util.regex.Pattern;
 
-public class MusicController implements Initializable {
+public class AddMusicController implements Initializable {
 
     @FXML
     private TextField titulo;
@@ -69,14 +67,19 @@ public class MusicController implements Initializable {
         String texto = albumPesquisa.getText().trim(); // remove espaços em branco nas extremidades
 
         if (!texto.isEmpty()){
-            List<Album> lista = DaoFactory.createAlbumDao().procurarTodosAlbuns();
+            //Sessão universal
+            SessaoArtista sessaoArtista = new SessaoArtista();
+
+            List<Album> listaAlbuns = DaoFactory.createAlbumDao().procurarTodosAlbuns();
+
             List<String> nomesAlbuns = new ArrayList<String>();
-            for (Album album : lista){
+            for (Album album : listaAlbuns){
                 // verificando texto digitado no textfield
-                if (album.getNome().toLowerCase().contains(albumPesquisa.getText().toLowerCase())){
-                    nomesAlbuns.add(album.getNome());
+                if (album.getNome().toLowerCase().contains(albumPesquisa.getText().toLowerCase()) && Objects.equals(album.getFk_id_artista(),sessaoArtista.getArtista().getId())){
+                    nomesAlbuns.add(album.getNome() + " - " + sessaoArtista.getArtista().getNome());
                 }
             }
+            System.out.println(sessaoArtista.getArtista().toString());
             ObservableList<String> listAlb = FXCollections.observableArrayList(nomesAlbuns);
 
             albumList.setItems(listAlb); // definir lista que aparece no listView
