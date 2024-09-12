@@ -5,6 +5,8 @@ import com.example.projetomjavafx.util.SessaoUsuario;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -21,6 +23,14 @@ public class TelaPrincipalController  implements Initializable {
     private Circle circuloFoto;
     @FXML
     private Button inicio;
+
+    // exclusivo para artista;
+    @FXML
+    private MenuButton adicionar;
+    @FXML
+    private MenuItem addAlbum;
+    @FXML
+    private MenuItem addMusica;
 
     SessaoUsuario sessaoU = new SessaoUsuario();
     SessaoArtista sessaoA = new SessaoArtista();
@@ -61,6 +71,25 @@ public class TelaPrincipalController  implements Initializable {
         }
     }
 
+
+    @FXML
+    public void onAddMusicaClick(){
+        try{
+            Application.updateStageScene(ApplicationController.getStage(), "add-music-view.fxml");
+        }catch(IOException e){
+            throw new RuntimeException();
+        }
+    }
+
+    @FXML
+    public void onAddAlbumClick(){
+        try{
+            Application.updateStageScene(ApplicationController.getStage(), "add-album-view.fxml");
+        }catch(IOException e){
+            throw new RuntimeException();
+        }
+    }
+
     public int identificar(){
 
         if(sessaoA.getArtista() == null){
@@ -70,14 +99,18 @@ public class TelaPrincipalController  implements Initializable {
         }
     }
 
+    @FXML
     public void setarFoto(){
         if(identificar() == 1){
             Image imagem = new Image(new ByteArrayInputStream(sessaoU.getUsuario().getFoto()));
             circuloFoto.setFill(new ImagePattern(imagem));
+            adicionar.setVisible(false);
         }else{
             Image imagem = new Image(new ByteArrayInputStream(sessaoA.getArtista().getFoto()));
             circuloFoto.setFill(new ImagePattern(imagem));
         }
+
+
     }
 
 

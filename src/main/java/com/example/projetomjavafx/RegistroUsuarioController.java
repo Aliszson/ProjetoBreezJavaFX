@@ -9,8 +9,11 @@ import javafx.scene.control.*;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -38,6 +41,8 @@ public class RegistroUsuarioController implements Initializable {
     private ImageView foto;
     @FXML
     private Button registrar;
+    @FXML
+    private Circle circuloFoto;
 
 
     @FXML
@@ -58,6 +63,7 @@ public class RegistroUsuarioController implements Initializable {
         Restricoes.verificaNome(nome);
         Restricoes.verificaSenha(senha);
         Restricoes.verificaBio(bio);
+        circuloFoto.setVisible(false);
 
         genero1.getItems().addAll(generos);
         genero2.getItems().addAll(generos);
@@ -73,9 +79,25 @@ public class RegistroUsuarioController implements Initializable {
         FileChooser fc = new FileChooser();
         arquivo = fc.showOpenDialog(ApplicationController.getStage().getScene().getWindow()); // abre pra selecionar a imagem
         if(arquivo!=null){
-            foto.setImage(new Image(arquivo.toURI().toString()));
+            foto.setVisible(false);
+            circuloFoto.setVisible(true);
+            Image imagem = new Image(arquivo.toURI().toString());
+            circuloFoto.setFill(new ImagePattern(imagem));
         }
     }
+
+
+    @FXML
+    void onCirculoFotoClick(){
+        FileChooser fc = new FileChooser();
+        arquivo = fc.showOpenDialog(ApplicationController.getStage().getScene().getWindow()); // abre pra selecionar a imagem
+        if(arquivo!=null){
+            Image imagem = new Image(arquivo.toURI().toString());
+            circuloFoto.setFill(new ImagePattern(imagem));
+        }
+
+    }
+
     @FXML
     void onRegistrarClick() throws IOException {
         Usuario u = new Usuario();
@@ -108,6 +130,7 @@ public class RegistroUsuarioController implements Initializable {
         if(arquivo!=null){
             byte[] bytesImagem = Files.readAllBytes(arquivo.toPath());
             u.setFoto(bytesImagem);
+
         }else{
             byte[] bytesImagem = Files.readAllBytes(padrao.toPath());
             u.setFoto(bytesImagem);
@@ -130,10 +153,15 @@ public class RegistroUsuarioController implements Initializable {
         senha.clear();
         bio.clear();
         genero1.setValue(null);
-        genero2.setValue("Nenhum");
-        genero3.setValue("Nenhum");
+        genero2.setValue(null);
+        genero3.setValue(null);
+        genero1.setPromptText("Nenhum");
+        genero2.setPromptText("Nenhum");
+        genero2.setPromptText("Nenhum");
         File perfilVazio = new File("src/main/resources/img/usuarioImg/perfilvazio.png");
         foto.setImage(new Image(perfilVazio.toURI().toString()));
+        foto.setVisible(true);
+        circuloFoto.setVisible(false);
         arquivo = null;
     }
 

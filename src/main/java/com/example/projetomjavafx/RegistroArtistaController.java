@@ -9,6 +9,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -32,6 +34,8 @@ public class RegistroArtistaController implements Initializable
     private ImageView foto;
     @FXML
     private Button registrar;
+    @FXML
+    private Circle circuloFoto;
 
     List<String> generos = new ArrayList<>(Arrays.asList ("Rock", "Jazz", "Clássico", "Rap"));
     @FXML
@@ -39,6 +43,7 @@ public class RegistroArtistaController implements Initializable
         Restricoes.verificaNome(nome);
         Restricoes.verificaSenha(senha);
         genero.getItems().addAll(generos);
+        circuloFoto.setVisible(false);
 
     }
 
@@ -54,12 +59,29 @@ public class RegistroArtistaController implements Initializable
 
     File padraoArtista = new File("src/main/resources/img/artistaImg/perfilPadraoArtista.png");
     File arquivo;
+
     @FXML
     void onFotoClick(){
         FileChooser fc = new FileChooser();
         arquivo = fc.showOpenDialog(ApplicationController.getStage().getScene().getWindow());
         if(arquivo != null){
             foto.setImage(new Image(arquivo.toURI().toString()));
+            foto.setVisible(false);
+            circuloFoto.setVisible(true);
+            Image imagem = new Image(arquivo.toURI().toString());
+            circuloFoto.setFill(new ImagePattern(imagem));
+        }
+
+    }
+
+
+    @FXML
+    void onCirculoFotoClick(){
+        FileChooser fc = new FileChooser();
+        arquivo = fc.showOpenDialog(ApplicationController.getStage().getScene().getWindow()); // abre pra selecionar a imagem
+        if(arquivo!=null){
+            Image imagem = new Image(arquivo.toURI().toString());
+            circuloFoto.setFill(new ImagePattern(imagem));
         }
 
     }
@@ -106,9 +128,12 @@ public class RegistroArtistaController implements Initializable
     public void limparCampos(){
         nome.clear();
         senha.clear();
-        genero.setValue("Nenhum");
+        genero.setPromptText("Nenhum");
+        genero.setValue(null);
         File perfilVazio = new File("src/main/resources/img/artistaImg/perfilvazioArtista.png");
         foto.setImage(new Image(perfilVazio.toURI().toString()));
+        foto.setVisible(true);
+        circuloFoto.setVisible(false);
         arquivo = null;
     }
 }
