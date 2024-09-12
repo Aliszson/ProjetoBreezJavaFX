@@ -1,5 +1,6 @@
 package com.example.projetomjavafx;
 
+import com.example.projetomjavafx.model.dao.DaoFactory;
 import com.example.projetomjavafx.util.SessaoArtista;
 import com.example.projetomjavafx.util.SessaoUsuario;
 import javafx.fxml.FXML;
@@ -7,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.ImagePattern;
@@ -23,7 +25,7 @@ public class PerfilUsuarioController implements Initializable {
     @FXML
     private Circle circuloFoto;
     @FXML
-    private Label nome;
+    private TextField nome;
     @FXML
     private TextArea bio;
     @FXML
@@ -32,7 +34,8 @@ public class PerfilUsuarioController implements Initializable {
     private ImageView voltar;
     @FXML
     private Button sair;
-
+    @FXML
+    private Button salvar;
     SessaoUsuario sessaoU = new SessaoUsuario();
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -60,12 +63,20 @@ public class PerfilUsuarioController implements Initializable {
         }
     }
 
+
+    @FXML
+    public void onSalvarClick(){
+        sessaoU.getUsuario().setNome(nome.getText());
+        sessaoU.getUsuario().setBio(bio.getText());
+        DaoFactory.createUsuarioDao().atualizarNomeUsuario(sessaoU.getUsuario());
+        DaoFactory.createUsuarioDao().atualizarBioUsuario(sessaoU.getUsuario());
+    }
+
     public void setarDados(){
         Image imagem = new Image(new ByteArrayInputStream(sessaoU.getUsuario().getFoto()));
         circuloFoto.setFill(new ImagePattern(imagem));
         nome.setText(sessaoU.getUsuario().getNome());
         bio.setText(sessaoU.getUsuario().getBio());
-        bio.setEditable(false);
 
         List<String> generosCurtidos = new ArrayList();
 
