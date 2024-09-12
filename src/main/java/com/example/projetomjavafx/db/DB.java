@@ -9,7 +9,7 @@ public class DB {
     public static Connection getConnection(){
         if (c ==null){
             try {
-                c = DriverManager.getConnection("jdbc:mysql://localhost:3306/musicadb","root","olavac10");
+                c = DriverManager.getConnection("jdbc:mysql://localhost:3306/musicadb","root","1234");
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
