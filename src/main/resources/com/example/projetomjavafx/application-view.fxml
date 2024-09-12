@@ -13,13 +13,13 @@
             <Font name="System Bold" size="33.0" />
          </font>
       </Text>
-      <MenuButton fx:id="menuLogin" layoutX="211.0" layoutY="200.0" mnemonicParsing="false" text="Login">
+      <MenuButton fx:id="menuLogin" focusTraversable="false" layoutX="211.0" layoutY="200.0" mnemonicParsing="false" text="Login">
         <items>
           <MenuItem fx:id="loginUsuario" mnemonicParsing="false" onAction="#onLoginUsuario" text="Usuário" />
           <MenuItem fx:id="loginArtista" mnemonicParsing="false" onAction="#onLoginArtista" text="Artista" />
         </items>
       </MenuButton>
-      <MenuButton fx:id="menuRegistro" layoutX="300.0" layoutY="200.0" mnemonicParsing="false" text="Registrar">
+      <MenuButton fx:id="menuRegistro" focusTraversable="false" layoutX="300.0" layoutY="200.0" mnemonicParsing="false" text="Registrar">
          <items>
             <MenuItem fx:id="registrarUsuario" mnemonicParsing="false" onAction="#onRegistrarUsuario" text="Usuário" />
             <MenuItem fx:id="registrarArtista" mnemonicParsing="false" onAction="#onRegistrarArtista" text="Artista" />
