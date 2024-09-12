@@ -76,10 +76,10 @@ public class AddMusicController implements Initializable {
             for (Album album : listaAlbuns){
                 // verificando texto digitado no textfield
                 if (album.getNome().toLowerCase().contains(albumPesquisa.getText().toLowerCase()) && Objects.equals(album.getFk_id_artista(),sessaoArtista.getArtista().getId())){
-                    nomesAlbuns.add(album.getNome() + " - " + sessaoArtista.getArtista().getNome());
+                    nomesAlbuns.add(album.getNome());
                 }
             }
-            System.out.println(sessaoArtista.getArtista().toString());
+
             ObservableList<String> listAlb = FXCollections.observableArrayList(nomesAlbuns);
 
             albumList.setItems(listAlb); // definir lista que aparece no listView
