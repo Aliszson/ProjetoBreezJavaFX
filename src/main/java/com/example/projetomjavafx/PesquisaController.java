@@ -17,6 +17,7 @@ import javafx.util.Callback;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.net.URL;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -46,7 +47,6 @@ public class PesquisaController implements Initializable {
         for (Musica mu : todasMusicas) {
             if (mu.getTitulo().toLowerCase().contains(filtro)) {
                 listaMusicas.add(mu);
-
             }
         }
 
@@ -109,27 +109,29 @@ public class PesquisaController implements Initializable {
 
         // exibir duracao musica
         // CORRIGIR!!!!!!!!
-        TableColumn<Musica, String> musicaLetra = new TableColumn<>("Duracao");
-        musicaLetra.setCellValueFactory(parametro -> new SimpleObjectProperty<>(parametro.getValue().getLetra()));
-        musicaLetra.setCellFactory(new Callback<>() {
+        TableColumn<Musica, Time> musicaDuracao = new TableColumn<>("Duracao");
+        musicaDuracao.setCellValueFactory(parametro -> new SimpleObjectProperty<>(parametro.getValue().getDuracao()));
+        musicaDuracao.setCellFactory(new Callback<>() {
             @Override
-            public TableCell<Musica, String> call(TableColumn<Musica, String> coluna) {
+            public TableCell<Musica, Time> call(TableColumn<Musica, Time> coluna) {
                 return new TableCell<>() {
-                    private final TextArea textArea = new TextArea();
+                    private final Label label = new Label();
 
                     @Override
-                    protected void updateItem(String letra, boolean vazio) {
-                        super.updateItem(letra, vazio);
-                        if (vazio || letra == null) {
+                    protected void updateItem(Time duracao, boolean vazio) {
+                        super.updateItem(duracao, vazio);
+                        if (vazio || duracao == null) {
                             setGraphic(null);
                         } else {
-                            textArea.setText(letra);
-                            setGraphic(textArea);
+
+                            label.setText(String.valueOf(duracao));
+                            setGraphic(label);
                         }
                     }
                 };
             }
         });
+        System.out.println(musicaDuracao);
 
         musicaTitulo.setPrefWidth(150); // Largura preferida (ajuste conforme necessário)
         musicaTitulo.setMinWidth(150);  // Largura mínima
@@ -137,7 +139,7 @@ public class PesquisaController implements Initializable {
 
 
         tabelaResuMusica.getColumns().add(musicaTitulo);
-        tabelaResuMusica.getColumns().add(musicaLetra);
+        tabelaResuMusica.getColumns().add(musicaDuracao);
         tabelaResuMusica.getColumns().add(musicaId);
     }
 

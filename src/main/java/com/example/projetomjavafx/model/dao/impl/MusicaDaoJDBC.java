@@ -112,6 +112,7 @@ public class MusicaDaoJDBC implements MusicaDao {
                 m.setFk_id_album(rs.getInt("fk_id_album"));
                 return m;
             }
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
@@ -127,13 +128,16 @@ public class MusicaDaoJDBC implements MusicaDao {
         ResultSet rs = null;
 
         try {
-            st = conn.prepareStatement("select id_musica,titulo from musica");
+            st = conn.prepareStatement("select id_musica,titulo,letra,duracao,fk_id_album from musica");
             rs = st.executeQuery();
             List<Musica> lista = new ArrayList<>();
             while (rs.next()) {
                 Musica m = new Musica();
                 m.setTitulo(rs.getString("titulo"));
                 m.setId(rs.getInt("id_musica"));
+                m.setLetra(rs.getString("letra"));
+                m.setDuracao(rs.getTime("duracao"));
+                m.setFk_id_album(rs.getInt("fk_id_album"));
                 lista.add(m);
             }
             return lista;
