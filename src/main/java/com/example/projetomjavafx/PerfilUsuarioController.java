@@ -1,14 +1,13 @@
 package com.example.projetomjavafx;
 
 import com.example.projetomjavafx.model.dao.DaoFactory;
+import com.example.projetomjavafx.util.Alerta;
+import com.example.projetomjavafx.util.Restricoes;
 import com.example.projetomjavafx.util.SessaoArtista;
 import com.example.projetomjavafx.util.SessaoUsuario;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.ImagePattern;
@@ -19,6 +18,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class PerfilUsuarioController implements Initializable {
@@ -40,7 +40,8 @@ public class PerfilUsuarioController implements Initializable {
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setarDados();
-
+        Restricoes.verificaNome(nome);
+        Restricoes.verificaBio(bio);
 
     }
 
@@ -66,10 +67,32 @@ public class PerfilUsuarioController implements Initializable {
 
     @FXML
     public void onSalvarClick(){
+        List<String> listaErros = new ArrayList<>();
+
+        if(Objects.equals(nome.getText(), "")){
+            listaErros.add("- O nome não pode ser vazio");
+            nome.setText(sessaoU.getUsuario().getNome());
+
+        }else if(Objects.equals(nome.getText().toLowerCase(), sessaoU.getUsuario().getNome().toLowerCase()))
+        {   // nesse o caso usuário pode digitar o mesmo nome mas com diferença nas letras,
+            // por exemplo nome atual -> cleber | nome digitado -> CleBer
+            nome.setText(nome.getText());
+            sessaoU.getUsuario().setNome(nome.getText());
+        }else if(DaoFactory.createUsuarioDao().procurarTodosUsuario().toString().toLowerCase().contains(nome.getText().toLowerCase())) {
+            listaErros.add("- Nome de usuário já esta sendo utilizado");
+        }
+
+        if(!listaErros.isEmpty()){
+            String erros = String.join("\n", listaErros);
+            Alerta.exibirAlerta("Erro", "Campo inválido", erros , Alert.AlertType.ERROR);
+            return;
+        }
+
         sessaoU.getUsuario().setNome(nome.getText());
         sessaoU.getUsuario().setBio(bio.getText());
         DaoFactory.createUsuarioDao().atualizarNomeUsuario(sessaoU.getUsuario());
         DaoFactory.createUsuarioDao().atualizarBioUsuario(sessaoU.getUsuario());
+
     }
 
     public void setarDados(){
