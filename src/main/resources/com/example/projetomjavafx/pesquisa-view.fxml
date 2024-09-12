@@ -1,22 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetomjavafx.PesquisaController">
+<AnchorPane prefHeight="437.0" prefWidth="668.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetomjavafx.PesquisaController">
    <children>
-      <TableView layoutX="50.0" layoutY="78.0" prefHeight="307.0" prefWidth="500.0">
-        <columns>
-          <TableColumn minWidth="100.0" prefWidth="75.0" text="Capa" />
-          <TableColumn minWidth="100.0" prefWidth="75.0" text="Título" />
-            <TableColumn minWidth="100.0" prefWidth="75.0" text="Artista" />
-            <TableColumn minWidth="100.0" prefWidth="75.0" text="Duração" />
-            <TableColumn minWidth="100.0" prefWidth="75.0" text="Avaliação" />
-        </columns>
-      </TableView>
-      <TextField layoutX="170.0" layoutY="24.0" prefHeight="26.0" prefWidth="258.0" />
+      <TextField fx:id="campoPesquisa" layoutX="220.0" layoutY="39.0" onKeyTyped="#pesquisaTabelaMusica" prefHeight="26.0" prefWidth="258.0" />
+      <TableView fx:id="tabelaResuMusica" layoutX="99.0" layoutY="100.0" prefHeight="307.0" prefWidth="500.0" />
    </children>
 </AnchorPane>
