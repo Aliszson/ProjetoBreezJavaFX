@@ -132,7 +132,7 @@ public class MusicaDaoJDBC implements MusicaDao {
             List<Musica> lista = new ArrayList<>();
             while (rs.next()) {
                 Musica m = new Musica();
-                m.setTitulo(rs.getString("nome"));
+                m.setTitulo(rs.getString("titulo"));
                 m.setId(rs.getInt("id_musica"));
                 lista.add(m);
             }
