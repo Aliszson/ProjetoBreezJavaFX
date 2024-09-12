@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
@@ -17,8 +18,8 @@
          </font>
       </Text>
       <Text layoutX="184.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-      <Circle fx:id="circuloFoto" fill="TRANSPARENT" layoutX="289.0" layoutY="141.0" radius="58.0" stroke="BLACK" strokeType="INSIDE" />
-      <Label fx:id="nome" layoutX="251.0" layoutY="37.0" text="NOME" textAlignment="CENTER">
+      <Circle fx:id="circuloFoto" fill="TRANSPARENT" layoutX="292.0" layoutY="113.0" radius="58.0" stroke="BLACK" strokeType="INSIDE" />
+      <Label fx:id="nome" layoutX="254.0" layoutY="173.0" text="NOME" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>
@@ -28,7 +29,7 @@
             <Image url="@../../../img/icone/iconeGenerosFavoritos.png" />
          </image>
       </ImageView>
-      <TextArea fx:id="bio" layoutX="20.0" layoutY="252.0" prefHeight="87.0" prefWidth="339.0" />
+      <TextArea fx:id="bio" focusTraversable="false" layoutX="20.0" layoutY="252.0" prefHeight="87.0" prefWidth="339.0" />
       <Text layoutX="52.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sobre mim">
          <font>
             <Font name="System Bold" size="14.0" />
@@ -42,5 +43,11 @@
       <Label layoutX="246.0" layoutY="354.0" />
       <Label layoutX="259.0" layoutY="354.0" />
       <Label fx:id="generos" layoutX="241.0" layoutY="354.0" text="generos" />
+      <Button fx:id="sair" layoutX="517.0" layoutY="19.0" mnemonicParsing="false" onMouseClicked="#onSairClick" prefHeight="26.0" prefWidth="61.0" style="-fx-background-color: #ff6542;" text="Sair" textFill="WHITE" />
+      <ImageView fx:id="voltar" fitHeight="47.0" fitWidth="44.0" layoutX="12.0" layoutY="15.0" onMouseClicked="#onVoltarClick" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../img/icone/setaVoltar.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
