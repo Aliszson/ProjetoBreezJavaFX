@@ -19,14 +19,19 @@
       <Label layoutX="89.0" layoutY="74.0" text="Nome " />
       <TextField fx:id="generoPesquisa1" layoutX="94.0" layoutY="191.0" onKeyTyped="#pesquisarGenero1" promptText="Ex: pop, rock, mpb..." />
       <TextField fx:id="generoPesquisa2" layoutX="348.0" layoutY="192.0" onKeyTyped="#pesquisarGenero2" promptText="Genero Secundário" />
-      <ListView fx:id="generoList1" layoutX="94.0" layoutY="217.0" prefHeight="61.0" prefWidth="150.0" />
-      <ListView fx:id="generoList2" layoutX="347.0" layoutY="218.0" prefHeight="62.0" prefWidth="150.0" />
+      <ListView fx:id="generoList1" layoutX="94.0" layoutY="236.0" prefHeight="61.0" prefWidth="150.0" />
+      <ListView fx:id="generoList2" layoutX="348.0" layoutY="236.0" prefHeight="62.0" prefWidth="150.0" />
       <Label layoutX="94.0" layoutY="173.0" text="Genero Principal" />
       <Label layoutX="348.0" layoutY="174.0" text="Genero Secundário" />
-      <Button fx:id="buttonAddAlbum" layoutX="245.0" layoutY="292.0" mnemonicParsing="false" onAction="#onAddAlbumClick" prefHeight="51.0" prefWidth="102.0" text="Adicionar" />
+      <Button fx:id="buttonAddAlbum" layoutX="249.0" layoutY="327.0" mnemonicParsing="false" onAction="#onAddAlbumClick" prefHeight="51.0" prefWidth="102.0" text="Adicionar" />
       <ImageView fx:id="capaAlbum" fitHeight="98.0" fitWidth="150.0" layoutX="347.0" layoutY="68.0" onMouseClicked="#onCapaClick" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../img/albumImg/capa/capa-album-vazia.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="voltar" fitHeight="47.0" fitWidth="44.0" layoutX="21.0" layoutY="14.0" onMouseClicked="#onVoltarClick" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../img/icone/setaVoltar.png" />
          </image>
       </ImageView>
    </children>

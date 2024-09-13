@@ -39,6 +39,22 @@ public class AddAlbumController {
     private ListView<String> generoList2;
     @FXML
     private ImageView capaAlbum;
+    @FXML
+    private ImageView voltar;
+
+
+
+
+
+    @FXML
+    public void onVoltarClick(){
+        try {
+            Application.updateStageScene(ApplicationController.getStage(), "tela-principal-view.fxml");
+        } catch (IOException e) {
+            throw new RuntimeException();
+        }
+    }
+
 
     @FXML
     protected void onAddAlbumClick() throws IOException {
