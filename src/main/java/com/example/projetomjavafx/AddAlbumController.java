@@ -8,22 +8,27 @@ import com.example.projetomjavafx.util.SessaoArtista;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.sql.SQLException;
 import java.util.*;
 
-public class AddAlbumController {
+public class AddAlbumController implements Initializable {
 
     @FXML
     private TextField nomeAlbum;
@@ -39,6 +44,25 @@ public class AddAlbumController {
     private ListView<String> generoList2;
     @FXML
     private ImageView capaAlbum;
+    @FXML
+    private ImageView voltar;
+    @FXML
+    private Rectangle retanguloCapa;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        retanguloCapa.setVisible(false);
+    }
+
+    @FXML
+    public void onVoltarClick(){
+        try {
+            Application.updateStageScene(ApplicationController.getStage(), "tela-principal-view.fxml");
+        } catch (IOException e) {
+            throw new RuntimeException();
+        }
+    }
+
 
     @FXML
     protected void onAddAlbumClick() throws IOException {
@@ -73,9 +97,24 @@ public class AddAlbumController {
         Stage stageAtual = (Stage) buttonAddAlbum.getScene().getWindow();
         arquivo = fc.showOpenDialog(stageAtual.getScene().getWindow()); // abre pra selecionar a imagem
         if(arquivo!=null){
-            capaAlbum.setImage(new Image(arquivo.toURI().toString()));
+            capaAlbum.setVisible(false);
+            retanguloCapa.setVisible(true);
+            Image imagem = new Image(arquivo.toURI().toString());
+            retanguloCapa.setFill(new ImagePattern(imagem));
         }
     }
+    @FXML
+    void onRetanguloCapaClick(){
+        FileChooser fc = new FileChooser();
+        arquivo = fc.showOpenDialog(ApplicationController.getStage().getScene().getWindow()); // abre pra selecionar a imagem
+        if(arquivo!=null){
+            Image imagem = new Image(arquivo.toURI().toString());
+            retanguloCapa.setFill(new ImagePattern(imagem));
+        }
+
+    }
+
+
     @FXML
     protected void pesquisarGenero1(){
         String textoPrincipal = generoPesquisa1.getText().trim();
@@ -164,5 +203,11 @@ public class AddAlbumController {
         generoPesquisa2.clear();
         generoList1.getItems().clear();
         generoList2.getItems().clear();
+        File perfilVazio = new File("src/main/resources/img/albumImg/capa/capa-album-vazia.png");
+        capaAlbum.setImage(new Image(perfilVazio.toURI().toString()));
+        capaAlbum.setVisible(true);
+        retanguloCapa.setVisible(false);
     }
+
+
 }
