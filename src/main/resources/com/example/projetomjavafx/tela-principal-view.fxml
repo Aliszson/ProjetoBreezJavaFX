@@ -19,7 +19,7 @@
                   <ButtonBar prefHeight="58.0" prefWidth="276.0">
                     <buttons>
                       <Button fx:id="inicio" focusTraversable="false" minWidth="43.0" mnemonicParsing="false" onMouseClicked="#onInicioClick" prefHeight="36.0" text="Início" />
-                        <MenuButton fx:id="adicionar" mnemonicParsing="false" prefHeight="36.0" prefWidth="481.0" text="Adicionar">
+                        <MenuButton fx:id="adicionar" focusTraversable="false" mnemonicParsing="false" prefHeight="36.0" prefWidth="481.0" text="Adicionar">
                           <items>
                             <MenuItem fx:id="addAlbum" mnemonicParsing="false" onAction="#onAddAlbumClick" text="Álbum" />
                             <MenuItem fx:id="addMusica" mnemonicParsing="false" onAction="#onAddMusicaClick" text="Música" />
