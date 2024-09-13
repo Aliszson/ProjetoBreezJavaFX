@@ -110,6 +110,21 @@ public class ArtistaDaoJDBC implements ArtistaDao {
 
     }
 
+    @Override
+    public void atualizarFotoArtista(Artista a) {
+        PreparedStatement st = null;
+        try {
+            st = c.prepareStatement("update artista set foto=? where id_artista=?");
+            st.setBytes(1, a.getFoto());
+            st.setInt(2, a.getId());
+            st.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            DB.closeStatement(st);
+        }
+    }
+
     public Artista procurarPorIdArtista(int id) {
         PreparedStatement st = null;
         ResultSet rs = null;

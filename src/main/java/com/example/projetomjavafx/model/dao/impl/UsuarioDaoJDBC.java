@@ -106,6 +106,21 @@ public class UsuarioDaoJDBC implements UsuarioDao {
     }
 
     @Override
+    public void atualizarFotoUsuario(Usuario u) {
+        PreparedStatement st = null;
+        try {
+            st = conn.prepareStatement("update usuario set foto=? where id_usuario=?");
+            st.setBytes(1, u.getFoto());
+            st.setInt(2, u.getId());
+            st.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            DB.closeStatement(st);
+        }
+    }
+
+    @Override
     public void deletarPorIdUsuario(int id) {
         PreparedStatement st = null;
         try {

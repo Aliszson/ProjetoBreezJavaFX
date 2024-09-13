@@ -20,7 +20,7 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Text>
-            <Circle fx:id="circuloFoto" fill="TRANSPARENT" layoutX="292.0" layoutY="113.0" radius="58.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="circuloFoto" fill="TRANSPARENT" layoutX="292.0" layoutY="113.0" onMouseClicked="#onCirculoFotoClick" radius="58.0" stroke="BLACK" strokeType="INSIDE" />
             <ImageView fitHeight="26.0" fitWidth="53.0" layoutX="21.0" layoutY="350.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../img/icone/iconeGenerosFavoritos.png" />
@@ -37,7 +37,7 @@
                   <Image url="@../../../img/icone/bio.png" />
                </image>
             </ImageView>
-            <Label fx:id="generos" layoutX="227.0" layoutY="353.0" text="generos" />
+            <Label fx:id="generos" layoutX="266.0" layoutY="355.0" text="generos" />
             <TextField fx:id="nome" alignment="CENTER" focusTraversable="false" layoutX="191.0" layoutY="181.0" prefHeight="36.0" prefWidth="204.0" text="NOME">
                <font>
                   <Font name="System Bold" size="13.0" />
@@ -45,10 +45,10 @@
             </TextField>
          </children>
       </AnchorPane>
-      <Button id="botaoSair" fx:id="sair" layoutX="574.0" layoutY="68.0" mnemonicParsing="false" onMouseClicked="#onSairClick" prefHeight="26.0" prefWidth="61.0" style="-fx-background-color: #ffcc00;" text="Sair" textFill="WHITE" wrapText="true" />
-      <Button id="botaoSair" fx:id="salvar" layoutX="477.0" layoutY="68.0" mnemonicParsing="false" onMouseClicked="#onSalvarClick" prefHeight="36.0" prefWidth="83.0" style="-fx-background-color: #03b6fc;" text="Salvar" textFill="WHITE" wrapText="true" />
-      <Button id="botaoSair" fx:id="deletar" layoutX="645.0" layoutY="68.0" mnemonicParsing="false" onMouseClicked="#onDeletarClick" prefHeight="36.0" prefWidth="105.0" style="-fx-background-color: #ff371c;" text="Excluir" />
-      <ImageView fx:id="voltar" fitHeight="47.0" fitWidth="44.0" layoutX="150.0" layoutY="60.0" onMouseClicked="#onVoltarClick" pickOnBounds="true" preserveRatio="true">
+      <Button id="botaoSair" fx:id="sair" layoutX="586.0" layoutY="68.0" mnemonicParsing="false" onMouseClicked="#onSairClick" prefHeight="36.0" prefWidth="85.0" style="-fx-background-color: #ffcc00;" text="Sair" textFill="WHITE" wrapText="true" />
+      <Button id="botaoSair" fx:id="salvar" layoutX="495.0" layoutY="68.0" mnemonicParsing="false" onMouseClicked="#onSalvarClick" prefHeight="36.0" prefWidth="85.0" style="-fx-background-color: #03b6fc;" text="Salvar" textFill="WHITE" wrapText="true" />
+      <Button id="botaoSair" fx:id="deletar" layoutX="676.0" layoutY="68.0" mnemonicParsing="false" onMouseClicked="#onDeletarClick" prefHeight="36.0" prefWidth="76.0" style="-fx-background-color: #ff371c;" text="Excluir" textFill="WHITE" />
+      <ImageView fx:id="voltar" fitHeight="47.0" fitWidth="44.0" layoutX="150.0" layoutY="64.0" onMouseClicked="#onVoltarClick" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../img/icone/setaVoltar.png" />
          </image>

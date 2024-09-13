@@ -9,6 +9,7 @@ public interface UsuarioDao {
     void atualizarNomeUsuario(Usuario u);
     void atualizarSenhaUsuario(Usuario u);
     void atualizarBioUsuario(Usuario u);
+    void atualizarFotoUsuario(Usuario u);
     void deletarPorIdUsuario(int id);
     Usuario procurarPorIdUsuario(int id);
     List<Usuario> procurarTodosUsuario();

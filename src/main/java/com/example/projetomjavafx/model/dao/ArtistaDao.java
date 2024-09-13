@@ -9,6 +9,7 @@ public interface ArtistaDao {
     void atualizarSenhaArtista(Artista a);
     void atualizarGeneroArtista(Artista a);
     void deletarPorIdArtista(int id);
+    void atualizarFotoArtista(Artista a);
     Artista procurarPorIdArtista(int id);
     List<Artista> procurarTodosArtista();
     Artista login(String nomeLogin, String senhaLogin);
