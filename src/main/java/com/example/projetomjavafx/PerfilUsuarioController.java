@@ -16,10 +16,7 @@ import javafx.scene.shape.Circle;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class PerfilUsuarioController implements Initializable {
     @FXML
@@ -36,6 +33,9 @@ public class PerfilUsuarioController implements Initializable {
     private Button sair;
     @FXML
     private Button salvar;
+    @FXML
+    private Button deletar;
+
     SessaoUsuario sessaoU = new SessaoUsuario();
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -63,6 +63,22 @@ public class PerfilUsuarioController implements Initializable {
             throw new RuntimeException();
         }
     }
+    @FXML
+    public void onDeletarClick(){
+        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+        alerta.setTitle("Exclusão de conta");
+        alerta.setHeaderText("Você tem certeza que quer excluir sua conta?");
+        Optional<ButtonType> resultado = alerta.showAndWait();
+
+        if (resultado.isPresent() && resultado.get() == ButtonType.OK) {
+            DaoFactory.createUsuarioDao().deletarPorIdUsuario(sessaoU.getUsuario().getId());
+            try {
+                Application.updateStageScene(ApplicationController.getStage(), "application-view.fxml");
+            } catch (IOException e) {
+                throw new RuntimeException();
+            }
+        }
+    }
 
 
     @FXML
@@ -77,9 +93,13 @@ public class PerfilUsuarioController implements Initializable {
         {   // nesse o caso usuário pode digitar o mesmo nome mas com diferença nas letras,
             // por exemplo nome atual -> cleber | nome digitado -> CleBer
             nome.setText(nome.getText());
-            sessaoU.getUsuario().setNome(nome.getText());
+            // sessaoU.getUsuario().setNome(nome.getText());
         }else if(DaoFactory.createUsuarioDao().procurarTodosUsuario().toString().toLowerCase().contains(nome.getText().toLowerCase())) {
             listaErros.add("- Nome de usuário já esta sendo utilizado");
+        }
+
+        if(Objects.equals(bio.getText(), "")){
+            bio.setText(null);
         }
 
         if(!listaErros.isEmpty()){
@@ -92,6 +112,7 @@ public class PerfilUsuarioController implements Initializable {
         sessaoU.getUsuario().setBio(bio.getText());
         DaoFactory.createUsuarioDao().atualizarNomeUsuario(sessaoU.getUsuario());
         DaoFactory.createUsuarioDao().atualizarBioUsuario(sessaoU.getUsuario());
+        Alerta.exibirAlerta(null, null, "Alterações salvas", Alert.AlertType.INFORMATION);
 
     }
 
