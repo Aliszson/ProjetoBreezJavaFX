@@ -4,9 +4,9 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="437.0" prefWidth="668.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetomjavafx.PesquisaController">
+<AnchorPane prefHeight="437.0" prefWidth="668.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetomjavafx.PesquisaMusicaController">
    <children>
       <TextField fx:id="campoPesquisa" layoutX="220.0" layoutY="39.0" onKeyTyped="#pesquisaTabelaMusica" prefHeight="26.0" prefWidth="258.0" />
-      <TableView fx:id="tabelaResuMusica" layoutX="99.0" layoutY="100.0" prefHeight="307.0" prefWidth="500.0" />
+      <TableView fx:id="tabelaResuMusica" layoutX="45.0" layoutY="98.0" prefHeight="307.0" prefWidth="577.0" />
    </children>
 </AnchorPane>

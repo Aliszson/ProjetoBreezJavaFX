@@ -2,6 +2,8 @@ package com.example.projetomjavafx.model.dao.impl;
 
 import com.example.projetomjavafx.db.DB;
 import com.example.projetomjavafx.model.dao.MusicaDao;
+import com.example.projetomjavafx.model.entities.Album;
+import com.example.projetomjavafx.model.entities.Artista;
 import com.example.projetomjavafx.model.entities.Musica;
 import com.example.projetomjavafx.model.entities.Usuario;
 
@@ -141,6 +143,54 @@ public class MusicaDaoJDBC implements MusicaDao {
                 lista.add(m);
             }
             return lista;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            DB.closeResultSet(rs);
+            DB.closeStatement(st);
+        }
+    }
+
+    public Album procurarAlbumPorFk(int fk_id_album) {
+        PreparedStatement st = null;
+        ResultSet rs = null;
+
+        try {
+            st = conn.prepareStatement("SELECT id_album, nome, capa FROM album WHERE id_album = ?");
+            st.setInt(1, fk_id_album);
+            rs = st.executeQuery();
+
+            if (rs.next()) {
+                Album album = new Album();
+                album.setId(rs.getInt("id_album"));
+                album.setNome(rs.getString("nome"));
+                album.setCapa(rs.getBytes("capa"));
+                return album;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            DB.closeResultSet(rs);
+            DB.closeStatement(st);
+        }
+        return null; // Retorna null se o álbum não for encontrado
+    }
+
+    public Artista procurarArtistaPorFk(int fkIdArtista) {
+        PreparedStatement st = null;
+        ResultSet rs = null;
+
+        try {
+            st = conn.prepareStatement("SELECT * FROM artista WHERE id_artista = ?");
+            st.setInt(1, fkIdArtista);
+            rs = st.executeQuery();
+            if (rs.next()) {
+                Artista artista = new Artista();
+                artista.setId(rs.getInt("id_artista"));
+                artista.setNome(rs.getString("nome"));
+                return artista;
+            }
+            return null; // Se não encontrar o artista
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {

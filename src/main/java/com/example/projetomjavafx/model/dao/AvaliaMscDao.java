@@ -6,4 +6,5 @@ public interface AvaliaMscDao {
     void inserirAvaliacaoMusica(AvaliaMsc am);
     void atualizarNotaMusica(AvaliaMsc am);
     void atualizarComentarioMusica(AvaliaMsc am);
+    float calcularMediaPorMusica(int idMusica);
 }
