@@ -11,42 +11,47 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetomjavafx.PerfilUsuarioController">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #ededed;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetomjavafx.PerfilUsuarioController">
    <children>
-      <Text layoutX="52.0" layoutY="368.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gêneros musicais favoritos:">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Text>
-      <Circle fx:id="circuloFoto" fill="TRANSPARENT" layoutX="292.0" layoutY="113.0" radius="58.0" stroke="BLACK" strokeType="INSIDE" />
-      <ImageView fitHeight="26.0" fitWidth="53.0" layoutX="21.0" layoutY="350.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../img/icone/iconeGenerosFavoritos.png" />
-         </image>
-      </ImageView>
-      <TextArea fx:id="bio" focusTraversable="false" layoutX="20.0" layoutY="252.0" prefHeight="87.0" prefWidth="339.0" />
-      <Text layoutX="52.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bio">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-      </Text>
-      <ImageView fitHeight="24.0" fitWidth="23.0" layoutX="22.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../img/icone/bio.png" />
-         </image>
-      </ImageView>
-      <Label fx:id="generos" layoutX="266.0" layoutY="355.0" text="generos" />
-      <Button id="botaoSair" fx:id="sair" layoutX="517.0" layoutY="19.0" mnemonicParsing="false" onMouseClicked="#onSairClick" prefHeight="26.0" prefWidth="61.0" style="-fx-background-color: #ff371c;" text="Sair" textFill="WHITE" wrapText="true" />
-      <ImageView fx:id="voltar" fitHeight="47.0" fitWidth="44.0" layoutX="12.0" layoutY="15.0" onMouseClicked="#onVoltarClick" pickOnBounds="true" preserveRatio="true">
+      <AnchorPane layoutX="150.0" layoutY="115.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <Text layoutX="52.0" layoutY="368.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gêneros musicais favoritos:">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Text>
+            <Circle fx:id="circuloFoto" fill="TRANSPARENT" layoutX="292.0" layoutY="113.0" radius="58.0" stroke="BLACK" strokeType="INSIDE" />
+            <ImageView fitHeight="26.0" fitWidth="53.0" layoutX="21.0" layoutY="350.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../img/icone/iconeGenerosFavoritos.png" />
+               </image>
+            </ImageView>
+            <TextArea fx:id="bio" focusTraversable="false" layoutX="20.0" layoutY="252.0" prefHeight="87.0" prefWidth="339.0" />
+            <Text layoutX="52.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bio">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="24.0" fitWidth="23.0" layoutX="22.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../img/icone/bio.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="generos" layoutX="227.0" layoutY="353.0" text="generos" />
+            <TextField fx:id="nome" alignment="CENTER" focusTraversable="false" layoutX="191.0" layoutY="181.0" prefHeight="36.0" prefWidth="204.0" text="NOME">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </TextField>
+         </children>
+      </AnchorPane>
+      <Button id="botaoSair" fx:id="sair" layoutX="574.0" layoutY="68.0" mnemonicParsing="false" onMouseClicked="#onSairClick" prefHeight="26.0" prefWidth="61.0" style="-fx-background-color: #ffcc00;" text="Sair" textFill="WHITE" wrapText="true" />
+      <Button id="botaoSair" fx:id="salvar" layoutX="477.0" layoutY="68.0" mnemonicParsing="false" onMouseClicked="#onSalvarClick" prefHeight="36.0" prefWidth="83.0" style="-fx-background-color: #03b6fc;" text="Salvar" textFill="WHITE" wrapText="true" />
+      <Button id="botaoSair" fx:id="deletar" layoutX="645.0" layoutY="68.0" mnemonicParsing="false" onMouseClicked="#onDeletarClick" prefHeight="36.0" prefWidth="105.0" style="-fx-background-color: #ff371c;" text="Excluir" />
+      <ImageView fx:id="voltar" fitHeight="47.0" fitWidth="44.0" layoutX="150.0" layoutY="60.0" onMouseClicked="#onVoltarClick" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../img/icone/setaVoltar.png" />
          </image>
       </ImageView>
-      <TextField fx:id="nome" alignment="CENTER" layoutX="191.0" layoutY="181.0" prefHeight="36.0" prefWidth="204.0" text="NOME">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </TextField>
-      <Button id="botaoSair" fx:id="salvar" layoutX="517.0" layoutY="59.0" mnemonicParsing="false" onMouseClicked="#onSalvarClick" prefHeight="26.0" prefWidth="61.0" style="-fx-background-color: #ffcc00;" text="Salvar" textFill="WHITE" wrapText="true" />
    </children>
 </AnchorPane>

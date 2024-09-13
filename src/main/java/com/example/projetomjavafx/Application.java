@@ -38,7 +38,8 @@ public class Application extends javafx.application.Application {
     public static void updateStageScene(Stage stage, String url) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource(url));
         Parent componentePai = fxmlLoader.load(); // pega o elemento pai da tela
-        stage.getScene().setRoot(componentePai); // troca o pai da cena atual pelo do fxml carregado
+        stage.getScene().setRoot(componentePai);// troca o pai da cena atual pelo do fxml carregado
+        stage.sizeToScene();
     }
 
 
