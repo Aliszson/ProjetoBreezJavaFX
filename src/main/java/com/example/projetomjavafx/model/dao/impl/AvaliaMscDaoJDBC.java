@@ -69,4 +69,29 @@ public class AvaliaMscDaoJDBC implements AvaliaMscDao {
             DB.closeStatement(st);
         }
     }
+
+    @Override
+    public float calcularMediaPorMusica(int idMusica) {
+        PreparedStatement st = null;
+        ResultSet rs = null;
+
+        try {
+            st = conn.prepareStatement(
+                    "SELECT AVG(nota) AS media FROM avaliamsc WHERE fk_id_musica = ?"
+            );
+            st.setInt(1, idMusica);
+            rs = st.executeQuery();
+
+            if (rs.next()) {
+                return rs.getFloat("media");
+            }
+
+            return 0; // Se não houver avaliações
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            DB.closeResultSet(rs);
+            DB.closeStatement(st);
+        }
+    }
 }

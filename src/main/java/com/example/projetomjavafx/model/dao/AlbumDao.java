@@ -2,6 +2,7 @@ package com.example.projetomjavafx.model.dao;
 import com.example.projetomjavafx.model.entities.Album;
 import com.example.projetomjavafx.model.entities.Artista;
 
+import java.sql.Time;
 import java.util.List;
 
 public interface AlbumDao {
@@ -13,4 +14,5 @@ public interface AlbumDao {
     void deletarPorIdAlbum(int id);
     Album procurarPorIdAlbum(int id);
     List<Album> procurarTodosAlbuns();
+    double calcularMediaAvaliacoes(int idAlbum);
 }

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="437.0" prefWidth="668.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetomjavafx.PesquisaAlbumController">
+   <children>
+      <TextField fx:id="campoPesquisa" layoutX="220.0" layoutY="39.0" onKeyTyped="#pesquisaTabelaAlbum" prefHeight="26.0" prefWidth="258.0" />
+      <TableView fx:id="tabelaResuAlbum" layoutX="45.0" layoutY="98.0" prefHeight="307.0" prefWidth="577.0" />
+   </children>
+</AnchorPane>

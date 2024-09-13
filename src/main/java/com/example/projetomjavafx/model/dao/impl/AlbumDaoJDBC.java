@@ -161,4 +161,32 @@ public class AlbumDaoJDBC implements AlbumDao {
             DB.closeStatement(st);
         }
     }
+
+    @Override
+    public double calcularMediaAvaliacoes(int idAlbum) {
+        PreparedStatement st = null;
+        ResultSet rs = null;
+
+        try {
+            st = c.prepareStatement(
+                    "SELECT AVG(a.nota) AS media " +
+                            "FROM avaliamsc a " +
+                            "JOIN musica m ON a.fk_id_musica = m.id_musica " +
+                            "WHERE m.fk_id_album = ?"
+            );
+            st.setInt(1, idAlbum);
+            rs = st.executeQuery();
+
+            if (rs.next()) {
+                return rs.getDouble("media");
+            }
+
+            return 0.0; // Caso não haja avaliações, retorna 0
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            DB.closeResultSet(rs);
+            DB.closeStatement(st);
+        }
+    }
 }

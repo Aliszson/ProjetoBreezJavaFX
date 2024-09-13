@@ -179,6 +179,35 @@ public class PesquisaMusicaController implements Initializable {
             }
         });
 
+
+        // Coluna para exibir a média das avaliações
+        TableColumn<Musica, Float> colunaMedia = new TableColumn<>("Média Avaliações");
+        colunaMedia.setCellValueFactory(parametro -> {
+            // Obtenha o objeto Musica
+            Musica musica = parametro.getValue();
+
+            // Busque a média das avaliações usando o método que criamos
+            float media = DaoFactory.createAvaliaMscDao().calcularMediaPorMusica(musica.getId());
+
+            return new SimpleObjectProperty<>(media);
+        });
+
+// Define a formatação para a média, se necessário
+        colunaMedia.setCellFactory(column -> new TableCell<Musica, Float>() {
+            private final Label label = new Label();
+
+            @Override
+            protected void updateItem(Float media, boolean vazio) {
+                super.updateItem(media, vazio);
+                if (vazio || media == null) {
+                    setGraphic(null);
+                } else {
+                    label.setText(String.format("%.1f/5", media)); // Formata para duas casas decimais
+                    setGraphic(label);
+                }
+            }
+        });
+
         musicaTitulo.setPrefWidth(150); // Largura preferida (ajuste conforme necessário)
         musicaTitulo.setMinWidth(150);  // Largura mínima
         musicaTitulo.setMaxWidth(300);  // Largura máxima
@@ -191,6 +220,7 @@ public class PesquisaMusicaController implements Initializable {
         tabelaResuMusica.getColumns().add(musicaTitulo);
         tabelaResuMusica.getColumns().add(musicaDuracao);
         tabelaResuMusica.getColumns().add(colunaArtista);
+        tabelaResuMusica.getColumns().add(colunaMedia);
     }
 
     @Override
