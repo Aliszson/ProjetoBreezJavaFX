@@ -12,10 +12,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.stage.FileChooser;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
 import java.util.*;
 
 public class PerfilUsuarioController implements Initializable {
@@ -30,14 +33,14 @@ public class PerfilUsuarioController implements Initializable {
     @FXML
     private ImageView voltar;
     @FXML
-    private Button sair;
-    @FXML
     private Button salvar;
+    @FXML
+    private Button sair;
     @FXML
     private Button deletar;
 
     SessaoUsuario sessaoU = new SessaoUsuario();
-
+    File arquivo = null;
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setarDados();
         Restricoes.verificaNome(nome);
@@ -53,6 +56,10 @@ public class PerfilUsuarioController implements Initializable {
             throw new RuntimeException();
         }
     }
+
+
+
+
 
     @FXML
     public void onSairClick(){
@@ -82,7 +89,7 @@ public class PerfilUsuarioController implements Initializable {
 
 
     @FXML
-    public void onSalvarClick(){
+    public void onSalvarClick() throws IOException {
         List<String> listaErros = new ArrayList<>();
 
         if(Objects.equals(nome.getText(), "")){
@@ -102,6 +109,11 @@ public class PerfilUsuarioController implements Initializable {
             bio.setText(null);
         }
 
+        if(arquivo != null){
+            byte[] bytesImagem =  Files.readAllBytes(arquivo.toPath());
+            sessaoU.getUsuario().setFoto(bytesImagem);
+        }
+
         if(!listaErros.isEmpty()){
             String erros = String.join("\n", listaErros);
             Alerta.exibirAlerta("Erro", "Campo inválido", erros , Alert.AlertType.ERROR);
@@ -112,7 +124,19 @@ public class PerfilUsuarioController implements Initializable {
         sessaoU.getUsuario().setBio(bio.getText());
         DaoFactory.createUsuarioDao().atualizarNomeUsuario(sessaoU.getUsuario());
         DaoFactory.createUsuarioDao().atualizarBioUsuario(sessaoU.getUsuario());
+        DaoFactory.createUsuarioDao().atualizarFotoUsuario(sessaoU.getUsuario());
         Alerta.exibirAlerta(null, null, "Alterações salvas", Alert.AlertType.INFORMATION);
+
+    }
+
+    @FXML
+    void onCirculoFotoClick(){
+        FileChooser fc = new FileChooser();
+        arquivo = fc.showOpenDialog(ApplicationController.getStage().getScene().getWindow()); // abre pra selecionar a imagem
+        if(arquivo!=null){
+            Image imagem = new Image(arquivo.toURI().toString());
+            circuloFoto.setFill(new ImagePattern(imagem));
+        }
 
     }
 
