@@ -4,6 +4,8 @@ import com.example.projetomjavafx.model.dao.DaoFactory;
 import com.example.projetomjavafx.model.entities.Usuario;
 import com.example.projetomjavafx.util.Alerta;
 import com.example.projetomjavafx.util.Restricoes;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.fxml.Initializable;
@@ -12,6 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
+import org.controlsfx.control.SearchableComboBox;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -32,11 +35,11 @@ public class RegistroUsuarioController implements Initializable {
     @FXML
     private TextArea bio;
     @FXML
-    private ComboBox<String> genero1;
+    private SearchableComboBox<String> genero1;
     @FXML
-    private ComboBox<String> genero2;
+    private SearchableComboBox<String> genero2;
     @FXML
-    private ComboBox<String> genero3;
+    private SearchableComboBox<String> genero3;
     @FXML
     private ImageView foto;
     @FXML
@@ -46,17 +49,14 @@ public class RegistroUsuarioController implements Initializable {
 
 
     @FXML
-    void onIconeVoltarClick(){
-        try{
+    void onIconeVoltarClick() {
+        try {
             Application.updateStageScene(ApplicationController.getStage(), "application-view.fxml");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
-
-
-    List<String> generos = new ArrayList<>(Arrays.asList ("Rock", "Jazz", "Clássico", "Rap"));
+    List<String> listaGeneros = generos();
     @FXML
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -65,9 +65,9 @@ public class RegistroUsuarioController implements Initializable {
         Restricoes.verificaBio(bio);
         circuloFoto.setVisible(false);
 
-        genero1.getItems().addAll(generos);
-        genero2.getItems().addAll(generos);
-        genero3.getItems().addAll(generos);
+        genero1.getItems().addAll(listaGeneros);
+        genero2.getItems().addAll(listaGeneros);
+        genero3.getItems().addAll(listaGeneros);
 
     }
 
@@ -75,10 +75,10 @@ public class RegistroUsuarioController implements Initializable {
     File arquivo;
 
     @FXML
-    void onFotoClick(){
+    void onFotoClick() {
         FileChooser fc = new FileChooser();
         arquivo = fc.showOpenDialog(ApplicationController.getStage().getScene().getWindow()); // abre pra selecionar a imagem
-        if(arquivo!=null){
+        if (arquivo != null) {
             foto.setVisible(false);
             circuloFoto.setVisible(true);
             Image imagem = new Image(arquivo.toURI().toString());
@@ -88,13 +88,62 @@ public class RegistroUsuarioController implements Initializable {
 
 
     @FXML
-    void onCirculoFotoClick(){
+    void onCirculoFotoClick() {
         FileChooser fc = new FileChooser();
         arquivo = fc.showOpenDialog(ApplicationController.getStage().getScene().getWindow()); // abre pra selecionar a imagem
-        if(arquivo!=null){
+        if (arquivo != null) {
             Image imagem = new Image(arquivo.toURI().toString());
             circuloFoto.setFill(new ImagePattern(imagem));
         }
+
+    }
+
+    @FXML
+    protected void onComboBoxClick(){
+        List<String> generos = generos();
+        List<String> generosVisiveis = listaGeneros;
+
+
+        System.out.println(generosVisiveis);
+        for (String gen: generos){
+
+            if (generosVisiveis.contains(genero1.getValue())){
+                for (String genL: listaGeneros){
+                    if (gen == genL){
+                        listaGeneros.remove(gen);
+                    }
+                }
+
+            }
+
+            if (generosVisiveis.contains(genero2.getValue())) {
+                for (String genL: listaGeneros){
+                    if (Objects.equals(gen, genL)){
+                        listaGeneros.remove(gen);
+                    }
+                }
+
+            }
+
+            if (generosVisiveis.contains(genero3.getValue())) {
+                for (String genL: listaGeneros){
+                    if (Objects.equals(gen, genL)){
+                        listaGeneros.remove(gen);
+                    }
+                }
+
+            }
+        }
+
+        ObservableList<String> items = FXCollections.observableArrayList(generosVisiveis);
+
+        genero1.getItems().addAll(genero1.getValue());
+        genero2.getItems().addAll(genero1.getValue());
+        genero3.getItems().addAll(genero1.getValue());
+
+        System.out.println(genero1.getValue());
+        System.out.println(genero2.getValue());
+        System.out.println(genero3.getValue());
 
     }
 
@@ -103,12 +152,12 @@ public class RegistroUsuarioController implements Initializable {
         Usuario u = new Usuario();
         List<String> listaErros = new ArrayList<>();
 
-        if(Objects.equals(nome.getText(), "") || Objects.equals(senha.getText(), "")){
+        if (Objects.equals(nome.getText(), "") || Objects.equals(senha.getText(), "")) {
             listaErros.add("- Os campos de nome e senha não podem ser vazios.");
 
-        }else if(DaoFactory.createUsuarioDao().procurarTodosUsuario().toString().toLowerCase().contains(nome.getText().toLowerCase())) {
-          listaErros.add("- Nome de usuário já esta sendo utilizado");
-        }else{
+        } else if (DaoFactory.createUsuarioDao().procurarTodosUsuario().toString().toLowerCase().contains(nome.getText().toLowerCase())) {
+            listaErros.add("- Nome de usuário já esta sendo utilizado");
+        } else {
             u.setNome(nome.getText());
             u.setSenha(senha.getText());
         }
@@ -117,9 +166,9 @@ public class RegistroUsuarioController implements Initializable {
         u.setBio(bio.getText());
 
 
-        if(genero1.getValue() == null){
+        if (genero1.getValue() == null) {
             listaErros.add("- Você deve escolher um gênero musical no campo gênero favorito.");
-        }else{
+        } else {
             u.setGenero1(genero1.getValue());
         }
 
@@ -127,18 +176,18 @@ public class RegistroUsuarioController implements Initializable {
         u.setGenero3(genero3.getValue());
 
 
-        if(arquivo!=null){
+        if (arquivo != null) {
             byte[] bytesImagem = Files.readAllBytes(arquivo.toPath());
             u.setFoto(bytesImagem);
 
-        }else{
+        } else {
             byte[] bytesImagem = Files.readAllBytes(padrao.toPath());
             u.setFoto(bytesImagem);
         }
 
-        if(!listaErros.isEmpty()){
+        if (!listaErros.isEmpty()) {
             String erros = String.join("\n", listaErros);
-            Alerta.exibirAlerta("Erro", "Campo inválido", erros , Alert.AlertType.ERROR);
+            Alerta.exibirAlerta("Erro", "Campo inválido", erros, Alert.AlertType.ERROR);
             return;
         }
 
@@ -146,6 +195,20 @@ public class RegistroUsuarioController implements Initializable {
         Alerta.exibirAlerta(null, null, "Registro realizado com sucesso!", Alert.AlertType.INFORMATION);
         limparCampos();
 
+    }
+
+    public List<String> generos() {
+        Set<String> generosSet = new LinkedHashSet<>(Arrays.asList(
+                "Rock", "Pop", "Jazz", "Blues", "Hip Hop", "R&B", "Country", "Reggae",
+                "Salsa", "Funk", "Metal", "Classical", "Electronic", "House", "Techno",
+                "Disco", "Gospel", "Punk", "Folk", "Soul", "Indie", "Samba", "Bossa Nova",
+                "MPB", "Forró", "Axé", "Pagode", "K-pop", "J-pop", "Reggaeton", "Afrobeat",
+                "Trap", "Grunge", "Progressive Rock", "Ambient", "Trance", "Dubstep", "Ska",
+                "Hardcore", "Emo", "New Wave", "Indie"
+        ));
+
+        // convertendo set em lista
+        return new ArrayList<>(generosSet);
     }
 
     public void limparCampos(){
