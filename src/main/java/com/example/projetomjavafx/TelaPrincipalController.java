@@ -26,7 +26,15 @@ public class TelaPrincipalController  implements Initializable {
     @FXML
     private Button inicio;
 
-    // exclusivo para artista;
+    // para usuário
+    @FXML
+    private MenuButton pesquisar;
+    @FXML
+    private MenuItem pesqAlbum;
+    @FXML
+    private MenuItem pesqMusica;
+
+    // para artista;
     @FXML
     private MenuButton adicionar;
     @FXML
@@ -41,7 +49,7 @@ public class TelaPrincipalController  implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         identificar();
-        setarFoto();
+        setarOpcoes();
 
     }
 
@@ -72,21 +80,39 @@ public class TelaPrincipalController  implements Initializable {
             throw new RuntimeException();
         }
     }
-
-
+    // funcinalidades do usuario
     @FXML
-    public void onAddMusicaClick(){
+    public void onPesquisarAlbumClicked(){
         try{
-            Application.updateStageScene(ApplicationController.getStage(), "add-music-view.fxml");
+            Application.updateStageScene(ApplicationController.getStage(), "pesquisa-album-view.fxml");
         }catch(IOException e){
             throw new RuntimeException();
         }
     }
 
     @FXML
+    public void onPesquisarMusicaClicked(){
+        try{
+            Application.updateStageScene(ApplicationController.getStage(), "pesquisa-musica-view.fxml");
+        }catch(IOException e){
+            throw new RuntimeException();
+        }
+    }
+
+    // funcionalidades do artista;
+    @FXML
     public void onAddAlbumClick(){
         try{
             Application.updateStageScene(ApplicationController.getStage(), "add-album-view.fxml");
+        }catch(IOException e){
+            throw new RuntimeException();
+        }
+    }
+
+    @FXML
+    public void onAddMusicaClick(){
+        try{
+            Application.updateStageScene(ApplicationController.getStage(), "add-music-view.fxml");
         }catch(IOException e){
             throw new RuntimeException();
         }
@@ -102,7 +128,7 @@ public class TelaPrincipalController  implements Initializable {
     }
 
     @FXML
-    public void setarFoto(){
+    public void setarOpcoes(){
         if(identificar() == 1){
             Image imagem = new Image(new ByteArrayInputStream(sessaoU.getUsuario().getFoto()));
             circuloFoto.setFill(new ImagePattern(imagem));
@@ -110,6 +136,7 @@ public class TelaPrincipalController  implements Initializable {
         }else{
             Image imagem = new Image(new ByteArrayInputStream(sessaoA.getArtista().getFoto()));
             circuloFoto.setFill(new ImagePattern(imagem));
+            pesquisar.setVisible(false);
         }
 
 

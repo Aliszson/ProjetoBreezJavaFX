@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextArea?>
@@ -15,6 +14,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import org.controlsfx.control.SearchableComboBox?>
 
 <AnchorPane maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetomjavafx.RegistroUsuarioController">
     <children>
@@ -90,9 +90,9 @@
                         <Font name="System Bold" size="12.0" />
                     </font>
                 </Label>
-                <ComboBox fx:id="genero1" prefWidth="150.0" promptText="Nenhum" GridPane.columnIndex="1" />
-                <ComboBox fx:id="genero2" prefWidth="150.0" promptText="Nenhum" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                <ComboBox fx:id="genero3" prefWidth="150.0" promptText="Nenhum" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <SearchableComboBox fx:id="genero1" onAction="#onComboBoxClick" GridPane.columnIndex="1" />
+            <SearchableComboBox fx:id="genero2" onAction="#onComboBoxClick" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <SearchableComboBox fx:id="genero3" onAction="#onComboBoxClick" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             </children>
         </GridPane>
         <ImageView fx:id="foto" fitHeight="128.0" fitWidth="128.0" layoutX="43.0" layoutY="120.0" onMouseClicked="#onFotoClick" pickOnBounds="true" preserveRatio="true">
