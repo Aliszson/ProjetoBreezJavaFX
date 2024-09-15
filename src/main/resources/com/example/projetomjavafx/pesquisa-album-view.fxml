@@ -2,11 +2,28 @@
 
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="437.0" prefWidth="668.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetomjavafx.PesquisaAlbumController">
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #ededed;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetomjavafx.PesquisaAlbumController">
    <children>
-      <TextField fx:id="campoPesquisa" layoutX="220.0" layoutY="39.0" onKeyTyped="#pesquisaTabelaAlbum" prefHeight="26.0" prefWidth="258.0" />
-      <TableView fx:id="tabelaResuAlbum" layoutX="45.0" layoutY="98.0" prefHeight="307.0" prefWidth="577.0" />
+      <AnchorPane layoutX="115.0" layoutY="80.0" prefHeight="437.0" prefWidth="668.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <TextField fx:id="campoPesquisa" layoutX="220.0" layoutY="39.0" onKeyTyped="#pesquisaTabelaAlbum" prefHeight="26.0" prefWidth="258.0" />
+            <TableView fx:id="tabelaResuAlbum" layoutX="45.0" layoutY="98.0" prefHeight="307.0" prefWidth="577.0" />
+            <ImageView fitHeight="28.0" fitWidth="25.0" layoutX="485.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../img/icone/iconePesquisa.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <ImageView fx:id="voltar" fitHeight="47.0" fitWidth="44.0" layoutX="115.0" layoutY="29.0" onMouseClicked="#onVoltarClick" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../img/icone/setaVoltar.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

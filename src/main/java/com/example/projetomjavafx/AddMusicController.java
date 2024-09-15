@@ -12,7 +12,9 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Time;
 import java.text.ParseException;
@@ -32,6 +34,8 @@ public class AddMusicController implements Initializable {
     @FXML
     private ListView<String> albumList;
     @FXML
+    private ImageView voltar;
+    @FXML
     private Button buttonAdicionar;
 
     private int fk_album;
@@ -45,7 +49,14 @@ public class AddMusicController implements Initializable {
     @FXML
     Label avisoAlbum;
 
-
+    @FXML
+    private void onVoltarClick(){
+        try {
+            Application.updateStageScene(ApplicationController.getStage(), "tela-principal-view.fxml");
+        } catch (IOException e) {
+            throw new RuntimeException();
+        }
+    }
     @FXML
     protected void onAdicionarClick() throws ParseException {
         avisoLabel();
