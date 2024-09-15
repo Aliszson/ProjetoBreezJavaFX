@@ -26,7 +26,8 @@ import java.util.ResourceBundle;
 
 
 public class PesquisaAlbumController implements Initializable {
-
+    @FXML
+    private ImageView voltar;
     @FXML
     private TableView<Album> tabelaResuAlbum;
     @FXML
@@ -191,6 +192,15 @@ public class PesquisaAlbumController implements Initializable {
         tabelaResuAlbum.getColumns().add(albumGeneros);
         tabelaResuAlbum.getColumns().add(albumMediaAvaliacoes);
 
+    }
+
+    @FXML
+    private void onVoltarClick(){
+        try{
+            Application.updateStageScene(ApplicationController.getStage(), "tela-principal-view.fxml");
+        }catch(Exception e){
+            throw new RuntimeException();
+        }
     }
 
     @Override

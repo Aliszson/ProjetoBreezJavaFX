@@ -25,12 +25,12 @@ import java.util.ResourceBundle;
 
 
 public class PesquisaMusicaController implements Initializable {
-
+    @FXML
+    private ImageView voltar;
     @FXML
     private TableView<Musica> tabelaResuMusica;
     @FXML
     private TextField campoPesquisa;
-
     private TableColumn<Album, byte[]> capa;
 
     @FXML
@@ -223,8 +223,22 @@ public class PesquisaMusicaController implements Initializable {
         tabelaResuMusica.getColumns().add(colunaMedia);
     }
 
+    @FXML
+    private void onVoltarClick(){
+        try{
+            Application.updateStageScene(ApplicationController.getStage(), "tela-principal-view.fxml");
+        }catch(Exception e){
+            throw new RuntimeException();
+        }
+    }
+
+
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         mostraTabelaMusica();
     }
+
+
 }
