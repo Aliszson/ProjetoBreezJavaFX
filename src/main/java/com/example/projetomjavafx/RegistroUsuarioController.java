@@ -47,6 +47,7 @@ public class RegistroUsuarioController implements Initializable {
     @FXML
     private Circle circuloFoto;
 
+    List<String> listaGeneros = generos();
 
     @FXML
     void onIconeVoltarClick() {
@@ -56,7 +57,7 @@ public class RegistroUsuarioController implements Initializable {
             throw new RuntimeException(e);
         }
     }
-    List<String> listaGeneros = generos();
+
     @FXML
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -99,52 +100,49 @@ public class RegistroUsuarioController implements Initializable {
     }
 
     @FXML
-    protected void onComboBoxClick(){
-        List<String> generos = generos();
-        List<String> generosVisiveis = listaGeneros;
+    private void onComboBoxClick() {
+        // cria uma cópia da lista de gêneros para cada combobox
+        List<String> generosVisiveis1 = new ArrayList<>(listaGeneros);
+        List<String> generosVisiveis2 = new ArrayList<>(listaGeneros);
+        List<String> generosVisiveis3 = new ArrayList<>(listaGeneros);
 
-
-        System.out.println(generosVisiveis);
-        for (String gen: generos){
-
-            if (generosVisiveis.contains(genero1.getValue())){
-                for (String genL: listaGeneros){
-                    if (gen == genL){
-                        listaGeneros.remove(gen);
-                    }
-                }
-
-            }
-
-            if (generosVisiveis.contains(genero2.getValue())) {
-                for (String genL: listaGeneros){
-                    if (Objects.equals(gen, genL)){
-                        listaGeneros.remove(gen);
-                    }
-                }
-
-            }
-
-            if (generosVisiveis.contains(genero3.getValue())) {
-                for (String genL: listaGeneros){
-                    if (Objects.equals(gen, genL)){
-                        listaGeneros.remove(gen);
-                    }
-                }
-
-            }
+        // remove os gêneros já selecionados dos outros comboboxes
+        if (genero1.getValue() != null) {
+            generosVisiveis2.remove(genero1.getValue());
+            generosVisiveis3.remove(genero1.getValue());
+        }
+        if (genero2.getValue() != null) {
+            generosVisiveis1.remove(genero2.getValue());
+            generosVisiveis3.remove(genero2.getValue());
+        }
+        if (genero3.getValue() != null) {
+            generosVisiveis1.remove(genero3.getValue());
+            generosVisiveis2.remove(genero3.getValue());
         }
 
-        ObservableList<String> items = FXCollections.observableArrayList(generosVisiveis);
+        // atualiza os itens disponíveis em cada combobox
+        genero1.setItems(FXCollections.observableArrayList(generosVisiveis1));
+        genero2.setItems(FXCollections.observableArrayList(generosVisiveis2));
+        genero3.setItems(FXCollections.observableArrayList(generosVisiveis3));
 
-        genero1.getItems().addAll(genero1.getValue());
-        genero2.getItems().addAll(genero1.getValue());
-        genero3.getItems().addAll(genero1.getValue());
+        // tenta manter o valor selecionado anteriormente, se ele ainda estiver disponível
+        if (genero1.getValue() != null && generosVisiveis1.contains(genero1.getValue())) {
+            genero1.setValue(genero1.getValue());
+        } else {
+            genero1.setValue(null); // se o valor não estiver disponível, desmarque o ComboBox
+        }
 
-        System.out.println(genero1.getValue());
-        System.out.println(genero2.getValue());
-        System.out.println(genero3.getValue());
+        if (genero2.getValue() != null && generosVisiveis2.contains(genero2.getValue())) {
+            genero2.setValue(genero2.getValue());
+        } else {
+            genero2.setValue(null);
+        }
 
+        if (genero3.getValue() != null && generosVisiveis3.contains(genero3.getValue())) {
+            genero3.setValue(genero3.getValue());
+        } else {
+            genero3.setValue(null); 
+        }
     }
 
     @FXML
@@ -162,8 +160,12 @@ public class RegistroUsuarioController implements Initializable {
             u.setSenha(senha.getText());
         }
 
+        if (Objects.equals(bio.getText(), "")){
+            u.setBio(null);
+        }else {
+            u.setBio(bio.getText());
+        }
 
-        u.setBio(bio.getText());
 
 
         if (genero1.getValue() == null) {
