@@ -19,7 +19,7 @@ public class AvaliaMscDaoJDBC implements AvaliaMscDao {
 
         try {
             st = conn.prepareStatement("insert into avaliaMsc(nota, comentario, fk_id_usuario, fk_id_musica) values(?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
-            st.setFloat(1, am.getNota());
+            st.setInt(1, am.getNota());
             st.setString(2,am.getComentario());
             st.setInt(3, am.getFk_id_usuario());
             st.setInt(4, am.getFk_id_musica());
@@ -43,7 +43,7 @@ public class AvaliaMscDaoJDBC implements AvaliaMscDao {
         PreparedStatement st = null;
         try {
             st = conn.prepareStatement("update avaliaMsc set nota=? where id_avaliacao=?");
-            st.setString(1, am.getComentario());
+            st.setInt(1, am.getNota());
             st.setInt(2, am.getId());
             st.executeUpdate();
 
@@ -87,6 +87,27 @@ public class AvaliaMscDaoJDBC implements AvaliaMscDao {
             }
 
             return 0; // Se não houver avaliações
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            DB.closeResultSet(rs);
+            DB.closeStatement(st);
+        }
+    }
+
+    @Override
+    public boolean avaliacaoExiste(int idUsuario, int idMusica) {
+        PreparedStatement st = null;
+        ResultSet rs = null;
+
+        try {
+            st = conn.prepareStatement("select * from avaliaMsc where fk_id_usuario = ? and fk_id_musica = ?");
+            st.setInt(1, idUsuario);
+            st.setInt(2, idMusica);
+            rs = st.executeQuery();
+
+            // verifica se há resultados
+            return rs.next();  // retorna true se a avaliação já existir
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {

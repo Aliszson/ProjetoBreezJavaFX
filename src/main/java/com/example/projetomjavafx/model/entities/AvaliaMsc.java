@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class AvaliaMsc {
     private int id;
-    private float nota;
+    private int nota;
     private String comentario;
     private int fk_id_usuario;
     private int fk_id_musica;
@@ -17,11 +17,11 @@ public class AvaliaMsc {
         this.id = id;
     }
 
-    public float getNota() {
+    public int getNota() {
         return nota;
     }
 
-    public void setNota(float nota) {
+    public void setNota(int nota) {
         this.nota = nota;
     }
 
@@ -49,12 +49,13 @@ public class AvaliaMsc {
         this.fk_id_musica = fk_id_musica;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AvaliaMsc avaliaMsc = (AvaliaMsc) o;
-        return id == avaliaMsc.id && Float.compare(nota, avaliaMsc.nota) == 0 && fk_id_usuario == avaliaMsc.fk_id_usuario && fk_id_musica == avaliaMsc.fk_id_musica && Objects.equals(comentario, avaliaMsc.comentario);
+        return id == avaliaMsc.id && nota == avaliaMsc.nota && fk_id_usuario == avaliaMsc.fk_id_usuario && fk_id_musica == avaliaMsc.fk_id_musica && Objects.equals(comentario, avaliaMsc.comentario);
     }
 
     @Override

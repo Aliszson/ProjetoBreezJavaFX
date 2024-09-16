@@ -2,10 +2,8 @@ package com.example.projetomjavafx;
 
 import com.example.projetomjavafx.model.dao.DaoFactory;
 import com.example.projetomjavafx.model.entities.Artista;
-import com.example.projetomjavafx.model.entities.Musica;
 import com.example.projetomjavafx.model.entities.Album;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -19,11 +17,9 @@ import javafx.util.Callback;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.net.URL;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-
 
 public class PesquisaAlbumController implements Initializable {
     @FXML
@@ -32,7 +28,6 @@ public class PesquisaAlbumController implements Initializable {
     private TableView<Album> tabelaResuAlbum;
     @FXML
     private TextField campoPesquisa;
-
 
     @FXML
     private void pesquisaTabelaAlbum() {
@@ -45,7 +40,6 @@ public class PesquisaAlbumController implements Initializable {
         List<Album> todosAlbuns = DaoFactory.createAlbumDao().procurarTodosAlbuns();
         List<Album> listaAlbuns = new ArrayList<>();
 
-
         for (Album alb : todosAlbuns) {
             if (alb.getNome().toLowerCase().contains(filtro)) {
                 listaAlbuns.add(alb);
@@ -56,13 +50,10 @@ public class PesquisaAlbumController implements Initializable {
         ObservableList<Album> listaAlb = FXCollections.observableArrayList(listaAlbuns);
 
         tabelaResuAlbum.setItems(listaAlb);
-
     }
-
 
     protected void mostraTabelaAlbuns(){
         // Inicializa a coluna apenas uma vez
-
 
         TableColumn<Album, byte[]> albumCapa = new TableColumn("Capa");
         // Configura a fábrica de valor de célula
@@ -153,7 +144,6 @@ public class PesquisaAlbumController implements Initializable {
             }
         });
 
-
         TableColumn<Album, String> albumGeneros = new TableColumn<>("Gêneros");
         // sonfigura a fábrica de valor de célula
         albumGeneros.setCellValueFactory(parametro -> {
@@ -162,6 +152,7 @@ public class PesquisaAlbumController implements Initializable {
 
             // se genero2 for nulo ou vazio, exibe apenas genero1
             String generos = genero1;
+            System.out.println("Antes: "+generos);
             if (genero2 != null && !genero2.trim().isEmpty()) {
                 generos += ", " + genero2;
             }
@@ -176,7 +167,6 @@ public class PesquisaAlbumController implements Initializable {
             return new SimpleObjectProperty<>(String.format("%.1f/5", mediaAvaliacoes));
         });
 
-
         albumNome.setPrefWidth(150); // Largura preferida (ajuste conforme necessário)
         albumNome.setMinWidth(150);  // Largura mínima
         albumNome.setMaxWidth(300);  // Largura máxima
@@ -185,13 +175,11 @@ public class PesquisaAlbumController implements Initializable {
         albumArtista.setMinWidth(150);  // Largura mínima
         albumArtista.setMaxWidth(300);  // Largura máxima
 
-
         tabelaResuAlbum.getColumns().add(albumCapa);
         tabelaResuAlbum.getColumns().add(albumNome);
         tabelaResuAlbum.getColumns().add(albumArtista);
         tabelaResuAlbum.getColumns().add(albumGeneros);
         tabelaResuAlbum.getColumns().add(albumMediaAvaliacoes);
-
     }
 
     @FXML

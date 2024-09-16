@@ -7,4 +7,5 @@ public interface AvaliaMscDao {
     void atualizarNotaMusica(AvaliaMsc am);
     void atualizarComentarioMusica(AvaliaMsc am);
     float calcularMediaPorMusica(int idMusica);
+    boolean avaliacaoExiste(int idUsuario, int idMusica);
 }
