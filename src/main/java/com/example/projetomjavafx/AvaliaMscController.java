@@ -50,7 +50,7 @@ public class AvaliaMscController implements Initializable {
             aMsc.setComentario(comentario.getText());
         }
 
-        aMsc.setFk_id_usuario(1);
+        aMsc.setFk_id_usuario(sessaoUsuario.getUsuario().getId());
         aMsc.setFk_id_musica(idMusica);
 
         DaoFactory.createAvaliaMscDao().inserirAvaliacaoMusica(aMsc);
@@ -71,7 +71,7 @@ public class AvaliaMscController implements Initializable {
 
     protected boolean avaliacaoExistente(){
         SessaoUsuario sessaoUsuario = new SessaoUsuario();
-        if (DaoFactory.createAvaliaMscDao().avaliacaoExiste(1, idMusica)) {
+        if (DaoFactory.createAvaliaMscDao().avaliacaoExiste(sessaoUsuario.getUsuario().getId(), idMusica)) {
             return true;  // Interrompe o fluxo se a avaliação já existir
         }else {
             return false;

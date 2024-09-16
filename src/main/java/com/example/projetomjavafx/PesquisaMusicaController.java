@@ -257,6 +257,7 @@ public class PesquisaMusicaController implements Initializable {
         }
     }
 
+    @FXML
     private void onVoltarClick(){
         try{
             Application.updateStageScene(ApplicationController.getStage(), "tela-principal-view.fxml");
