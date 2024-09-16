@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class Album extends javafx.application.Application {
+public class AlbumTestes extends javafx.application.Application {
     private static Scene scene;
     @Override
     public void start(Stage stage) throws IOException {
