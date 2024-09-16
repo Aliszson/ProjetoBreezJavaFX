@@ -29,15 +29,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+
 public class PesquisaMusicaController implements Initializable{
 
+
+public class PesquisaMusicaController implements Initializable {
+    @FXML
+    private ImageView voltar;
     @FXML
     private TableView<Musica> tabelaResuMusica;
     @FXML
     private TextField campoPesquisa;
     @FXML
     private Button avaliar;
-
+  
+  
     private TableColumn<Album, byte[]> capa;
 
     @FXML
@@ -252,6 +258,14 @@ public class PesquisaMusicaController implements Initializable{
             }
         }else {
             Alerta.exibirAlerta("Selecione uma música!", "Nenhuma música selecionada.","Por favor, selecione uma música para avaliar.", Alert.AlertType.INFORMATION);
+        }
+    }
+
+    private void onVoltarClick(){
+        try{
+            Application.updateStageScene(ApplicationController.getStage(), "tela-principal-view.fxml");
+        }catch(Exception e){
+            throw new RuntimeException();
         }
     }
 

@@ -37,7 +37,7 @@
                   <Image url="@../../../img/icone/bio.png" />
                </image>
             </ImageView>
-            <Label fx:id="generos" layoutX="266.0" layoutY="355.0" text="generos" />
+            <Label fx:id="generos" layoutX="226.0" layoutY="353.0" text="generos" />
             <TextField fx:id="nome" alignment="CENTER" focusTraversable="false" layoutX="191.0" layoutY="181.0" prefHeight="36.0" prefWidth="204.0" text="NOME">
                <font>
                   <Font name="System Bold" size="13.0" />

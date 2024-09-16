@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.MenuButton?>
@@ -10,19 +11,21 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane fx:id="moldeAlbum" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetomjavafx.TelaPrincipalController">
+<AnchorPane fx:id="moldeAlbum" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetomjavafx.TelaPrincipalController">
    <children>
-      <BorderPane prefHeight="400.0" prefWidth="601.0">
+      <BorderPane prefHeight="600.0" prefWidth="900.0">
          <top>
-            <HBox prefHeight="50.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+            <HBox prefHeight="60.0" prefWidth="600.0" BorderPane.alignment="CENTER">
                <children>
                   <ButtonBar prefHeight="58.0" prefWidth="368.0">
                     <buttons>
                       <Button fx:id="inicio" focusTraversable="false" minWidth="43.0" mnemonicParsing="false" onMouseClicked="#onInicioClick" prefHeight="36.0" text="Início" />
-                        <MenuButton fx:id="adicionar" focusTraversable="false" mnemonicParsing="false" prefHeight="36.0" prefWidth="481.0" text="Adicionar">
+                        <MenuButton fx:id="gerenciar" focusTraversable="false" mnemonicParsing="false" prefHeight="36.0" prefWidth="481.0" text="Gerenciar">
                           <items>
-                            <MenuItem fx:id="addAlbum" mnemonicParsing="false" onAction="#onAddAlbumClick" text="Álbum" />
-                            <MenuItem fx:id="addMusica" mnemonicParsing="false" onAction="#onAddMusicaClick" text="Música" />
+                            <MenuItem fx:id="addAlbum" mnemonicParsing="false" onAction="#onAddAlbumClick" text="Novo álbum" />
+                            <MenuItem fx:id="addMusica" mnemonicParsing="false" onAction="#onAddMusicaClick" text="Nova música" />
+                              <MenuItem fx:id="delAlbum" mnemonicParsing="false" onAction="#onDelAlbumClick" text="Excluir álbum" />
+                              <MenuItem fx:id="delMusica" mnemonicParsing="false" onAction="#onDelMusicaClick" text="Excluir música" />
                           </items>
                         </MenuButton>
                         <MenuButton fx:id="pesquisar" focusTraversable="false" mnemonicParsing="false" prefHeight="36.0" prefWidth="257.0" text="Pesquisar">
@@ -33,14 +36,17 @@
                         </MenuButton>
                     </buttons>
                   </ButtonBar>
-                  <Region prefHeight="200.0" prefWidth="200.0" />
-                  <Circle fx:id="circuloFoto" fill="TRANSPARENT" onMouseClicked="#onCirculoClicked" radius="29.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Region fx:id="regiao" prefHeight="200.0" prefWidth="200.0" />
+                  <Circle fx:id="circuloFoto" fill="TRANSPARENT" onMouseClicked="#onCirculoClicked" radius="29.0" stroke="BLACK" strokeType="INSIDE">
+                     <HBox.margin>
+                        <Insets left="280.0" />
+                     </HBox.margin></Circle>
                   <ButtonBar buttonOrder="" prefHeight="52.0" prefWidth="0.0" />
                </children>
             </HBox>
          </top>
          <center>
-            <HBox prefHeight="355.0" prefWidth="600.0" style="-fx-background-color: #bfbfbf;" BorderPane.alignment="CENTER" />
+            <HBox prefHeight="593.0" prefWidth="1050.0" style="-fx-background-color: #bfbfbf;" BorderPane.alignment="CENTER" />
          </center>
       </BorderPane>
    </children>
