@@ -16,6 +16,7 @@ import javafx.scene.layout.HBox;
 import javafx.util.Callback;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
@@ -31,6 +32,20 @@ public class ExcluirAlbumController implements Initializable {
     private TableView<Album> tabelaResuAlbum;
     @FXML
     private Button botaoExcluir;
+    @FXML
+    private ImageView voltar;
+
+
+    @FXML
+    public void onVoltarClick(){
+        try {
+            Application.updateStageScene(ApplicationController.getStage(), "tela-principal-view.fxml");
+        } catch (IOException e) {
+            throw new RuntimeException();
+        }
+    }
+
+
 
     @FXML
     private void pesquisaTabelaAlbum() {
@@ -43,9 +58,6 @@ public class ExcluirAlbumController implements Initializable {
         List<Album> todosAlbuns = DaoFactory.createAlbumDao().procurarTodosAlbuns();
         List<Album> listaAlbuns = new ArrayList<>();
 
-        // criando sessão artista
-        Artista a = new Artista();
-        sessaoArtista.setArtista(a);
 
         for (Album al : todosAlbuns) {
 

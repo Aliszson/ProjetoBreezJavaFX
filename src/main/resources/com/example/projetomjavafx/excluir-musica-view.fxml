@@ -17,5 +17,10 @@
          </image>
       </ImageView>
       <Button fx:id="botaoExcluir" layoutX="573.0" layoutY="78.0" mnemonicParsing="false" onMouseClicked="#onExcluirClick" text="Excluir" />
+      <ImageView fx:id="voltar" fitHeight="47.0" fitWidth="44.0" layoutX="25.0" layoutY="23.0" onMouseClicked="#onVoltarClick" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../img/icone/setaVoltar.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

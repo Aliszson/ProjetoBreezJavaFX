@@ -129,7 +129,7 @@ public class TelaPrincipalController  implements Initializable {
     public void onDelAlbumClick(){
         try{
             // depois só trocar para a tela de excluir album
-            Application.updateStageScene(ApplicationController.getStage(), "tela-principal-view.fxml");
+            Application.updateStageScene(ApplicationController.getStage(), "excluir-album-view.fxml");
         }catch(IOException e){
             throw new RuntimeException();
         }
@@ -140,7 +140,7 @@ public class TelaPrincipalController  implements Initializable {
     public void onDelMusicaClick(){
         try{
             // depois só trocar para a tela de excluir musica
-            Application.updateStageScene(ApplicationController.getStage(), "tela-principal-view.fxml");
+            Application.updateStageScene(ApplicationController.getStage(), "excluir-musica-view.fxml");
         }catch(IOException e){
             throw new RuntimeException();
         }

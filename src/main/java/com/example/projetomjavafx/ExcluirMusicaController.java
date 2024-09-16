@@ -17,6 +17,7 @@ import javafx.scene.image.ImageView;
 import javafx.util.Callback;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.sql.Time;
@@ -33,6 +34,19 @@ public class ExcluirMusicaController implements Initializable {
     private TableView<Musica> tabelaResuMusica;
     @FXML
     private Button botaoExcluir;
+    @FXML
+    private ImageView voltar;
+
+
+    @FXML
+    public void onVoltarClick(){
+        try {
+            Application.updateStageScene(ApplicationController.getStage(), "tela-principal-view.fxml");
+        } catch (IOException e) {
+            throw new RuntimeException();
+        }
+    }
+
 
     @FXML
     private void pesquisaTabelaMusica() {
@@ -46,8 +60,8 @@ public class ExcluirMusicaController implements Initializable {
         List<Musica> listaMusicas = new ArrayList<>();
 
         // pegando o artista logado
-        Artista a = new Artista();
-        sessaoArtista.setArtista(a);
+//        Artista a = new Artista();
+//        sessaoArtista.setArtista(a);
 
 
         for (Musica mu : todasMusicas) {
@@ -169,7 +183,8 @@ public class ExcluirMusicaController implements Initializable {
             Musica musica = parametro.getValue();
 
             // Busque o artista usando o método que criamos
-            Artista artista = DaoFactory.createMusicaDao().procurarArtistaPorFk(musica.getId());
+            SessaoArtista sessaoA = new SessaoArtista();
+            Artista artista = sessaoA.getArtista();
 
             // Retorna o nome do artista, se houver
             if (artista != null) {
