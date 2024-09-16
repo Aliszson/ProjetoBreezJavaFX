@@ -111,4 +111,35 @@ public class Restricoes {
         TextFormatter<String> textFormatter = new TextFormatter<>(mascaraComent);
         areaTexto.setTextFormatter(textFormatter);
     }
+
+
+    public static void verificaTituloMusica(TextField campTexto) {
+        UnaryOperator<TextFormatter.Change> mascaraTituloMusica = change -> {
+            String Texto = change.getControlNewText();
+
+            if (Texto.length() > 30) {
+                return null;
+            }
+            return change;
+        };
+
+
+        TextFormatter<String> textFormatter = new TextFormatter<>(mascaraTituloMusica);
+        campTexto.setTextFormatter(textFormatter);
+    }
+
+
+    public static void verificaLetra(TextArea areaTexto) {
+        UnaryOperator<TextFormatter.Change> mascaraLetra = change -> {
+            String Texto = change.getControlNewText();
+
+            if (Texto.length() > 500) {
+                return null;
+            }
+            return change;
+        };
+
+        TextFormatter<String> textFormatter = new TextFormatter<>(mascaraLetra);
+        areaTexto.setTextFormatter(textFormatter);
+    }
 }

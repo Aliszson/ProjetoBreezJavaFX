@@ -5,6 +5,7 @@ import com.example.projetomjavafx.model.entities.Album;
 import com.example.projetomjavafx.model.entities.Artista;
 import com.example.projetomjavafx.model.entities.ArtistaProduz;
 import com.example.projetomjavafx.model.entities.Musica;
+import com.example.projetomjavafx.util.Alerta;
 import com.example.projetomjavafx.util.Restricoes;
 import com.example.projetomjavafx.util.SessaoArtista;
 import javafx.collections.FXCollections;
@@ -12,8 +13,10 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Time;
@@ -40,15 +43,6 @@ public class AddMusicController implements Initializable {
 
     private int fk_album;
 
-    // Avisos
-
-    @FXML
-    Label avisoTitulo;
-    @FXML
-    Label avisoDuracao;
-    @FXML
-    Label avisoAlbum;
-
     @FXML
     private void onVoltarClick(){
         try {
@@ -59,18 +53,43 @@ public class AddMusicController implements Initializable {
     }
     @FXML
     protected void onAdicionarClick() throws ParseException {
-        avisoLabel();
-        tratarDuracao();
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-        Date drcDate = sdf.parse(duracao.getText()); // cria objeto tipo Date
 
         Musica m = new Musica();
+        List <String> listaErros = new ArrayList<>();
+
+        if(Objects.equals(titulo.getText(), "")){
+            listaErros.add("- O título da música não pode ser vazio");
+        }
+        if (Objects.equals(duracao.getText(), "")){
+            listaErros.add("- A duração da música não pode ser vazia");
+        }
+
+        if (albumPesquisa.getText().isEmpty() || albumList.getSelectionModel().isEmpty()){
+           listaErros.add("- Um álbum deve ser selecionado");
+        }
+
+        if(Objects.equals(letra.getText(), "")){
+            letra.setText(null);
+        }
+
+        if(!listaErros.isEmpty()){
+            String erros = String.join("\n", listaErros);
+            Alerta.exibirAlerta("Erro", "Campo inválido", erros , Alert.AlertType.ERROR);
+            return;
+        }
+
+
+        tratarDuracao();
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+        Date drcDate = sdf.parse(duracao.getText()); // cria objeto tipo Dat
+
         m.setTitulo(titulo.getText());
         m.setDuracao(new Time(drcDate.getTime())); // converte esse objeto para Time, o que o banco precisa
         m.setLetra(letra.getText());
         m.setFk_id_album(getFkAlbum());
-
         DaoFactory.createMusicaDao().inserirMusica(m);
+        Alerta.exibirAlerta(null, null, "Música inserida com sucesso", Alert.AlertType.INFORMATION);
+        limparCampos();
     }
 
     @FXML
@@ -114,31 +133,8 @@ public class AddMusicController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Restricoes.DURACAO(duracao);
-
-        avisoTitulo.setVisible(false);
-        avisoDuracao.setVisible(false);
-        avisoAlbum.setVisible(false);
-    }
-
-    public void avisoLabel(){
-
-        if (titulo.getText().isEmpty()) { // caso texto seja vazio
-            avisoTitulo.setVisible(true);
-        }else {
-            avisoTitulo.setVisible(false);
-        }
-
-        if (duracao.getText().isEmpty()){ // caso album seja vazio
-            avisoDuracao.setVisible(true);
-        }else {
-            avisoDuracao.setVisible(false);
-        }
-
-        if (albumPesquisa.getText().isEmpty() || albumList.getSelectionModel().isEmpty()){ // caso seleção de album seja vazia
-            avisoAlbum.setVisible(true);
-        }else {
-            avisoAlbum.setVisible(false);
-        }
+        Restricoes.verificaTituloMusica(titulo);
+        Restricoes.verificaLetra(letra);
     }
 
     public void tratarDuracao() throws ParseException {
@@ -162,12 +158,19 @@ public class AddMusicController implements Initializable {
             duracaoFormatada = "0"+texto;
         }
 
-        System.out.println(duracaoFormatada);
+
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
         Date drcDate = sdf.parse(duracaoFormatada);
 
         duracaoFormatada = sdf.format(drcDate);
-        System.out.println(duracaoFormatada);
         duracao.setText(duracaoFormatada);
+    }
+
+    public void limparCampos(){
+        titulo.clear();
+        duracao.clear();
+        letra.clear();
+        albumPesquisa.clear();
+        albumList.getItems().clear();
     }
 }

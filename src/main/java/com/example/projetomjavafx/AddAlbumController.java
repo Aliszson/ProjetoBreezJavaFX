@@ -67,11 +67,15 @@ public class AddAlbumController implements Initializable {
     @FXML
     protected void onAddAlbumClick() throws IOException {
         Album a = new Album();
+        List <String> listaErros = new ArrayList<>();
         SessaoArtista sessaoArtista = new SessaoArtista();
 
-        a.setNome(nomeAlbum.getText());
-        a.setGenero1(getNomeGenero1());
-        a.setGenero2(getNomeGenero2());
+        if(nomeAlbum.getText().isEmpty()){
+            listaErros.add("- O nome do álbum não pode ser vazio");
+        }
+        if(getNomeGenero1() == null){
+            listaErros.add("- O gênero principal do seu álbum não pode ser vazio");
+        }
 
         if(arquivo!=null){
             byte[] bytesImagem = Files.readAllBytes(arquivo.toPath());
@@ -80,6 +84,16 @@ public class AddAlbumController implements Initializable {
             byte[] bytesImagem = Files.readAllBytes(padrao.toPath());
             a.setCapa(bytesImagem);
         }
+
+        if (!listaErros.isEmpty()) {
+            String erros = String.join("\n", listaErros);
+            Alerta.exibirAlerta("Erro", "Campo inválido", erros, Alert.AlertType.ERROR);
+            return;
+        }
+
+        a.setNome(nomeAlbum.getText());
+        a.setGenero1(getNomeGenero1());
+        a.setGenero2(getNomeGenero2());
         a.setFk_id_artista(sessaoArtista.getArtista().getId()); // prfv funcione
         DaoFactory.createAlbumDao().inserirAlbum(a);
         limparCampos();
