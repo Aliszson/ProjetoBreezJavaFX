@@ -114,7 +114,7 @@ public class AlbumDaoJDBC implements AlbumDao {
         ResultSet rs = null;
 
         try {
-            st = c.prepareStatement("select id_album, nome from album where id_album = ?");
+            st = c.prepareStatement("select id_album, nome, genero1, genero2, capa, fk_id_artista from album where id_album = ?");
             st.setInt(1, id);
             rs = st.executeQuery();
 
@@ -122,6 +122,10 @@ public class AlbumDaoJDBC implements AlbumDao {
                 Album a = new Album();
                 a.setId(rs.getInt("id_album"));
                 a.setNome(rs.getString("nome"));
+                a.setGenero1(rs.getString("genero1"));
+                a.setGenero2(rs.getString("genero2"));
+                a.setCapa(rs.getBytes("capa"));
+                a.setFk_id_artista(rs.getInt("fk_id_artista"));
                 return a;
             }
         } catch (SQLException e) {
@@ -148,7 +152,7 @@ public class AlbumDaoJDBC implements AlbumDao {
                 a.setNome(rs.getString("nome"));
                 a.setId(rs.getInt("id_album"));
                 a.setGenero1(rs.getString("genero1"));
-                a.setGenero1(rs.getString("genero2"));
+                a.setGenero2(rs.getString("genero2"));
                 a.setCapa(rs.getBytes("capa"));
                 a.setFk_id_artista(rs.getInt("fk_id_artista"));
                 lista.add(a);

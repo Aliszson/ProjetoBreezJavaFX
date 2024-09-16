@@ -4,18 +4,24 @@ import com.example.projetomjavafx.model.dao.DaoFactory;
 import com.example.projetomjavafx.model.entities.Artista;
 import com.example.projetomjavafx.model.entities.Musica;
 import com.example.projetomjavafx.model.entities.Album;
+import com.example.projetomjavafx.util.Alerta;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.sql.Time;
@@ -23,13 +29,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-
-public class PesquisaMusicaController implements Initializable {
+public class PesquisaMusicaController implements Initializable{
 
     @FXML
     private TableView<Musica> tabelaResuMusica;
     @FXML
     private TextField campoPesquisa;
+    @FXML
+    private Button avaliar;
 
     private TableColumn<Album, byte[]> capa;
 
@@ -55,13 +62,10 @@ public class PesquisaMusicaController implements Initializable {
         ObservableList<Musica> listaMsc = FXCollections.observableArrayList(listaMusicas);
 
         tabelaResuMusica.setItems(listaMsc);
-
     }
-
 
     protected void mostraTabelaMusica(){
         // Inicializa a coluna apenas uma vez
-
 
         // Coluna para exibir a capa do álbum
         TableColumn<Musica, byte[]> albumMusicaCapa = new TableColumn<>("Capa");
@@ -110,11 +114,6 @@ public class PesquisaMusicaController implements Initializable {
             }
         });
 
-
-
-
-
-
         // exibir titulo
         TableColumn<Musica, String> musicaTitulo = new TableColumn<>("Título");
         musicaTitulo.setCellValueFactory(parametro -> new SimpleObjectProperty<>(parametro.getValue().getTitulo()));
@@ -161,7 +160,6 @@ public class PesquisaMusicaController implements Initializable {
             }
         });
 
-
         // exibir o nome do artista
         TableColumn<Musica, String> colunaArtista = new TableColumn<>("Artista");
         colunaArtista.setCellValueFactory(parametro -> {
@@ -179,7 +177,6 @@ public class PesquisaMusicaController implements Initializable {
             }
         });
 
-
         // Coluna para exibir a média das avaliações
         TableColumn<Musica, Float> colunaMedia = new TableColumn<>("Média Avaliações");
         colunaMedia.setCellValueFactory(parametro -> {
@@ -192,7 +189,7 @@ public class PesquisaMusicaController implements Initializable {
             return new SimpleObjectProperty<>(media);
         });
 
-// Define a formatação para a média, se necessário
+        // Define a formatação para a média, se necessário
         colunaMedia.setCellFactory(column -> new TableCell<Musica, Float>() {
             private final Label label = new Label();
 
@@ -221,6 +218,41 @@ public class PesquisaMusicaController implements Initializable {
         tabelaResuMusica.getColumns().add(musicaDuracao);
         tabelaResuMusica.getColumns().add(colunaArtista);
         tabelaResuMusica.getColumns().add(colunaMedia);
+    }
+
+    @FXML
+    protected void onAvaliarClick(){
+        int id_musica;
+        int fk_album;
+
+        if (tabelaResuMusica.getSelectionModel().getSelectedItem() != null){ // captura item selecionado na tabela
+
+            id_musica = tabelaResuMusica.getSelectionModel().getSelectedItem().getId();
+            fk_album = tabelaResuMusica.getSelectionModel().getSelectedItem().getFk_id_album();
+
+            // carrega o novo FXML e obtem o controlador
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("avalia-msc-view.fxml"));
+            Parent root = null;
+            try {
+                root = loader.load();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            AvaliaMscController controller = loader.getController();
+            controller.setIdMusica(id_musica); // passa o ID da música
+            controller.setFkAlbum(fk_album);
+            controller.capturarValores(); // definindo os valores a serem chamados na outra tela antes dela ser chamada, sem precisar do initialize
+
+            if (controller.avaliacaoExistente()){
+                Alerta.exibirAlerta("Escolha outra música.", "Música já avaliada.","Escolha outra música ou selecione editar avaliação..", Alert.AlertType.INFORMATION);
+            }else {
+                // atualiza a cena com o novo root
+                Stage stage = (Stage) avaliar.getScene().getWindow();
+                stage.setScene(new Scene(root));
+            }
+        }else {
+            Alerta.exibirAlerta("Selecione uma música!", "Nenhuma música selecionada.","Por favor, selecione uma música para avaliar.", Alert.AlertType.INFORMATION);
+        }
     }
 
     @Override
