@@ -58,21 +58,6 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="avisoDuracao" layoutX="113.0" layoutY="152.0" prefHeight="18.0" prefWidth="200.0" text="Duração não pode ser vazio" textFill="RED">
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Label>
-      <Label fx:id="avisoTitulo" layoutX="113.0" layoutY="76.0" prefHeight="18.0" prefWidth="200.0" text="Título não pode ser vazio" textFill="RED">
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Label>
-      <Label fx:id="avisoAlbum" layoutX="449.0" layoutY="30.0" prefHeight="18.0" prefWidth="94.0" text="Selecione um álbum" textFill="RED">
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Label>
       <ImageView fx:id="voltar" fitHeight="39.0" fitWidth="34.0" layoutX="14.0" layoutY="13.0" onMouseClicked="#onVoltarClick" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../img/icone/setaVoltar.png" />
