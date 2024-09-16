@@ -29,10 +29,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-
-public class PesquisaMusicaController implements Initializable{
-
-
 public class PesquisaMusicaController implements Initializable {
     @FXML
     private ImageView voltar;
