@@ -14,14 +14,21 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import org.controlsfx.control.Rating;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class AvaliaMscController implements Initializable {
+
+    @FXML
+    private ImageView voltar;
     @FXML
     private TextArea comentario;
     @FXML
@@ -29,12 +36,24 @@ public class AvaliaMscController implements Initializable {
     @FXML
     private Rating avaliacao;
     @FXML
-    private ImageView capaAlbum;
+    private Rectangle capaAlbum;
     @FXML
     private Text musicaTitulo;
 
     public int idMusica;
     public int fkAlbum;
+
+
+    @FXML
+    private void onVoltarClick(){
+        try{
+            Application.updateStageScene(ApplicationController.getStage(), "pesquisa-musica-view.fxml");
+        }catch(Exception e){
+            throw new RuntimeException();
+        }
+    }
+
+
 
     @FXML
     protected void onSaveClick(){
@@ -46,6 +65,7 @@ public class AvaliaMscController implements Initializable {
 
         if (comentario.getText().length() > 500){
             Alerta.exibirAlerta("Comentário inválido",null, "Tamanho máximo de 500 caracteres!", Alert.AlertType.INFORMATION);
+            return;
         }else {
             aMsc.setComentario(comentario.getText());
         }
@@ -54,6 +74,14 @@ public class AvaliaMscController implements Initializable {
         aMsc.setFk_id_musica(idMusica);
 
         DaoFactory.createAvaliaMscDao().inserirAvaliacaoMusica(aMsc);
+        Alerta.exibirAlerta(null, null, "Avaliação adicionada com sucesso!", Alert.AlertType.INFORMATION);
+
+        Stage stageAtual = (Stage) salvarAvaliacao.getScene().getWindow();
+        try {
+            Application.updateStageScene(stageAtual, "pesquisa-musica-view.fxml");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     protected void capturarValores(){
@@ -62,7 +90,7 @@ public class AvaliaMscController implements Initializable {
         a = DaoFactory.createAlbumDao().procurarPorIdAlbum(fkAlbum);
 
         Image imagem = new Image(new ByteArrayInputStream(a.getCapa()));
-        capaAlbum.setImage(imagem);
+        capaAlbum.setFill(new ImagePattern(imagem));
 
         // pegando o título
         Musica m = DaoFactory.createMusicaDao().procurarPorIdMusica(idMusica);

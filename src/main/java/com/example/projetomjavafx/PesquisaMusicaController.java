@@ -246,7 +246,7 @@ public class PesquisaMusicaController implements Initializable {
             controller.capturarValores(); // definindo os valores a serem chamados na outra tela antes dela ser chamada, sem precisar do initialize
 
             if (controller.avaliacaoExistente()){
-                Alerta.exibirAlerta("Escolha outra música.", "Música já avaliada.","Escolha outra música ou selecione editar avaliação..", Alert.AlertType.INFORMATION);
+                Alerta.exibirAlerta("Escolha outra música.", "Música já avaliada.","Escolha outra música", Alert.AlertType.INFORMATION);
             }else {
                 // atualiza a cena com o novo root
                 Stage stage = (Stage) avaliar.getScene().getWindow();
