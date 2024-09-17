@@ -53,7 +53,6 @@ public class PesquisaMusicaController implements Initializable {
         List<Musica> todasMusicas = DaoFactory.createMusicaDao().procurarTodasMusica();
         List<Musica> listaMusicas = new ArrayList<>();
 
-
         for (Musica mu : todasMusicas) {
             if (mu.getTitulo().toLowerCase().contains(filtro)) {
                 listaMusicas.add(mu);
@@ -168,8 +167,9 @@ public class PesquisaMusicaController implements Initializable {
             // Obtenha o objeto Musica
             Musica musica = parametro.getValue();
 
+            Album album = DaoFactory.createMusicaDao().procurarAlbumPorFk(musica.getFk_id_album());
             // Busque o artista usando o método que criamos
-            Artista artista = DaoFactory.createMusicaDao().procurarArtistaPorFk(musica.getId());
+            Artista artista = DaoFactory.createMusicaDao().procurarArtistaPorFk(album.getFk_id_artista());
 
             // Retorna o nome do artista, se houver
             if (artista != null) {
