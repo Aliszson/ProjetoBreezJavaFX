@@ -156,7 +156,7 @@ public class MusicaDaoJDBC implements MusicaDao {
         ResultSet rs = null;
 
         try {
-            st = conn.prepareStatement("SELECT id_album, nome, capa FROM album WHERE id_album = ?");
+            st = conn.prepareStatement("SELECT id_album, nome, capa, fk_id_artista FROM album WHERE id_album = ?");
             st.setInt(1, fk_id_album);
             rs = st.executeQuery();
 
@@ -165,6 +165,7 @@ public class MusicaDaoJDBC implements MusicaDao {
                 album.setId(rs.getInt("id_album"));
                 album.setNome(rs.getString("nome"));
                 album.setCapa(rs.getBytes("capa"));
+                album.setFk_id_artista(rs.getInt("fk_id_artista"));
                 return album;
             }
         } catch (SQLException e) {
@@ -181,7 +182,7 @@ public class MusicaDaoJDBC implements MusicaDao {
         ResultSet rs = null;
 
         try {
-            st = conn.prepareStatement("SELECT * FROM artista WHERE id_artista = ?");
+            st = conn.prepareStatement("SELECT id_artista, nome FROM artista WHERE id_artista = ?");
             st.setInt(1, fkIdArtista);
             rs = st.executeQuery();
             if (rs.next()) {

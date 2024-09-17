@@ -18,7 +18,7 @@
                   <Image url="@../../../img/icone/iconePesquisa.png" />
                </image>
             </ImageView>
-            <Button fx:id="avaliar" layoutX="64.0" layoutY="79.0" mnemonicParsing="false" text="Avaliar" />
+            <Button fx:id="avaliar" layoutX="64.0" layoutY="79.0" mnemonicParsing="false" onMouseClicked="#onAvaliarClick" text="Avaliar" />
          </children>
       </AnchorPane>
       <ImageView fx:id="voltar" fitHeight="47.0" fitWidth="44.0" layoutX="115.0" layoutY="29.0" onMouseClicked="#onVoltarClick" pickOnBounds="true" preserveRatio="true">
