@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #ededed;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetomjavafx.PesquisaAlbumController">
    <children>
@@ -13,7 +14,7 @@
          <children>
             <TextField fx:id="campoPesquisa" layoutX="220.0" layoutY="39.0" onKeyTyped="#pesquisaTabelaAlbum" prefHeight="26.0" prefWidth="258.0" />
             <TableView fx:id="tabelaResuAlbum" layoutX="45.0" layoutY="98.0" prefHeight="307.0" prefWidth="577.0" />
-            <ImageView fitHeight="28.0" fitWidth="25.0" layoutX="485.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="28.0" fitWidth="25.0" layoutX="487.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../img/icone/iconePesquisa.png" />
                </image>
@@ -25,5 +26,10 @@
             <Image url="@../../../img/icone/setaVoltar.png" />
          </image>
       </ImageView>
+      <Label layoutX="163.0" layoutY="30.0" text="PESQUISA ÁLBUM" textFill="#2a5a5b">
+         <font>
+            <Font name="Cambria Bold" size="34.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
