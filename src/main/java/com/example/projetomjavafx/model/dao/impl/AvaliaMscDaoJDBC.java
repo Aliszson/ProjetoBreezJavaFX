@@ -5,6 +5,8 @@ import com.example.projetomjavafx.model.dao.AvaliaMscDao;
 import com.example.projetomjavafx.model.entities.AvaliaMsc;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AvaliaMscDaoJDBC implements AvaliaMscDao {
     private Connection conn;
@@ -115,4 +117,46 @@ public class AvaliaMscDaoJDBC implements AvaliaMscDao {
             DB.closeStatement(st);
         }
     }
+    @Override
+    public List<List<Object>> carregarAvaliacoes(int usuarioId) {
+        String sql = "SELECT " +
+                "msc.titulo AS nomeMusica, " +
+                "alb.nome AS nomeAlbum, " +
+                "art.nome AS nomeArtista, " +
+                "am.nota, " +
+                "am.comentario " +
+                "FROM avaliaMsc am " +
+                "JOIN musica msc ON am.fk_id_musica = msc.id_musica " +
+                "JOIN album alb ON msc.fk_id_album = alb.id_album " +
+                "JOIN artista art ON alb.fk_id_artista = art.id_artista " +
+                "WHERE am.fk_id_usuario = ?";
+
+        List<List<Object>> avaliacoesData = new ArrayList<>();
+        PreparedStatement st = null;
+        ResultSet rs = null;
+
+        try {
+            st = conn.prepareStatement(sql);
+            st.setInt(1, usuarioId);
+            rs = st.executeQuery();
+
+            while (rs.next()) {
+                List<Object> row = new ArrayList<>();
+                row.add(rs.getString("nomeMusica"));
+                row.add(rs.getString("nomeAlbum"));
+                row.add(rs.getString("nomeArtista"));
+                row.add(rs.getString("comentario"));
+                row.add(rs.getInt("nota"));
+                avaliacoesData.add(row);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DB.closeResultSet(rs);
+            DB.closeStatement(st);
+        }
+
+        return avaliacoesData;
+    }
 }
+
