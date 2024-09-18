@@ -13,6 +13,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.controlsfx.control.SearchableComboBox;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,7 +30,7 @@ public class RegistroArtistaController implements Initializable
     @FXML
     private PasswordField senha;
     @FXML
-    private ComboBox<String> genero;
+    private SearchableComboBox <String> genero;
     @FXML
     private ImageView foto;
     @FXML
@@ -37,7 +38,12 @@ public class RegistroArtistaController implements Initializable
     @FXML
     private Circle circuloFoto;
 
-    List<String> generos = new ArrayList<>(Arrays.asList ("Rock", "Jazz", "Clássico", "Rap"));
+    List<String> generos = new ArrayList<>(Arrays.asList ("Rock", "Pop", "Jazz", "Blues", "Hip Hop", "R&B", "Country", "Reggae",
+            "Salsa", "Funk", "Metal", "Classical", "Electronic", "House", "Techno",
+            "Disco", "Gospel", "Punk", "Folk", "Soul", "Indie", "Samba", "Bossa Nova",
+            "MPB", "Forró", "Axé", "Pagode", "K-pop", "J-pop", "Reggaeton", "Afrobeat",
+            "Trap", "Grunge", "Progressive Rock", "Ambient", "Trance", "Dubstep", "Ska",
+            "Hardcore", "Emo", "New Wave", "Indie"));
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Restricoes.verificaNome(nome);
@@ -128,8 +134,8 @@ public class RegistroArtistaController implements Initializable
     public void limparCampos(){
         nome.clear();
         senha.clear();
-        genero.setPromptText("Nenhum");
         genero.setValue(null);
+        genero.setPromptText("Nenhum");
         File perfilVazio = new File("src/main/resources/img/artistaImg/perfilvazioArtista.png");
         foto.setImage(new Image(perfilVazio.toURI().toString()));
         foto.setVisible(true);
