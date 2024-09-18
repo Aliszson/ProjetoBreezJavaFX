@@ -24,8 +24,6 @@ public class TelaPrincipalController  implements Initializable {
     @FXML
     private Circle circuloFoto;
     @FXML
-    private Button inicio;
-    @FXML
     private Region regiao;
 
     // para usuário
@@ -78,14 +76,6 @@ public class TelaPrincipalController  implements Initializable {
 
     }
 
-    @FXML
-    public void onInicioClick(){
-        try{
-            Application.updateStageScene(ApplicationController.getStage(), "tela-principal-view.fxml");
-        }catch(IOException e){
-            throw new RuntimeException();
-        }
-    }
     // funcinalidades do usuario
     @FXML
     public void onPesquisarAlbumClicked(){

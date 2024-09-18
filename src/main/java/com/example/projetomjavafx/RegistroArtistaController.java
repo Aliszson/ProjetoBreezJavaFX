@@ -43,7 +43,7 @@ public class RegistroArtistaController implements Initializable
             "Disco", "Gospel", "Punk", "Folk", "Soul", "Indie", "Samba", "Bossa Nova",
             "MPB", "Forró", "Axé", "Pagode", "K-pop", "J-pop", "Reggaeton", "Afrobeat",
             "Trap", "Grunge", "Progressive Rock", "Ambient", "Trance", "Dubstep", "Ska",
-            "Hardcore", "Emo", "New Wave", "Indie"));
+            "Hardcore", "Emo", "New Wave"));
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Restricoes.verificaNome(nome);
