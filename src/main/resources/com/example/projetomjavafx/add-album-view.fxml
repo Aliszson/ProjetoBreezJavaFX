@@ -9,32 +9,63 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetomjavafx.AddAlbumController">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #ededed;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetomjavafx.AddAlbumController">
    <children>
-      <TextField fx:id="nomeAlbum" layoutX="89.0" layoutY="91.0" promptText="Nome">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </TextField>
-      <Label layoutX="89.0" layoutY="74.0" text="Nome " />
-      <TextField fx:id="generoPesquisa1" layoutX="94.0" layoutY="191.0" onKeyTyped="#pesquisarGenero1" promptText="Ex: pop, rock, mpb..." />
-      <TextField fx:id="generoPesquisa2" layoutX="348.0" layoutY="192.0" onKeyTyped="#pesquisarGenero2" promptText="Genero Secundário" />
-      <ListView fx:id="generoList1" layoutX="94.0" layoutY="236.0" prefHeight="61.0" prefWidth="191.0" />
-      <ListView fx:id="generoList2" layoutX="348.0" layoutY="236.0" prefHeight="62.0" prefWidth="191.0" />
-      <Label layoutX="94.0" layoutY="173.0" text="Genero Principal" />
-      <Label layoutX="348.0" layoutY="174.0" text="Genero Secundário" />
-      <Button fx:id="buttonAddAlbum" focusTraversable="false" layoutX="249.0" layoutY="327.0" mnemonicParsing="false" onAction="#onAddAlbumClick" prefHeight="51.0" prefWidth="102.0" text="Adicionar" />
-      <ImageView fx:id="capaAlbum" fitHeight="98.0" fitWidth="150.0" layoutX="347.0" layoutY="68.0" onMouseClicked="#onCapaClick" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../img/albumImg/capa/capa-album-vazia.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="voltar" fitHeight="47.0" fitWidth="44.0" layoutX="21.0" layoutY="14.0" onMouseClicked="#onVoltarClick" pickOnBounds="true" preserveRatio="true">
+      <AnchorPane layoutX="150.0" layoutY="100.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <TextField fx:id="nomeAlbum" layoutX="42.0" layoutY="68.0" promptText="Nome">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </TextField>
+            <Label layoutX="42.0" layoutY="38.0" text="Nome ">
+               <font>
+                  <Font name="Cambria Bold" size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="generoPesquisa1" layoutX="41.0" layoutY="141.0" onKeyTyped="#pesquisarGenero1" promptText="Ex: pop, rock, mpb..." />
+            <TextField fx:id="generoPesquisa2" layoutX="41.0" layoutY="259.0" onKeyTyped="#pesquisarGenero2" promptText="Genero Secundário" />
+            <ListView fx:id="generoList1" layoutX="42.0" layoutY="170.0" prefHeight="61.0" prefWidth="191.0" />
+            <ListView fx:id="generoList2" layoutX="42.0" layoutY="290.0" prefHeight="62.0" prefWidth="191.0" />
+            <Label layoutX="42.0" layoutY="117.0" text="Gênero Principal">
+               <font>
+                  <Font name="Cambria Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="43.0" layoutY="234.0" text="Gênero Secundário">
+               <font>
+                  <Font name="Cambria Bold" size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="buttonAddAlbum" focusTraversable="false" layoutX="242.0" layoutY="352.0" mnemonicParsing="false" onAction="#onAddAlbumClick" prefHeight="36.0" prefWidth="85.0" style="-fx-background-color: #2a5a5b;" text="Adicionar" textFill="WHITE">
+               <font>
+                  <Font name="Cambria" size="14.0" />
+               </font>
+            </Button>
+            <ImageView fx:id="capaAlbum" fitHeight="98.0" fitWidth="150.0" layoutX="290.0" layoutY="121.0" onMouseClicked="#onCapaClick" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../img/albumImg/capa/capa-album-vazia.png" />
+               </image>
+            </ImageView>
+            <Rectangle fx:id="retanguloCapa" arcHeight="5.0" arcWidth="5.0" fill="TRANSPARENT" height="143.0" layoutX="264.0" layoutY="91.0" onMouseClicked="#onRetanguloCapaClick" stroke="#2a5a5b" strokeType="INSIDE" width="150.0" />
+            <Label layoutX="264.0" layoutY="68.0" text="Capa">
+               <font>
+                  <Font name="Cambria Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <ImageView fx:id="voltar" fitHeight="47.0" fitWidth="44.0" layoutX="150.0" layoutY="45.0" onMouseClicked="#onVoltarClick" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../img/icone/setaVoltar.png" />
          </image>
       </ImageView>
-      <Rectangle fx:id="retanguloCapa" arcHeight="5.0" arcWidth="5.0" fill="TRANSPARENT" height="143.0" layoutX="351.0" layoutY="21.0" onMouseClicked="#onRetanguloCapaClick" stroke="BLACK" strokeType="INSIDE" width="150.0" />
+      <Text fill="#2a5a5b" layoutX="203.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NOVO ÁLBUM">
+         <font>
+            <Font name="Cambria Bold" size="34.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
