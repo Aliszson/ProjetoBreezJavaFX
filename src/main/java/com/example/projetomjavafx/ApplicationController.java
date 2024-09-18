@@ -29,7 +29,6 @@ public class ApplicationController {
         try {
             ApplicationController.setStage((Stage) menuRegistro.getScene().getWindow());
             Application.updateStageScene(getStage(), "registrar_usuario-view.fxml");
-            stage.setTitle("Registrar");
             stage.setResizable(false);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -41,7 +40,6 @@ public class ApplicationController {
         try {
             ApplicationController.setStage((Stage) menuRegistro.getScene().getWindow());
             Application.updateStageScene(getStage(), "registrar_artista-view.fxml");
-            stage.setTitle("Registrar");
             stage.setResizable(false);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -54,7 +52,6 @@ public class ApplicationController {
         try {
             ApplicationController.setStage((Stage) menuLogin.getScene().getWindow());
             Application.updateStageScene(getStage(), "login_usuario-view.fxml");
-            stage.setTitle("Registrar");
             stage.setResizable(false);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -66,7 +63,6 @@ public class ApplicationController {
         try {
             ApplicationController.setStage((Stage) menuLogin.getScene().getWindow());
             Application.updateStageScene(getStage(), "login_artista-view.fxml");
-            stage.setTitle("Registrar");
             stage.setResizable(false);
         } catch (IOException e) {
             throw new RuntimeException(e);

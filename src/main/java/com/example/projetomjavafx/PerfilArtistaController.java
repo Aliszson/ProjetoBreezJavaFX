@@ -13,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
+import org.controlsfx.control.SearchableComboBox;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -28,7 +29,7 @@ public class PerfilArtistaController implements Initializable {
     @FXML
     private TextField nome;
     @FXML
-    private Label genero;
+    private SearchableComboBox genero;
     @FXML
     private ImageView voltar;
     @FXML
@@ -37,6 +38,15 @@ public class PerfilArtistaController implements Initializable {
     private Button sair;
     @FXML
     private Button deletar;
+
+
+    List<String> generos = new ArrayList<>(Arrays.asList ("Rock", "Pop", "Jazz", "Blues", "Hip Hop", "R&B", "Country", "Reggae",
+            "Salsa", "Funk", "Metal", "Classical", "Electronic", "House", "Techno",
+            "Disco", "Gospel", "Punk", "Folk", "Soul", "Indie", "Samba", "Bossa Nova",
+            "MPB", "Forró", "Axé", "Pagode", "K-pop", "J-pop", "Reggaeton", "Afrobeat",
+            "Trap", "Grunge", "Progressive Rock", "Ambient", "Trance", "Dubstep", "Ska",
+            "Hardcore", "Emo", "New Wave"));
+
 
 
     SessaoArtista sessaoA = new SessaoArtista();
@@ -103,6 +113,10 @@ public class PerfilArtistaController implements Initializable {
             listaErros.add("- Este nome já esta sendo utilizado");
         }
 
+        if(genero == null){
+            listaErros.add("- O gênero não pode ser nulo");
+        }
+
 
         if(arquivo != null){
             byte[] bytesImagem =  Files.readAllBytes(arquivo.toPath());
@@ -117,8 +131,10 @@ public class PerfilArtistaController implements Initializable {
         }
 
         sessaoA.getArtista().setNome(nome.getText());
+        sessaoA.getArtista().setGenero((String)genero.getValue());
         DaoFactory.createArtistaDao().atualizarNomeArtista(sessaoA.getArtista());
         DaoFactory.createArtistaDao().atualizarFotoArtista(sessaoA.getArtista());
+        DaoFactory.createArtistaDao().atualizarGeneroArtista(sessaoA.getArtista());
         Alerta.exibirAlerta(null, null, "Alterações salvas", Alert.AlertType.INFORMATION);
 
     }
@@ -138,8 +154,8 @@ public class PerfilArtistaController implements Initializable {
         Image imagem = new Image(new ByteArrayInputStream(sessaoA.getArtista().getFoto()));
         circuloFoto.setFill(new ImagePattern(imagem));
         nome.setText(sessaoA.getArtista().getNome());
-        genero.setText(sessaoA.getArtista().getGenero());
-
+        genero.setPromptText(sessaoA.getArtista().getGenero());
+        genero.getItems().addAll(generos);
 
     }
 }
