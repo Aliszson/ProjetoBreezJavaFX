@@ -13,7 +13,7 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #ededed;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetomjavafx.PerfilUsuarioController">
    <children>
-      <AnchorPane layoutX="150.0" layoutY="115.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;">
+      <AnchorPane layoutX="150.0" layoutY="108.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;">
          <children>
             <Text layoutX="52.0" layoutY="368.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gêneros musicais favoritos:">
                <font>
@@ -48,14 +48,26 @@
             </TextField>
          </children>
       </AnchorPane>
-      <Button id="botaoSair" fx:id="sair" layoutX="586.0" layoutY="68.0" mnemonicParsing="false" onMouseClicked="#onSairClick" prefHeight="36.0" prefWidth="85.0" style="-fx-background-color: #2a5a5b;" text="Sair" textFill="WHITE" wrapText="true" />
-      <Button id="botaoSair" fx:id="salvar" layoutX="492.0" layoutY="68.0" mnemonicParsing="false" onMouseClicked="#onSalvarClick" prefHeight="36.0" prefWidth="85.0" style="-fx-background-color: #2a5a5b;" text="Salvar" textFill="WHITE" wrapText="true" />
-      <Button id="botaoSair" fx:id="deletar" layoutX="676.0" layoutY="68.0" mnemonicParsing="false" onMouseClicked="#onDeletarClick" prefHeight="36.0" prefWidth="76.0" style="-fx-background-color: #ff371c;" text="Excluir" textFill="WHITE" />
+      <Button id="botaoSair" fx:id="sair" layoutX="586.0" layoutY="68.0" mnemonicParsing="false" onMouseClicked="#onSairClick" prefHeight="36.0" prefWidth="85.0" style="-fx-background-color: #2a5a5b;" text="Sair" textFill="WHITE" wrapText="true">
+         <font>
+            <Font name="Cambria" size="13.0" />
+         </font></Button>
+      <Button id="botaoSair" fx:id="salvar" layoutX="492.0" layoutY="68.0" mnemonicParsing="false" onMouseClicked="#onSalvarClick" prefHeight="36.0" prefWidth="85.0" style="-fx-background-color: #2a5a5b;" text="Salvar" textFill="WHITE" wrapText="true">
+         <font>
+            <Font name="Cambria" size="13.0" />
+         </font></Button>
+      <Button fx:id="deletar" layoutX="676.0" layoutY="68.0" mnemonicParsing="false" onMouseClicked="#onDeletarClick" prefHeight="36.0" prefWidth="76.0" style="-fx-background-color: #ff371c;" text="Excluir" textFill="WHITE">
+         <font>
+            <Font name="Cambria Bold" size="12.0" />
+         </font></Button>
       <ImageView fx:id="voltar" fitHeight="47.0" fitWidth="44.0" layoutX="150.0" layoutY="64.0" onMouseClicked="#onVoltarClick" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../img/icone/setaVoltar.png" />
          </image>
       </ImageView>
-      <Button fx:id="avaliacoes" layoutX="400.0" layoutY="68.0" mnemonicParsing="false" onMouseClicked="#onAvaliacoesClick" prefHeight="36.0" prefWidth="85.0" style="-fx-background-color: #2a5a5b;" text="Avaliações" textFill="WHITE" />
+      <Button fx:id="avaliacoes" layoutX="400.0" layoutY="68.0" mnemonicParsing="false" onMouseClicked="#onAvaliacoesClick" prefHeight="36.0" prefWidth="85.0" style="-fx-background-color: #2a5a5b;" text="Avaliações" textFill="WHITE">
+         <font>
+            <Font name="Cambria" size="13.0" />
+         </font></Button>
    </children>
 </AnchorPane>

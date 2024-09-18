@@ -14,12 +14,15 @@
    <children>
       <AnchorPane layoutX="150.0" layoutY="100.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;">
          <children>
-            <TextArea fx:id="comentario" layoutX="128.0" layoutY="174.0" prefHeight="158.0" prefWidth="320.0" />
-            <Button fx:id="salvarAvaliacao" layoutX="242.0" layoutY="340.0" mnemonicParsing="false" onAction="#onSaveClick" prefHeight="38.0" prefWidth="93.0" text="Avaliar" />
-            <Rating id="estrela" fx:id="avaliacao" layoutX="128.0" layoutY="133.0" prefHeight="29.0" prefWidth="206.0" rating="0.0" />
-            <Text fx:id="musicaTitulo" fill="#2a5a5b" layoutX="128.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome da Música" wrappingWidth="237.73675537109375">
+            <TextArea fx:id="comentario" focusTraversable="false" layoutX="128.0" layoutY="174.0" prefHeight="158.0" prefWidth="320.0" />
+            <Button fx:id="salvarAvaliacao" layoutX="242.0" layoutY="340.0" mnemonicParsing="false" onAction="#onSaveClick" prefHeight="38.0" prefWidth="93.0" style="-fx-background-color: #2a5a5b;" text="Avaliar" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="14.0" />
+                  <Font name="Cambria" size="15.0" />
+               </font></Button>
+            <Rating id="estrela" fx:id="avaliacao" layoutX="128.0" layoutY="133.0" prefHeight="29.0" prefWidth="206.0" rating="0.0" />
+            <Text fx:id="musicaTitulo" layoutX="128.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome da Música" wrappingWidth="237.73675537109375">
+               <font>
+                  <Font name="Cambria Bold" size="14.0" />
                </font>
             </Text>
             <Rectangle fx:id="capaAlbum" arcHeight="5.0" arcWidth="5.0" fill="TRANSPARENT" height="110.0" layoutX="329.0" layoutY="61.0" stroke="#2a5a5b" strokeType="INSIDE" width="115.0" />
@@ -30,5 +33,10 @@
             <Image url="@../../../img/icone/setaVoltar.png" />
          </image>
       </ImageView>
+      <Text fill="#2a5a5b" layoutX="200.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AVALIANDO MÚSICA">
+         <font>
+            <Font name="Cambria Bold" size="34.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
