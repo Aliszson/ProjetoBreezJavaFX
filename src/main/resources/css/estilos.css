@@ -25,6 +25,10 @@
     -fx-font-size: 15;
 }
 
+.menu-item{
+    --body-font-size: 15;
+}
+
 .table-view{
     -fx-border-color: #2a5a5b;
     -fx-column-halignment: center;

@@ -38,6 +38,8 @@ public class PesquisaMusicaController implements Initializable {
     private TextField campoPesquisa;
     @FXML
     private Button avaliar;
+    @FXML
+    private ContextMenu opcoes;
   
   
     private TableColumn<Album, byte[]> capa;
