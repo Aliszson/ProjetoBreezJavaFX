@@ -38,6 +38,8 @@ public class PerfilUsuarioController implements Initializable {
     private Button sair;
     @FXML
     private Button deletar;
+    @FXML
+    private Button avaliacoes;
 
     SessaoUsuario sessaoU = new SessaoUsuario();
     File arquivo = null;
@@ -54,6 +56,15 @@ public class PerfilUsuarioController implements Initializable {
             Application.updateStageScene(ApplicationController.getStage(), "tela-principal-view.fxml");
         } catch (IOException e) {
             throw new RuntimeException();
+        }
+    }
+
+    @FXML
+    public void onAvaliacoesClick(){
+        try {
+            Application.updateStageScene(ApplicationController.getStage(), "avaliacoes-usuario-view.fxml");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
