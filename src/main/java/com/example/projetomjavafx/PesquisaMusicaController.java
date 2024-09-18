@@ -48,10 +48,10 @@ public class PesquisaMusicaController implements Initializable {
     private void pesquisaTabelaMusica() {
         tabelaResuMusica.setVisible(true);
 
-        // Obtém o texto do campo de pesquisa e o converte para minúsculas
+        // obter o texto do campo de pesquisa e o converte para minúsculas
         String filtro = campoPesquisa.getText().toLowerCase();
 
-        // Obtém a lista de todas as músicas e filtra com base no texto de pesquisa
+        // obter a lista de todas as músicas e filtra com base no texto de pesquisa
         List<Musica> todasMusicas = DaoFactory.createMusicaDao().procurarTodasMusica();
         List<Musica> listaMusicas = new ArrayList<>();
 
@@ -61,7 +61,7 @@ public class PesquisaMusicaController implements Initializable {
             }
         }
 
-        // Converte a lista filtrada para ObservableList e define como itens da tabela
+        // converte a lista filtrada para ObservableList e define como itens da tabela
         ObservableList<Musica> listaMsc = FXCollections.observableArrayList(listaMusicas);
 
         tabelaResuMusica.setItems(listaMsc);
@@ -70,10 +70,10 @@ public class PesquisaMusicaController implements Initializable {
     protected void mostraTabelaMusica(){
         // Inicializa a coluna apenas uma vez
 
-        // Coluna para exibir a capa do álbum
+        // coluna para exibir a capa do álbum
         TableColumn<Musica, byte[]> albumMusicaCapa = new TableColumn<>("Capa");
         albumMusicaCapa.setCellValueFactory(parametro -> {
-            // Obtenha o objeto Album associado à música
+            // obtem o objeto Album associado à música
             Musica musica = parametro.getValue();
             Album album = DaoFactory.createMusicaDao().procurarAlbumPorFk(musica.getFk_id_album());
 
@@ -98,11 +98,11 @@ public class PesquisaMusicaController implements Initializable {
                             setGraphic(null); // Não exibe imagem se estiver vazio
                         } else {
                             try {
-                                // Cria o InputStream a partir do array de bytes
+                                // cria o InputStream a partir do array de bytes
                                 InputStream inputStream = new ByteArrayInputStream(capa);
                                 Image image = new Image(inputStream);
 
-                                // Ajusta o tamanho da imagem
+                                // ajusta o tamanho da imagem
                                 imageView.setFitHeight(50);
                                 imageView.setFitWidth(50);
                                 imageView.setImage(image);
@@ -166,14 +166,14 @@ public class PesquisaMusicaController implements Initializable {
         // exibir o nome do artista
         TableColumn<Musica, String> colunaArtista = new TableColumn<>("Artista");
         colunaArtista.setCellValueFactory(parametro -> {
-            // Obtenha o objeto Musica
+            // obtem o objeto Musica
             Musica musica = parametro.getValue();
 
             Album album = DaoFactory.createMusicaDao().procurarAlbumPorFk(musica.getFk_id_album());
-            // Busque o artista usando o método que criamos
+            // busca o artista
             Artista artista = DaoFactory.createMusicaDao().procurarArtistaPorFk(album.getFk_id_artista());
 
-            // Retorna o nome do artista, se houver
+            // retorna o nome do artista, se houver
             if (artista != null) {
                 return new SimpleStringProperty(artista.getNome());
             } else {
@@ -181,19 +181,19 @@ public class PesquisaMusicaController implements Initializable {
             }
         });
 
-        // Coluna para exibir a média das avaliações
+        // exibir a média das avaliações
         TableColumn<Musica, Float> colunaMedia = new TableColumn<>("Média Avaliações");
         colunaMedia.setCellValueFactory(parametro -> {
             // Obtenha o objeto Musica
             Musica musica = parametro.getValue();
 
-            // Busque a média das avaliações usando o método que criamos
+            // busca a média das avaliações
             float media = DaoFactory.createAvaliaMscDao().calcularMediaPorMusica(musica.getId());
 
             return new SimpleObjectProperty<>(media);
         });
 
-        // Define a formatação para a média, se necessário
+        // define a formatação para a média, se necessário
         colunaMedia.setCellFactory(column -> new TableCell<Musica, Float>() {
             private final Label label = new Label();
 
@@ -209,7 +209,7 @@ public class PesquisaMusicaController implements Initializable {
             }
         });
 
-        musicaTitulo.setPrefWidth(150); // Largura preferida (ajuste conforme necessário)
+        musicaTitulo.setPrefWidth(150); // Largura preferida
         musicaTitulo.setMinWidth(150);  // Largura mínima
         musicaTitulo.setMaxWidth(300);  // Largura máxima
 
