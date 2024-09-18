@@ -2,24 +2,33 @@
 
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetomjavafx.ApplicationController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetomjavafx.ApplicationController">
    <children>
-      <Text layoutX="203.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PROJETO M ">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2a5a5b" height="600.0" stroke="BLACK" strokeType="INSIDE" width="494.0" />
+      <ImageView fitHeight="338.0" fitWidth="356.0" layoutX="78.0" layoutY="131.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../img/icone/BreezLogo.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="203.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0">
          <font>
             <Font name="System Bold" size="33.0" />
          </font>
       </Text>
-      <MenuButton fx:id="menuLogin" focusTraversable="false" layoutX="211.0" layoutY="200.0" mnemonicParsing="false" text="Login">
+      <MenuButton fx:id="menuLogin" alignment="CENTER" focusTraversable="false" layoutX="557.0" layoutY="247.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="245.0" text="Login">
         <items>
           <MenuItem fx:id="loginUsuario" mnemonicParsing="false" onAction="#onLoginUsuario" text="Usuário" />
           <MenuItem fx:id="loginArtista" mnemonicParsing="false" onAction="#onLoginArtista" text="Artista" />
         </items>
       </MenuButton>
-      <MenuButton fx:id="menuRegistro" focusTraversable="false" layoutX="300.0" layoutY="200.0" mnemonicParsing="false" text="Registrar">
+      <MenuButton fx:id="menuRegistro" alignment="CENTER" focusTraversable="false" layoutX="556.0" layoutY="386.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="246.0" text="Registrar">
          <items>
             <MenuItem fx:id="registrarUsuario" mnemonicParsing="false" onAction="#onRegistrarUsuario" text="Usuário" />
             <MenuItem fx:id="registrarArtista" mnemonicParsing="false" onAction="#onRegistrarArtista" text="Artista" />

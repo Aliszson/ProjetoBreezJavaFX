@@ -1,0 +1,26 @@
+.root{
+    -fx-font-family: "Cambria"!important;
+}
+
+#botaoEntrarLogin{
+    -fx-background-color: #2a5a5b; /** botao de login grande */
+    -fx-text-fill: white;
+    -fx-font-family: Cambria;
+    -fx-font-size: 15;
+}
+
+#botaoRegistrar{
+    -fx-background-color: #2a5a5b; /** botao de login grande */
+    -fx-text-fill: white;
+    -fx-font-family: Cambria;
+    -fx-font-size: 15;
+}
+
+.text-field, .text-area, .password-field, .label{
+    -fx-font-family: Cambria;
+}
+
+.menu-button{
+    -fx-background-color: white;
+    -fx-font-size: 15;
+}
