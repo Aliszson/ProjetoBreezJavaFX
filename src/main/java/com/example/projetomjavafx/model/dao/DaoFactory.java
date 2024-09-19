@@ -11,12 +11,6 @@ public class DaoFactory {
     public static ArtistaDao createArtistaDao(){
         return new ArtistaDaoJDBC(DB.getConnection());
     }
-    public static ArtistaProduzDao createArtistaProduzDao(){
-        return new ArtistaProduzJDBC(DB.getConnection());
-    }
-    public static AvaliaAlbDao createAvaliaAlbDao(){
-        return new AvaliaAlbDaoJDBC(DB.getConnection());
-    }
     public static AvaliaMscDao createAvaliaMscDao(){
         return new AvaliaMscDaoJDBC(DB.getConnection());
     }
