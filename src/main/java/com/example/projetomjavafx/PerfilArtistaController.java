@@ -87,6 +87,7 @@ public class PerfilArtistaController implements Initializable {
 
         if (resultado.isPresent() && resultado.get() == ButtonType.OK) {
             DaoFactory.createArtistaDao().deletarPorIdArtista(sessaoA.getArtista().getId());
+            sessaoA.setArtista(null);
             try {
                 Application.updateStageScene(ApplicationController.getStage(), "application-view.fxml");
             } catch (IOException e) {

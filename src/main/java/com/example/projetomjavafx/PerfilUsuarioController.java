@@ -68,10 +68,6 @@ public class PerfilUsuarioController implements Initializable {
         }
     }
 
-
-
-
-
     @FXML
     public void onSairClick(){
         sessaoU.setUsuario(null);
@@ -90,6 +86,7 @@ public class PerfilUsuarioController implements Initializable {
 
         if (resultado.isPresent() && resultado.get() == ButtonType.OK) {
             DaoFactory.createUsuarioDao().deletarPorIdUsuario(sessaoU.getUsuario().getId());
+            sessaoU.setUsuario(null);
             try {
                 Application.updateStageScene(ApplicationController.getStage(), "application-view.fxml");
             } catch (IOException e) {
