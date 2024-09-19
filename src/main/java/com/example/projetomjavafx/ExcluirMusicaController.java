@@ -86,14 +86,14 @@ public class ExcluirMusicaController implements Initializable {
         // Coluna para exibir a capa do álbum
         TableColumn<Musica, byte[]> albumMusicaCapa = new TableColumn<>("Capa");
         albumMusicaCapa.setCellValueFactory(parametro -> {
-            // Obtenha o objeto Album associado à música
+            // obter o objeto Album associado à música
             Musica musica = parametro.getValue();
             Album album = DaoFactory.createMusicaDao().procurarAlbumPorFk(musica.getFk_id_album());
 
             if (album != null && album.getCapa() != null) {
                 return new SimpleObjectProperty<>(album.getCapa());
             } else {
-                return new SimpleObjectProperty<>(null); // Se não houver capa, retorna null
+                return new SimpleObjectProperty<>(null); // se não houver capa, retorna null
             }
         });
 
@@ -111,7 +111,7 @@ public class ExcluirMusicaController implements Initializable {
                             setGraphic(null); // Não exibe imagem se estiver vazio
                         } else {
                             try {
-                                // Cria o InputStream a partir do array de bytes
+                                // cria o InputStream a partir do array de bytes
                                 InputStream inputStream = new ByteArrayInputStream(capa);
                                 Image image = new Image(inputStream);
 
@@ -222,11 +222,11 @@ public class ExcluirMusicaController implements Initializable {
             }
         });
 
-        musicaTitulo.setPrefWidth(150); // Largura preferida (ajuste conforme necessário)
+        musicaTitulo.setPrefWidth(150); // Largura preferida
         musicaTitulo.setMinWidth(150);  // Largura mínima
         musicaTitulo.setMaxWidth(300);  // Largura máxima
 
-        colunaArtista.setPrefWidth(150); // Largura preferida (ajuste conforme necessário)
+        colunaArtista.setPrefWidth(150); // Largura preferida
         colunaArtista.setMinWidth(150);  // Largura mínima
         colunaArtista.setMaxWidth(300);  // Largura máxima
 

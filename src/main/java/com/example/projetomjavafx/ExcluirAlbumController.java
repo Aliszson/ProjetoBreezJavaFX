@@ -78,9 +78,9 @@ public class ExcluirAlbumController implements Initializable {
         // Inicializa a coluna apenas uma vez
 
         TableColumn<Album, byte[]> albumCapa = new TableColumn("Capa");
-        // Configura a fábrica de valor de célula
+        // configurar a fábrica de valor de célula
         albumCapa.setCellValueFactory(parametro -> new SimpleObjectProperty<>(parametro.getValue().getCapa()));
-        // Configura a fábrica de célula para exibir a capa do álbum
+        // configurar a fábrica de célula para exibir a capa do álbum
         albumCapa.setCellFactory(new Callback<>() {
             @Override
             public TableCell<Album, byte[]> call(TableColumn<Album, byte[]> coluna) {
@@ -93,18 +93,18 @@ public class ExcluirAlbumController implements Initializable {
                         if (vazio || bytes == null) {
                             setGraphic(null);
                         } else {
-                            // Cria um HBox para organizar os componentes
+                            // criar um HBox para organizar os componentes
                             HBox box = new HBox();
                             box.setSpacing(10);
 
-                            // Configurando a imagem
+                            // configura a imagem
                             InputStream inputStream = new ByteArrayInputStream(bytes);
                             Image image = new Image(inputStream);
                             imageView.setFitHeight(50);
                             imageView.setFitWidth(50);
                             imageView.setImage(image);
 
-                            // Adiciona a imagem e os detalhes ao HBox
+                            // adiciona a imagem e os detalhes ao HBox
                             box.getChildren().addAll(imageView);
                             setGraphic(box);
                         }
@@ -114,10 +114,10 @@ public class ExcluirAlbumController implements Initializable {
         });
 
         TableColumn<Album, String> albumNome = new TableColumn<>("Nome");
-        // Configura a fábrica de valor de célula
+        // configura a fábrica de valor de célula
         albumNome.setCellValueFactory(parametro -> new SimpleObjectProperty<>(parametro.getValue().getNome()));
 
-        // Configura a fábrica de célula para exibir o nome do artista
+        // configura a fábrica de célula para exibir o nome do artista
         albumNome.setCellFactory(new Callback<>() {
             @Override
             public TableCell<Album, String> call(TableColumn<Album, String> coluna) {
@@ -130,7 +130,7 @@ public class ExcluirAlbumController implements Initializable {
                         if (vazio || nomeArtista == null) {
                             setGraphic(null);
                         } else {
-                            // Exibe o nome do artista em um Label
+                            // exibir o nome do artista em um Label
                             label.setText(nomeArtista);
                             setGraphic(label);
                         }
@@ -188,11 +188,11 @@ public class ExcluirAlbumController implements Initializable {
             return new SimpleObjectProperty<>(String.format("%.1f/5", mediaAvaliacoes));
         });
 
-        albumNome.setPrefWidth(150); // Largura preferida (ajuste conforme necessário)
+        albumNome.setPrefWidth(150); // Largura preferida
         albumNome.setMinWidth(150);  // Largura mínima
         albumNome.setMaxWidth(300);  // Largura máxima
 
-        albumArtista.setPrefWidth(150); // Largura preferida (ajuste conforme necessário)
+        albumArtista.setPrefWidth(150); // Largura preferida
         albumArtista.setMinWidth(150);  // Largura mínima
         albumArtista.setMaxWidth(300);  // Largura máxima
 

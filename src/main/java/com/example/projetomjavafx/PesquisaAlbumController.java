@@ -33,10 +33,10 @@ public class PesquisaAlbumController implements Initializable {
     private void pesquisaTabelaAlbum() {
         tabelaResuAlbum.setVisible(true);
 
-        // Obtém o texto do campo de pesquisa e o converte para minúsculas
+        // obter o texto do campo de pesquisa e o converte para minúsculas
         String filtro = campoPesquisa.getText().toLowerCase();
 
-        // Obtém a lista de todas as músicas e filtra com base no texto de pesquisa
+        // obter a lista de todas as músicas e filtra com base no texto de pesquisa
         List<Album> todosAlbuns = DaoFactory.createAlbumDao().procurarTodosAlbuns();
         List<Album> listaAlbuns = new ArrayList<>();
 
@@ -46,7 +46,7 @@ public class PesquisaAlbumController implements Initializable {
             }
         }
 
-        // Converte a lista filtrada para ObservableList e define como itens da tabela
+        // converte a lista filtrada para ObservableList e define como itens da tabela
         ObservableList<Album> listaAlb = FXCollections.observableArrayList(listaAlbuns);
 
         tabelaResuAlbum.setItems(listaAlb);
@@ -56,9 +56,9 @@ public class PesquisaAlbumController implements Initializable {
         // Inicializa a coluna apenas uma vez
 
         TableColumn<Album, byte[]> albumCapa = new TableColumn("Capa");
-        // Configura a fábrica de valor de célula
+        // configura a fábrica de valor de célula
         albumCapa.setCellValueFactory(parametro -> new SimpleObjectProperty<>(parametro.getValue().getCapa()));
-        // Configura a fábrica de célula para exibir a capa do álbum
+        // configura a fábrica de célula para exibir a capa do álbum
         albumCapa.setCellFactory(new Callback<>() {
             @Override
             public TableCell<Album, byte[]> call(TableColumn<Album, byte[]> coluna) {
@@ -71,18 +71,18 @@ public class PesquisaAlbumController implements Initializable {
                         if (vazio || bytes == null) {
                             setGraphic(null);
                         } else {
-                            // Cria um HBox para organizar os componentes
+                            // cria um HBox para organizar os componentes
                             HBox box = new HBox();
                             box.setSpacing(10);
 
-                            // Configurando a imagem
+                            // configura a imagem
                             InputStream inputStream = new ByteArrayInputStream(bytes);
                             Image image = new Image(inputStream);
                             imageView.setFitHeight(50);
                             imageView.setFitWidth(50);
                             imageView.setImage(image);
 
-                            // Adiciona a imagem e os detalhes ao HBox
+                            // adiciona a imagem e os detalhes ao HBox
                             box.getChildren().addAll(imageView);
                             setGraphic(box);
                         }
@@ -167,11 +167,11 @@ public class PesquisaAlbumController implements Initializable {
             return new SimpleObjectProperty<>(String.format("%.1f/5", mediaAvaliacoes));
         });
 
-        albumNome.setPrefWidth(150); // Largura preferida (ajuste conforme necessário)
+        albumNome.setPrefWidth(150); // Largura preferida
         albumNome.setMinWidth(150);  // Largura mínima
         albumNome.setMaxWidth(300);  // Largura máxima
 
-        albumArtista.setPrefWidth(150); // Largura preferida (ajuste conforme necessário)
+        albumArtista.setPrefWidth(150); // Largura preferida
         albumArtista.setMinWidth(150);  // Largura mínima
         albumArtista.setMaxWidth(300);  // Largura máxima
 

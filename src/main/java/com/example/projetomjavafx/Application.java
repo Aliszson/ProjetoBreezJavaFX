@@ -16,7 +16,7 @@ public class Application extends javafx.application.Application {
         scene = new Scene(fxmlLoader.load());
         String css = Application.class.getResource("/css/estilos.css").toExternalForm();
         scene.getStylesheets().add(css);
-        stage.setTitle("Projeto M");
+        stage.setTitle("Breez");
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
